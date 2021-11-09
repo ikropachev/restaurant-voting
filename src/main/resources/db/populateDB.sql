@@ -1,25 +1,26 @@
-DELETE FROM DISHES;
-DELETE FROM RESTAURANTS;
-DELETE FROM USERS;
+DELETE FROM dishes;
+DELETE FROM restaurants;
+DELETE FROM users;
 ALTER SEQUENCE global_seq RESTART WITH 100000;
 
-INSERT INTO USERS (NAME, EMAIL, PASSWORD, PRIVILEGED) VALUES
-    ('Admin', 'admin@gmail.com', '{noop}admin_pass', TRUE),             -- 100000
-    ('First_user', 'first@gmail.com', '{noop}first_pass', FALSE),       -- 100001
-    ('Second_user', 'second@gmail.com', '{noop}second_pass', FALSE);    -- 100002
-
 INSERT INTO RESTAURANTS (NAME) VALUES
-    ('Burgers'),                                                        -- 100003
-    ('HappyShaverma'),                                                  -- 100004
-    ('Kavkaz');                                                         -- 100005
+    ('Nowhere'),                                                        -- 100000
+    ('Burgers'),                                                        -- 100001
+    ('HappyShaverma'),                                                  -- 100002
+    ('Kavkaz');                                                         -- 100003
 
-INSERT INTO DISHES (DESCRIPTION, PRICE, RESTAURANT_ID) VALUES
-    ('Meat Burger', 100, 100003),                                       -- 100006
-    ('Vegan Burger', 150, 100003),                                      -- 100007
-    ('Chicken Burger', 50, 100003),                                     -- 100008
-    ('Meat Shaverma', 100, 100004),                                     -- 100009
-    ('Vegan Shaverma', 150, 100004),                                    -- 100010
-    ('Chicken Shaverma', 50, 100004),                                   -- 100011
-    ('Hachapuri po adzharski', 350, 100005),                            -- 100012
-    ('Hachapuri po megrelski', 450, 100005),                            -- 100013
-    ('Hachapuri po imeretinski', 550, 100005);                          -- 100014
+INSERT INTO USERS (NAME, EMAIL, PASSWORD, PRIVILEGED) VALUES
+    ('Admin', 'admin@gmail.com', 'admin_pass', TRUE),                   -- 100004
+    ('First_user', 'first@gmail.com', 'first_pass', FALSE),             -- 100005
+    ('Second_user', 'second@gmail.com', 'second_pass', FALSE);          -- 100006
+
+INSERT INTO DISHES (NAME, PRICE, RESTAURANT_ID) VALUES
+    ('Meat Burger', 100, 100001),                                       -- 100007
+    ('Vegan Burger', 150, 100001),                                      -- 100008
+    ('Chicken Burger', 50, 100001),                                     -- 100009
+    ('Meat Shaverma', 100, 100002),                                     -- 100010
+    ('Vegan Shaverma', 150, 100002),                                    -- 100011
+    ('Chicken Shaverma', 50, 100002),                                   -- 100012
+    ('Hachapuri po adzharski', 350, 100003),                            -- 100013
+    ('Hachapuri po megrelski', 450, 100003),                            -- 100014
+    ('Hachapuri po imeretinski', 550, 100003);                          -- 100015

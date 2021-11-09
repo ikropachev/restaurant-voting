@@ -1,5 +1,6 @@
 package org.ivan_kropachev.restaurant_voting.model;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 public class User {
@@ -7,7 +8,8 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private boolean priveleged; //have or not admin privilegies
+    private boolean privileged; //have or not admin privilegies
+    private LocalDateTime voteDateTime;
     private int restaurantId;   //voted restaurant
 
     public User() {
@@ -45,12 +47,20 @@ public class User {
         this.password = password;
     }
 
-    public boolean isPriveleged() {
-        return priveleged;
+    public boolean isPrivileged() {
+        return privileged;
     }
 
-    public void setPriveleged(boolean priveleged) {
-        this.priveleged = priveleged;
+    public void setPrivileged(boolean privileged) {
+        this.privileged = privileged;
+    }
+
+    public LocalDateTime getVoteDateTime() {
+        return voteDateTime;
+    }
+
+    public void setVoteDateTime(LocalDateTime voteDateTime) {
+        this.voteDateTime = voteDateTime;
     }
 
     public int getRestaurantId() {
@@ -68,7 +78,8 @@ public class User {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", priveleged=" + priveleged +
+                ", privileged=" + privileged +
+                ", voteDateTime=" + voteDateTime +
                 ", restaurantId=" + restaurantId +
                 '}';
     }

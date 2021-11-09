@@ -3,7 +3,7 @@ package org.ivan_kropachev.restaurant_voting.model;
 public class Dish {
     private int id;
     private int restaurantId;
-    private String description;
+    private String name;
     private int price;
 
     public int getId() {
@@ -22,12 +22,12 @@ public class Dish {
         this.restaurantId = restaurantId;
     }
 
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getPrice() {
@@ -43,7 +43,7 @@ public class Dish {
         return "Dish{" +
                 "id=" + id +
                 ", restaurantId=" + restaurantId +
-                ", description='" + description + '\'' +
+                ", name='" + name + '\'' +
                 ", price=" + price +
                 '}';
     }
