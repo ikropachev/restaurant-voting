@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import java.util.List;
 
 @Controller
-public class AdminRestController extends AbstractUserController {
+public class AdminUserController extends AbstractUserController {
 
     @Override
     public List<User> getAll() {

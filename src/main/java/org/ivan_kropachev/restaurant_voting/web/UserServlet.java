@@ -1,7 +1,7 @@
 package org.ivan_kropachev.restaurant_voting.web;
 
 import org.ivan_kropachev.restaurant_voting.model.User;
-import org.ivan_kropachev.restaurant_voting.web.user.AdminRestController;
+import org.ivan_kropachev.restaurant_voting.web.user.AdminUserController;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.util.StringUtils;
@@ -11,22 +11,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 import java.util.Objects;
-
-import javax.servlet.http.HttpServlet;
 
 public class UserServlet extends HttpServlet {
     private ConfigurableApplicationContext springContext;
-    private AdminRestController adminRestController;
+    private AdminUserController adminUserController;
 
     @Override
     public void init() {
         springContext = new ClassPathXmlApplicationContext("spring/spring-app.xml", "spring/spring-db.xml");
-        adminRestController = springContext.getBean(AdminRestController.class);
+        adminUserController = springContext.getBean(AdminUserController.class);
     }
 
     @Override
@@ -44,13 +39,13 @@ public class UserServlet extends HttpServlet {
                 request.getParameter("email"),
                 request.getParameter("password"),
                 request.getParameter("privileged"),
-                LocalDateTime.parse(request.getParameter("vate_date_time")),
+                LocalDateTime.parse(request.getParameter("vote_date_time")),
                 Integer.parseInt(request.getParameter("restaurant_id")));
 
         if (StringUtils.hasLength(request.getParameter("id"))) {
-            adminRestController.update(user, getId(request));
+            adminUserController.update(user, getId(request));
         } else {
-            adminRestController.create(user);
+            adminUserController.create(user);
         }
         response.sendRedirect("users");
     }
@@ -83,7 +78,7 @@ public class UserServlet extends HttpServlet {
             //    break;
             case "all":
             default:
-                request.setAttribute("users", adminRestController.getAll());
+                request.setAttribute("users", adminUserController.getAll());
                 request.getRequestDispatcher("/users.jsp").forward(request, response);
                 break;
         }
