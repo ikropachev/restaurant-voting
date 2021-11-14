@@ -7,13 +7,23 @@
     <display-name>Restaurant_voting</display-name>
 
     <servlet>
-        <servlet-name>userServlet</servlet-name>
-        <servlet-class>org.ivan_kropachev.restaurant_voting.web.UserServlet</servlet-class>
+        <servlet-name>adminUserServlet</servlet-name>
+        <servlet-class>org.ivan_kropachev.restaurant_voting.web.AdminUserServlet</servlet-class>
         <load-on-startup>0</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>userServlet</servlet-name>
+        <servlet-name>adminUserServlet</servlet-name>
         <url-pattern>/users</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>adminRestaurantServlet</servlet-name>
+        <servlet-class>org.ivan_kropachev.restaurant_voting.web.AdminRestaurantServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adminRestaurantServlet</servlet-name>
+        <url-pattern>/restaurants</url-pattern>
     </servlet-mapping>
 
 </web-app>

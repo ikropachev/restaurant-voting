@@ -4,14 +4,14 @@
 <%--@ taglib prefix="fn" uri="http://restaurant_voting.ivan_kropachev.org/functions" --%>
 <html>
 <head>
-    <title>Users</title>
+    <title>Restaurants</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <section>
     <h3><a href="index.html">Home</a></h3>
     <hr/>
-    <h2>Users</h2>
+    <h2>Restaurants</h2>
 
     <br><br>
     <table border="1" cellpadding="8" cellspacing="0">
@@ -19,22 +19,12 @@
         <tr>
             <th>Id</th>
             <th>Name</th>
-            <th>E-mail</th>
-            <th>Password</th>
-            <th>Privileged</th>
-            <th>Date and time of last vote</th>
-            <th>Voted restaurant</th>
         </tr>
         </thead>
-        <c:forEach items="${requestScope.users}" var="user">
+        <c:forEach items="${requestScope.restaurants}" var="restaurant">
             <tr>
-                <td>${user.id}</td>
-                <td>${user.name}</td>
-                <td>${user.email}</td>
-                <td>${user.password}</td>
-                <td>${user.privileged}</td>
-                <td>${user.voteDateTime}</td>
-                <td>${user.restaurantId}</td>
+                <td>${restaurant.id}</td>
+                <td>${restaurant.name}</td>
             </tr>
         </c:forEach>
     </table>

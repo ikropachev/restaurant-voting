@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class UserServlet extends HttpServlet {
+public class AdminUserServlet extends HttpServlet {
     private ConfigurableApplicationContext springContext;
     private AdminUserController adminUserController;
 

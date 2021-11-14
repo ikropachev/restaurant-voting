@@ -43,13 +43,13 @@ public class User extends AbstractNamedEntity {
     //    this.id = id;
     //}
 
-    public String getName() {
-        return name;
-    }
+    //public String getName() {
+    //    return name;
+    //}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    //public void setName(String name) {
+    //    this.name = name;
+    //}
 
     public String getEmail() {
         return email;
@@ -95,16 +95,16 @@ public class User extends AbstractNamedEntity {
         return this.id == null;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", privileged=" + privileged +
-                ", voteDateTime=" + voteDateTime +
-                ", restaurantId=" + restaurantId +
-                '}';
-    }
+    //@Override
+    //public String toString() {
+    //    return "User{" +
+    //            "id=" + id +
+    //            ", name='" + name + '\'' +
+    //            ", email='" + email + '\'' +
+    //            ", password='" + password + '\'' +
+    //            ", privileged=" + privileged +
+    //            ", voteDateTime=" + voteDateTime +
+    //            ", restaurantId=" + restaurantId +
+    //            '}';
+    //}
 }
