@@ -28,7 +28,7 @@ CREATE UNIQUE INDEX users_unique_email_idx ON users (email);
 CREATE TABLE dishes
 (
     id              INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    name            VARCHAR NOT NULL,
+    name            VARCHAR      NOT NULL,
     price           INTEGER      NOT NULL,
     restaurant_id   INTEGER      NOT NULL,
     FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE
