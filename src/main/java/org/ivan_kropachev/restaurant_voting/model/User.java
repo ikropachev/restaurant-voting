@@ -12,27 +12,23 @@ public class User extends AbstractNamedEntity {
     private String email;
     private String password;
     private String privileged; //have or not admin privilegies
-    private LocalDateTime voteDateTime;
-    private int restaurantId;   //voted restaurant
 
     public User() {
     }
 
     public User(User u) {
-        this(u.id, u.name, u.email, u.password, u.privileged, u.voteDateTime, u.restaurantId);
+        this(u.id, u.name, u.email, u.password, u.privileged);
     }
 
     //public User(Integer id, String name, String email, String password, boolean privileged, LocalDateTime voteDateTime, Integer restaurantId) {
     //    this(id, name, email, password, privileged, voteDateTime, restaurantId);
     //}
 
-    public User(Integer id, String name, String email, String password, String privileged, LocalDateTime voteDateTime, Integer restaurantId) {
+    public User(Integer id, String name, String email, String password, String privileged) {
         super(id, name);
         this.email = email;
         this.password = password;
         this.privileged = privileged;
-        this.voteDateTime = voteDateTime;
-        this.restaurantId = restaurantId;
     }
 
     //public int getId() {
@@ -73,22 +69,6 @@ public class User extends AbstractNamedEntity {
 
     public void setPrivileged(String privileged) {
         this.privileged = privileged;
-    }
-
-    public LocalDateTime getVoteDateTime() {
-        return voteDateTime;
-    }
-
-    public void setVoteDateTime(LocalDateTime voteDateTime) {
-        this.voteDateTime = voteDateTime;
-    }
-
-    public int getRestaurantId() {
-        return restaurantId;
-    }
-
-    public void setRestaurantId(int restaurantId) {
-        this.restaurantId = restaurantId;
     }
 
     public boolean isNew() {

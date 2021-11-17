@@ -41,16 +41,14 @@ public class JdbcUserRepository implements UserRepository {
                 .addValue("name", user.getName())
                 .addValue("email", user.getEmail())
                 .addValue("password", user.getPassword())
-                .addValue("privileged", user.getPrivileged())
-                .addValue("vote_date_time", user.getVoteDateTime())
-                .addValue("restaurant_id", user.getRestaurantId());
+                .addValue("privileged", user.getPrivileged());
 
         if (user.isNew()) {
             Number newKey = insertUser.executeAndReturnKey(map);
             user.setId(newKey.intValue());
         } else if (namedParameterJdbcTemplate.update(
                 "UPDATE users SET name=:name, email=:email, password=:password, " +
-                        "privileged=:privileged, vote_date_time=:voteDateTime, restaurant_id=:restaurantId WHERE id=:id", map) == 0) {
+                        "privileged=:privileged WHERE id=:id", map) == 0) {
             return null;
         }
         return user;

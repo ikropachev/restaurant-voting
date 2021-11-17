@@ -4,10 +4,10 @@ DELETE FROM users;
 ALTER SEQUENCE global_seq RESTART WITH 100000;
 
 INSERT INTO RESTAURANT (NAME) VALUES
-    ('Nowhere'),                                                       -- 100000
+    ('BarZero'),                                                       -- 100000
     ('Burgers'),                                                       -- 100001
     ('HappyShaverma'),                                                 -- 100002
-    ('Suluguni');                                                        -- 100003
+    ('Suluguni');                                                      -- 100003
 
 INSERT INTO USERS (NAME, EMAIL, PASSWORD, PRIVILEGED) VALUES
     ('Admin', 'admin@gmail.com', 'admin_pass', TRUE),                  -- 100004
@@ -24,3 +24,13 @@ INSERT INTO DISH (NAME, PRICE, RESTAURANT_ID) VALUES
     ('Hachapuri po adzharski', 350, 100003),                           -- 100013
     ('Hachapuri po megrelski', 450, 100003),                           -- 100014
     ('Hachapuri po imeretinski', 550, 100003);                         -- 100015
+
+INSERT INTO VOTE (USER_ID, RESTAURANT_ID, DATE_TIME) VALUES
+    (100005,100001,'2021-11-16 20:13:05.000000'),
+    (100005,100002,'2021-11-17 20:13:05.000000'),
+    (100006,100000,'2021-11-16 20:13:05.000000'),
+    (100006,100003,'2021-11-17 20:13:05.000000');
+
+INSERT INTO VOTE (USER_ID, RESTAURANT_ID) VALUES
+    (100005,100001),
+    (100006,100002);

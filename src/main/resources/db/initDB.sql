@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS vote;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS dish;
 DROP TABLE IF EXISTS restaurant;
@@ -18,10 +19,7 @@ CREATE TABLE users
     name             VARCHAR                    NOT NULL,
     email            VARCHAR                    NOT NULL,
     password         VARCHAR                    NOT NULL,
-    privileged       BOOLEAN   DEFAULT FALSE    NOT NULL,
-    vote_date_time   TIMESTAMP DEFAULT now()    NOT NULL,
-    restaurant_id    INTEGER   DEFAULT 100000   NOT NULL,
-    FOREIGN KEY (restaurant_id) REFERENCES restaurant (id) ON DELETE CASCADE
+    privileged       BOOLEAN   DEFAULT FALSE    NOT NULL
 );
 CREATE UNIQUE INDEX users_unique_email_idx ON users (email);
 
@@ -31,6 +29,15 @@ CREATE TABLE dish
     name            VARCHAR      NOT NULL,
     price           INTEGER      NOT NULL,
     restaurant_id   INTEGER      NOT NULL,
+    FOREIGN KEY (restaurant_id) REFERENCES restaurant (id) ON DELETE CASCADE
+);
+
+CREATE TABLE vote
+(
+    user_id       INTEGER NOT NULL,
+    restaurant_id INTEGER NOT NULL,
+    date_time          TIMESTAMP DEFAULT now(),
+    FOREIGN KEY (user_id) REFERENCES USERS (id) ON DELETE CASCADE,
     FOREIGN KEY (restaurant_id) REFERENCES restaurant (id) ON DELETE CASCADE
 );
 

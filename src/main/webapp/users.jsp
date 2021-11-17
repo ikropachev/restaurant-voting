@@ -22,8 +22,6 @@
             <th>E-mail</th>
             <th>Password</th>
             <th>Privileged</th>
-            <th>Date and time of last vote</th>
-            <th>Voted restaurant</th>
         </tr>
         </thead>
         <c:forEach items="${requestScope.users}" var="user">
@@ -33,8 +31,6 @@
                 <td>${user.email}</td>
                 <td>${user.password}</td>
                 <td>${user.privileged}</td>
-                <td>${user.voteDateTime}</td>
-                <td>${user.restaurantId}</td>
             </tr>
         </c:forEach>
     </table>

@@ -38,9 +38,7 @@ public class AdminUserServlet extends HttpServlet {
                 request.getParameter("name"),
                 request.getParameter("email"),
                 request.getParameter("password"),
-                request.getParameter("privileged"),
-                LocalDateTime.parse(request.getParameter("vote_date_time")),
-                Integer.parseInt(request.getParameter("restaurant_id")));
+                request.getParameter("privileged"));
 
         if (StringUtils.hasLength(request.getParameter("id"))) {
             adminUserController.update(user, getId(request));
