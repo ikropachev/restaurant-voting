@@ -1,17 +1,21 @@
 package org.ivan_kropachev.restaurant_voting.model;
 
-public class Dish {
-    private int id;
+public class Dish extends AbstractNamedEntity {
+
     private int restaurantId;
-    private String name;
     private int price;
 
-    public int getId() {
-        return id;
+    public Dish() {
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Dish(Dish d) {
+        this(d.id, d.name, d.restaurantId, d.price);
+    }
+
+    public Dish(Integer id, String name, int restaurantId, int price) {
+        super(id, name);
+        this.restaurantId = restaurantId;
+        this.price = price;
     }
 
     public int getRestaurantId() {
@@ -22,29 +26,11 @@ public class Dish {
         this.restaurantId = restaurantId;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getPrice() {
         return price;
     }
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    @Override
-    public String toString() {
-        return "Dish{" +
-                "id=" + id +
-                ", restaurantId=" + restaurantId +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                '}';
     }
 }

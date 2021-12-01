@@ -15,7 +15,7 @@ INSERT INTO USERS (NAME, EMAIL, PASSWORD, PRIVILEGED) VALUES
     ('Second_user', 'second@gmail.com', 'second_pass', FALSE);         -- 100006
 
 INSERT INTO DISH (NAME, PRICE, RESTAURANT_ID) VALUES
-    ('Meat Burger', 100, 100001),                                      -- 100007
+    ('Hachapuri po imeretinski', 550, 100003),                         -- 100007
     ('Vegan Burger', 150, 100001),                                     -- 100008
     ('Chicken Burger', 50, 100001),                                    -- 100009
     ('Meat Shaverma', 100, 100002),                                    -- 100010
@@ -23,14 +23,14 @@ INSERT INTO DISH (NAME, PRICE, RESTAURANT_ID) VALUES
     ('Chicken Shaverma', 50, 100002),                                  -- 100012
     ('Hachapuri po adzharski', 350, 100003),                           -- 100013
     ('Hachapuri po megrelski', 450, 100003),                           -- 100014
-    ('Hachapuri po imeretinski', 550, 100003);                         -- 100015
+    ('Meat Burger', 100, 100001);                                       -- 100015
 
 INSERT INTO VOTE (USER_ID, RESTAURANT_ID, DATE_TIME) VALUES
-    (100005,100001,'2021-11-16 20:13:05.000000'),
-    (100005,100002,'2021-11-17 20:13:05.000000'),
-    (100006,100000,'2021-11-16 20:13:05.000000'),
-    (100006,100003,'2021-11-17 20:13:05.000000');
+    (100005,100001,'2021-12-02 00:10:05.000000'),                       --100016
+    (100005,100002,'2021-12-02 00:11:06.000000'),                       --100017
+    (100006,100000,'2021-11-16 20:13:05.000000'),                       --100018
+    (100006,100003,'2021-11-17 20:13:05.000000');                       --100019
 
 INSERT INTO VOTE (USER_ID, RESTAURANT_ID) VALUES
-    (100005,100001),
-    (100006,100002);
+    (100005,100001),                                                    --100020
+    (100006,100002);                                                    --100021

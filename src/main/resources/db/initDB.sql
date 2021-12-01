@@ -34,6 +34,7 @@ CREATE TABLE dish
 
 CREATE TABLE vote
 (
+    id              INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     user_id       INTEGER NOT NULL,
     restaurant_id INTEGER NOT NULL,
     date_time          TIMESTAMP DEFAULT now(),

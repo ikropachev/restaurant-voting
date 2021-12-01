@@ -8,7 +8,6 @@ import java.util.Set;
 
 public class User extends AbstractNamedEntity {
 
-    private String name;
     private String email;
     private String password;
     private String privileged; //have or not admin privilegies
@@ -20,32 +19,12 @@ public class User extends AbstractNamedEntity {
         this(u.id, u.name, u.email, u.password, u.privileged);
     }
 
-    //public User(Integer id, String name, String email, String password, boolean privileged, LocalDateTime voteDateTime, Integer restaurantId) {
-    //    this(id, name, email, password, privileged, voteDateTime, restaurantId);
-    //}
-
     public User(Integer id, String name, String email, String password, String privileged) {
         super(id, name);
         this.email = email;
         this.password = password;
         this.privileged = privileged;
     }
-
-    //public int getId() {
-    //    return id;
-    //}
-
-    //public void setId(int id) {
-    //    this.id = id;
-    //}
-
-    //public String getName() {
-    //    return name;
-    //}
-
-    //public void setName(String name) {
-    //    this.name = name;
-    //}
 
     public String getEmail() {
         return email;
@@ -70,21 +49,4 @@ public class User extends AbstractNamedEntity {
     public void setPrivileged(String privileged) {
         this.privileged = privileged;
     }
-
-    public boolean isNew() {
-        return this.id == null;
-    }
-
-    //@Override
-    //public String toString() {
-    //    return "User{" +
-    //            "id=" + id +
-    //            ", name='" + name + '\'' +
-    //            ", email='" + email + '\'' +
-    //            ", password='" + password + '\'' +
-    //            ", privileged=" + privileged +
-    //            ", voteDateTime=" + voteDateTime +
-    //            ", restaurantId=" + restaurantId +
-    //            '}';
-    //}
 }
