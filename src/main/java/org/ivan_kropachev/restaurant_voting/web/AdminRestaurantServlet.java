@@ -36,7 +36,7 @@ public class AdminRestaurantServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         Restaurant restaurant = new Restaurant(
-                Integer.parseInt(request.getParameter("id")),
+                //Integer.parseInt(request.getParameter("id")),
                 request.getParameter("name"));
 
         if (StringUtils.hasLength(request.getParameter("id"))) {
@@ -52,27 +52,19 @@ public class AdminRestaurantServlet extends HttpServlet {
         String action = request.getParameter("action");
 
         switch (action == null ? "all" : action) {
-            //case "delete":
-            //    int id = getId(request);
-            //     mealController.delete(id);
-            //    response.sendRedirect("meals");
-            //    break;
-            //case "create":
-            //case "update":
-            //    final Meal meal = "create".equals(action) ?
-            //            new Meal(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES), "", 1000) :
-            //            mealController.get(getId(request));
-            //    request.setAttribute("meal", meal);
-            //    request.getRequestDispatcher("/mealForm.jsp").forward(request, response);
-            //    break;
-            //case "filter":
-            //    LocalDate startDate = parseLocalDate(request.getParameter("startDate"));
-            //    LocalDate endDate = parseLocalDate(request.getParameter("endDate"));
-            //    LocalTime startTime = parseLocalTime(request.getParameter("startTime"));
-            //    LocalTime endTime = parseLocalTime(request.getParameter("endTime"));
-            //    request.setAttribute("meals", mealController.getBetween(startDate, startTime, endDate, endTime));
-            //    request.getRequestDispatcher("/meals.jsp").forward(request, response);
-            //    break;
+            case "delete":
+                int id = getId(request);
+                adminRestaurantController.delete(id);
+                response.sendRedirect("restaurants");
+                break;
+            case "create":
+            case "update":
+                final Restaurant restaurant = "create".equals(action) ?
+                        new Restaurant() :
+                        adminRestaurantController.get(getId(request));
+                request.setAttribute("restaurant", restaurant);
+                request.getRequestDispatcher("/restaurantForm.jsp").forward(request, response);
+                break;
             case "all":
             default:
                 request.setAttribute("restaurants", adminRestaurantController.getAll());

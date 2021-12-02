@@ -12,7 +12,8 @@
     <h3><a href="index.html">Home</a></h3>
     <hr/>
     <h2>Dishes</h2>
-
+    <hr/>
+    <a href="dishes?action=create">Add Dish</a>
     <br><br>
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
@@ -21,6 +22,8 @@
             <th>Name</th>
             <th>Restaurant</th>
             <th>Price</th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <c:forEach items="${requestScope.dishes}" var="dish">
@@ -29,6 +32,8 @@
                 <td>${dish.name}</td>
                 <td>${dish.restaurantId}</td>
                 <td>${dish.price}</td>
+                <td><a href="dishes?action=update&id=${dish.id}">Update</a></td>
+                <td><a href="dishes?action=delete&id=${dish.id}">Delete</a></td>
             </tr>
         </c:forEach>
     </table>

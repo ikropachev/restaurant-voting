@@ -45,7 +45,7 @@ public class JdbcDishRepository implements DishRepository {
             Number newKey = insertDish.executeAndReturnKey(map);
             dish.setId(newKey.intValue());
         } else if (namedParameterJdbcTemplate.update(
-                "UPDATE dish SET name=:name, restaurant_id=:restaurant_id, price=:price", map) == 0) {
+                "UPDATE dish SET name=:name, restaurant_id=:restaurant_id, price=:price WHERE id=:id", map) == 0) {
             return null;
         }
         return dish;
