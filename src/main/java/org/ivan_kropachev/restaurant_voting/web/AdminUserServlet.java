@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Objects;
 
 public class AdminUserServlet extends HttpServlet {
@@ -38,7 +40,7 @@ public class AdminUserServlet extends HttpServlet {
                 request.getParameter("name"),
                 request.getParameter("email"),
                 request.getParameter("password"),
-                request.getParameter("privileged"));
+                Boolean.parseBoolean(request.getParameter("enabled")));
 
         if (StringUtils.hasLength(request.getParameter("id"))) {
             adminUserController.update(user, getId(request));
