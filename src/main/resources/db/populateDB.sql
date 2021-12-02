@@ -1,3 +1,4 @@
+DELETE FROM user_roles;
 DELETE FROM dish;
 DELETE FROM restaurant;
 DELETE FROM users;
@@ -9,10 +10,10 @@ INSERT INTO RESTAURANT (NAME) VALUES
     ('HappyShaverma'),                                                 -- 100002
     ('Suluguni');                                                      -- 100003
 
-INSERT INTO USERS (NAME, EMAIL, PASSWORD, PRIVILEGED) VALUES
-    ('Admin', 'admin@gmail.com', 'admin_pass', TRUE),                  -- 100004
-    ('First_user', 'first@gmail.com', 'first_pass', FALSE),            -- 100005
-    ('Second_user', 'second@gmail.com', 'second_pass', FALSE);         -- 100006
+INSERT INTO USERS (NAME, EMAIL, PASSWORD, REGISTERED) VALUES
+    ('Admin', 'admin@gmail.com', 'admin_pass', '2021-12-02 18:00'),                  -- 100004
+    ('First_user', 'first@gmail.com', 'first_pass', '2021-12-02 18:01'),            -- 100005
+    ('Second_user', 'second@gmail.com', 'second_pass', '2021-12-01 18:02');         -- 100006
 
 INSERT INTO DISH (NAME, PRICE, RESTAURANT_ID) VALUES
     ('Hachapuri po imeretinski', 550, 100003),                         -- 100007
@@ -34,3 +35,8 @@ INSERT INTO VOTE (USER_ID, RESTAURANT_ID, DATE_TIME) VALUES
 INSERT INTO VOTE (USER_ID, RESTAURANT_ID) VALUES
     (100005,100001),                                                    --100020
     (100006,100002);                                                    --100021
+
+INSERT INTO user_roles (role, user_id)
+VALUES ('USER', 100005),
+       ('ADMIN', 100004),
+       ('USER', 100006);

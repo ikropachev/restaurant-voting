@@ -21,16 +21,21 @@
             <th>Name</th>
             <th>E-mail</th>
             <th>Password</th>
-            <th>Privileged</th>
+            <th>Role</th>
+            <th>Enabled</th>
+            <th>Registered</th>
         </tr>
         </thead>
-        <c:forEach items="${requestScope.users}" var="user">
+        <c:forEach items="${users}" var="user">
+            <jsp:useBean id="user" scope="page" type="org.ivan_kropachev.restaurant_voting.model.User"/>
             <tr>
                 <td>${user.id}</td>
-                <td>${user.name}</td>
-                <td>${user.email}</td>
+                <td><c:out value="${user.name}"/></td>
+                <td><a href="mailto:${user.email}">${user.email}</a></td>
                 <td>${user.password}</td>
-                <td>${user.privileged}</td>
+                <td>${user.roles}</td>
+                <td><%=user.isEnabled()%></td>
+                <td>${user.registered}</td>
             </tr>
         </c:forEach>
     </table>
