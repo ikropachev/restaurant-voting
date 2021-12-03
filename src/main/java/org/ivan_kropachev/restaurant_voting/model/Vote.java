@@ -1,11 +1,26 @@
 package org.ivan_kropachev.restaurant_voting.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "vote")
 public class Vote extends AbstractBaseEntity {
 
+    @NotNull
+    @Column(name = "user_id", nullable = false)
     private int userId;
+
+    @NotNull
+    @Column(name = "restaurant_id", nullable = false)
     private int restaurantId;
+
+    @NotNull
+    @Column(name = "date_time", nullable = false)
     private LocalDateTime dateTime;
 
     public Vote() {
