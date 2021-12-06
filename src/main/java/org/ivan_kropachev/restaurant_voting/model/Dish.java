@@ -1,5 +1,6 @@
 package org.ivan_kropachev.restaurant_voting.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Range;
@@ -20,6 +21,12 @@ public class Dish extends AbstractNamedEntity {
     @NotNull
     @Column(name = "price", nullable = false)
     private int price;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "menu_id")
+    @JsonIgnore
+    private Menu menu;
 
     public Dish() {
     }
@@ -52,5 +59,13 @@ public class Dish extends AbstractNamedEntity {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
     }
 }

@@ -2,7 +2,8 @@ DROP TABLE IF EXISTS user_roles;
 DROP TABLE IF EXISTS vote;
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS dish;
-DROP TABLE IF EXISTS restaurant;
+DROP TABLE IF EXISTS restaurant CASCADE;
+DROP TABLE IF EXISTS menu CASCADE;
 DROP SEQUENCE IF EXISTS global_seq CASCADE;
 
 CREATE SEQUENCE global_seq START WITH 100000;
@@ -33,15 +34,6 @@ CREATE TABLE user_roles
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
-CREATE TABLE dish
-(
-    id              INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    name            VARCHAR      NOT NULL,
-    price           INTEGER      NOT NULL,
-    restaurant_id   INTEGER      NOT NULL,
-    FOREIGN KEY (restaurant_id) REFERENCES restaurant (id) ON DELETE CASCADE
-);
-
 CREATE TABLE vote
 (
     id              INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
@@ -50,5 +42,24 @@ CREATE TABLE vote
     date_time          TIMESTAMP DEFAULT now(),
     FOREIGN KEY (user_id) REFERENCES USERS (id) ON DELETE CASCADE,
     FOREIGN KEY (restaurant_id) REFERENCES restaurant (id) ON DELETE CASCADE
+);
+
+CREATE TABLE menu (
+    id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    restaurant_id INTEGER NOT NULL,
+    date          TIMESTAMP           DEFAULT now(),
+    CONSTRAINT menu_restaurant_id_date_idx UNIQUE (restaurant_id, date),
+    FOREIGN KEY (restaurant_id) REFERENCES restaurant (id) ON DELETE CASCADE
+);
+
+CREATE TABLE dish
+(
+    id              INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    name            VARCHAR      NOT NULL,
+    price           INTEGER      NOT NULL,
+    restaurant_id   INTEGER      NOT NULL,
+    menu_id         INTEGER NOT NULL,
+    FOREIGN KEY (restaurant_id) REFERENCES restaurant (id) ON DELETE CASCADE,
+    FOREIGN KEY (menu_id) REFERENCES menu (id) ON DELETE CASCADE
 );
 

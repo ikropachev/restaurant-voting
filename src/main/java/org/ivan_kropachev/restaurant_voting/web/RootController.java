@@ -1,9 +1,6 @@
 package org.ivan_kropachev.restaurant_voting.web;
 
-import org.ivan_kropachev.restaurant_voting.service.DishService;
-import org.ivan_kropachev.restaurant_voting.service.RestaurantService;
-import org.ivan_kropachev.restaurant_voting.service.UserService;
-import org.ivan_kropachev.restaurant_voting.service.VoteService;
+import org.ivan_kropachev.restaurant_voting.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +26,9 @@ public class RootController {
 
     @Autowired
     private VoteService voteService;
+
+    @Autowired
+    private MenuService menuService;
 
     @GetMapping("/")
     public String root() {
@@ -88,5 +88,12 @@ public class RootController {
         return "votes";
     }
 
+
+    @GetMapping("/menues")
+    public String getMenues(Model model) {
+        log.info("menues");
+        model.addAttribute("menues", menuService.getAll());
+        return "menues";
+    }
 
 }
