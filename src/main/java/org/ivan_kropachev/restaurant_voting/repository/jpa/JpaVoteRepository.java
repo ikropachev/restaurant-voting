@@ -18,6 +18,7 @@ public class JpaVoteRepository implements VoteRepository {
     private EntityManager em;
 
     @Override
+    @Transactional
     public Vote save(Vote vote) {
         if (vote.isNew()) {
             em.persist(vote);
@@ -35,7 +36,7 @@ public class JpaVoteRepository implements VoteRepository {
     @Override
     @Transactional
     public boolean delete(int id) {
-        return em.createQuery("DELETE FROM Dish d WHERE d.id=:id")
+        return em.createQuery("DELETE FROM Vote v WHERE v.id=:id")
                 .setParameter("id", id)
                 .executeUpdate() != 0;
     }

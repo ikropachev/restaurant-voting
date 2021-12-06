@@ -15,7 +15,7 @@ import org.ivan_kropachev.restaurant_voting.repository.RestaurantRepository;
 
 import java.util.List;
 
-@Repository
+
 public class JdbcRestaurantRepository implements RestaurantRepository {
     private static final BeanPropertyRowMapper<Restaurant> ROW_MAPPER = BeanPropertyRowMapper.newInstance(Restaurant.class);
 

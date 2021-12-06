@@ -4,6 +4,7 @@ import org.ivan_kropachev.restaurant_voting.model.Dish;
 import org.ivan_kropachev.restaurant_voting.model.User;
 import org.ivan_kropachev.restaurant_voting.repository.DishRepository;
 import org.ivan_kropachev.restaurant_voting.repository.UserRepository;
+import org.ivan_kropachev.restaurant_voting.repository.datajpa.CrudDishRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -18,6 +18,7 @@ public class JpaRestaurantRepository implements RestaurantRepository {
     private EntityManager em;
 
     @Override
+    @Transactional
     public Restaurant save(Restaurant restaurant) {
         if (restaurant.isNew()) {
             em.persist(restaurant);

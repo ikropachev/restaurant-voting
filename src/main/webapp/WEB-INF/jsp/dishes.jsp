@@ -8,7 +8,7 @@
 </head>
 <body>
 <section>
-    <h3><a href="index.html">Home</a></h3>
+    <h3><a href="home">Home</a></h3>
     <hr/>
     <h2>Dishes</h2>
     <hr/>
@@ -32,7 +32,7 @@
                 <td>${dish.restaurantId}</td>
                 <td>${dish.price}</td>
                 <td><a href="dishes/update?id=${dish.id}">Update</a></td>
-                <td><a href="dishes/delete?id=${dish.id}">Delete</a></td>
+                <td><a href="dishes/delete/${dish.id}">Delete</a></td>
             </tr>
         </c:forEach>
     </table>

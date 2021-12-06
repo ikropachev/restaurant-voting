@@ -9,7 +9,7 @@
 </head>
 <body>
 <section>
-    <h3><a href="index.html">Home</a></h3>
+    <h3><a href="home">Home</a></h3>
     <hr/>
     <h2>Users</h2>
 

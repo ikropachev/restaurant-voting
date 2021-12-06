@@ -36,12 +36,21 @@ public class RootController {
         return "index";
     }
 
+    @GetMapping("/home")
+    public String home() {
+        log.info("root");
+        return "index";
+    }
+
+
     @GetMapping("/users")
     public String getUsers(Model model) {
         log.info("users");
         model.addAttribute("users", userService.getAll());
         return "users";
     }
+
+
 
     @PostMapping("/users")
     public String setUser(HttpServletRequest request) {
@@ -51,12 +60,16 @@ public class RootController {
         return "redirect:dishes";
     }
 
+
     @GetMapping("/dishes")
     public String getDishes(Model model) {
         log.info("dishes");
         model.addAttribute("dishes", dishService.getAll());
         return "dishes";
     }
+
+
+
 
     @GetMapping("/restaurants")
     public String getRestaurants(Model model) {
@@ -65,10 +78,15 @@ public class RootController {
         return "restaurants";
     }
 
+
+
+
     @GetMapping("/votes")
     public String getVotes(Model model) {
         log.info("votes");
         model.addAttribute("votes", voteService.getAll());
         return "votes";
     }
+
+
 }

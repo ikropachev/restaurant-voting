@@ -19,6 +19,7 @@ public class JpaDishRepository implements DishRepository {
     private EntityManager em;
 
     @Override
+    @Transactional
     public Dish save(Dish dish) {
         if (dish.isNew()) {
             em.persist(dish);
