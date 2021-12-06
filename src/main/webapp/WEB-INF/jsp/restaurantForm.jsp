@@ -4,11 +4,11 @@
 <html>
 <head>
     <title>Restaurant</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 <section>
-    <h3><a href="index.html">Home</a></h3>
+    <h3><a href="home">Home</a></h3>
     <hr>
     <h2>${param.action == 'create' ? 'Create restaurant' : 'Edit restaurant'}</h2>
     <jsp:useBean id="restaurant" type="org.ivan_kropachev.restaurant_voting.model.Restaurant" scope="request"/>

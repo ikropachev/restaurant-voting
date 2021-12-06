@@ -5,11 +5,11 @@
 <html>
 <head>
     <title>Restaurants</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 <section>
-    <h3><a href="index.html">Home</a></h3>
+    <h3><a href="home">Home</a></h3>
     <hr/>
     <h2>Restaurants</h2>
     <hr/>
@@ -28,8 +28,8 @@
             <tr>
                 <td>${restaurant.id}</td>
                 <td>${restaurant.name}</td>
-                <td><a href="restaurants?action=update&id=${restaurant.id}">Update</a></td>
-                <td><a href="restaurants?action=delete&id=${restaurant.id}">Delete</a></td>
+                <td><a href="restaurants/update&id=${restaurant.id}">Update</a></td>
+                <td><a href="restaurants/delete&id=${restaurant.id}">Delete</a></td>
             </tr>
         </c:forEach>
     </table>

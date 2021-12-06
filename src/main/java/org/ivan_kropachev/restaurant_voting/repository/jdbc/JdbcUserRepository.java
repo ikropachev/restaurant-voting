@@ -18,7 +18,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.*;
 
-@Repository
+
 public class JdbcUserRepository implements UserRepository {
 
     private static final BeanPropertyRowMapper<User> ROW_MAPPER = BeanPropertyRowMapper.newInstance(User.class);

@@ -1,15 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" --%>
-<%--@ taglib prefix="fn" uri="http://restaurant_voting.ivan_kropachev.org/functions" --%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
     <title>Dishes</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 <section>
-    <h3><a href="index.html">Home</a></h3>
+    <h3><a href="home">Home</a></h3>
     <hr/>
     <h2>Dishes</h2>
     <hr/>
@@ -32,8 +31,8 @@
                 <td>${dish.name}</td>
                 <td>${dish.restaurantId}</td>
                 <td>${dish.price}</td>
-                <td><a href="dishes?action=update&id=${dish.id}">Update</a></td>
-                <td><a href="dishes?action=delete&id=${dish.id}">Delete</a></td>
+                <td><a href="dishes/update?id=${dish.id}">Update</a></td>
+                <td><a href="dishes/delete/${dish.id}">Delete</a></td>
             </tr>
         </c:forEach>
     </table>

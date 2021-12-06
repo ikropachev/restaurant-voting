@@ -1,8 +1,24 @@
 package org.ivan_kropachev.restaurant_voting.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.validator.constraints.Range;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+@Entity
+@Table(name = "dish")
 public class Dish extends AbstractNamedEntity {
 
+    @NotNull
+    @Column(name = "restaurant_id", nullable = false)
     private int restaurantId;
+
+    @NotNull
+    @Column(name = "price", nullable = false)
     private int price;
 
     public Dish() {

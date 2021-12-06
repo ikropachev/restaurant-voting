@@ -5,11 +5,11 @@
 <html>
 <head>
     <title>Votes</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 <section>
-    <h3><a href="index.html">Home</a></h3>
+    <h3><a href="home">Home</a></h3>
     <hr/>
     <h2>Votes</h2>
 
