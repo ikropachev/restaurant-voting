@@ -1,8 +1,10 @@
 package org.ivan_kropachev.restaurant_voting.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.ivan_kropachev.restaurant_voting.util.View;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.groups.Default;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -20,11 +22,11 @@ public class Menu extends AbstractBaseEntity {
     private LocalDate date;
 
     @NotNull
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "menu")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "menu", cascade = { CascadeType.ALL }, orphanRemoval=true)
+    @JsonManagedReference
     private Set<Dish> dishes;
 
-    public Menu() {
-    }
+    public Menu() {}
 
     public Menu(Integer id, Restaurant restaurant, LocalDate date, Set<Dish> dishes) {
         super(id);
@@ -53,7 +55,5 @@ public class Menu extends AbstractBaseEntity {
         return dishes;
     }
 
-    public void setDishes(Set<Dish> dishes) {
-        this.dishes = dishes;
-    }
+    public void setDishes(Set<Dish> dishes) { this.dishes = dishes;}
 }

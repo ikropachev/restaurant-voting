@@ -89,11 +89,11 @@ public class RootController {
     }
 
 
-    @GetMapping("/menues")
-    public String getMenues(Model model) {
-        log.info("menues");
-        model.addAttribute("menues", menuService.getAll());
-        return "menues";
+    @GetMapping("/menus")
+    public String getMenus(Model model) {
+        log.info("menus");
+        model.addAttribute("menus", menuService.getAll());
+        return "menus";
     }
 
 }

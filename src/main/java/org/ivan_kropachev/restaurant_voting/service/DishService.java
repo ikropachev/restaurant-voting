@@ -4,7 +4,7 @@ import org.ivan_kropachev.restaurant_voting.model.Dish;
 import org.ivan_kropachev.restaurant_voting.model.User;
 import org.ivan_kropachev.restaurant_voting.repository.DishRepository;
 import org.ivan_kropachev.restaurant_voting.repository.UserRepository;
-import org.ivan_kropachev.restaurant_voting.repository.datajpa.CrudDishRepository;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,8 +20,12 @@ public class DishService {
         this.repository = repository;
     }
 
-    public Dish create(Dish dish) {
-        return repository.save(dish);
+    //public Dish create(Dish dish) {
+    //    return repository.save(dish);
+    //}
+
+    public Dish create(Dish dish, int menuId) {
+        return repository.save(dish, menuId);
     }
 
     public void delete(int id) {
@@ -32,11 +36,20 @@ public class DishService {
         return checkNotFoundWithId(repository.get(id), id);
     }
 
+
+        public Dish get(int id, int menuId) {
+        return checkNotFoundWithId(repository.get(id, menuId), id);
+    }
+
     public List<Dish> getAll() {
         return repository.getAll();
     }
 
-    public void update(Dish dish) {
-        checkNotFoundWithId(repository.save(dish), dish.getId());
+    public Dish update(Dish dish, int menuId) {
+        return repository.save(dish, menuId);
     }
+
+    //public void update(Dish dish) {
+    //    checkNotFoundWithId(repository.save(dish), dish.getId());
+    //}
 }

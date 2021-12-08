@@ -29,10 +29,15 @@ public class AbstractDishController {
         return service.get(id);
     }
 
-    public Dish create(Dish dish) {
+    public Dish get(int id, int menuId) {
+        log.info("get dish {}", id);
+        return service.get(id, menuId);
+    }
+
+    public Dish create(Dish dish, int menuId) {
         log.info("create dish {}", dish);
         checkNew(dish);
-        return service.create(dish);
+        return service.create(dish, menuId);
     }
 
     public void delete(int id) {
@@ -40,9 +45,9 @@ public class AbstractDishController {
         service.delete(id);
     }
 
-    public void update(Dish dish, int id) {
-        log.info("update dish {} with id={}", dish, id);
-        assureIdConsistent(dish, id);
-        service.update(dish);
+    public void update(Dish dish, int menuId) {
+        log.info("update dish {} for menu id={}", dish, menuId);
+        //assureIdConsistent(dish, menuId);
+        service.update(dish, menuId);
     }
 }

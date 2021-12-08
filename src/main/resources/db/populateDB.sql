@@ -26,16 +26,16 @@ INSERT INTO menu (restaurant_id) VALUES
     (100002),                                                               --100011
     (100003);                                                               --100012
 
-INSERT INTO DISH (NAME, PRICE, RESTAURANT_ID, MENU_ID) VALUES
-    ('Hachapuri po imeretinski', 550, 100003, 100009),                         -- 100013
-    ('Vegan Burger', 150, 100001, 100007),                                     -- 100014
-    ('Chicken Burger', 50, 100001, 100007),                                    -- 100015
-    ('Meat Shaverma', 100, 100002, 100008),                                    -- 100016
-    ('Vegan Shaverma', 150, 100002, 100008),                                   -- 100017
-    ('Chicken Shaverma', 50, 100002, 100011),                                  -- 100018
-    ('Hachapuri po adzharski', 350, 100003, 100009),                           -- 100019
-    ('Hachapuri po megrelski', 450, 100003, 100012),                           -- 100020
-    ('Meat Burger', 100, 100001, 100010);                                       -- 100021
+INSERT INTO DISH (NAME, PRICE, MENU_ID) VALUES
+    ('Hachapuri po imeretinski', 550, 100009),                         -- 100013
+    ('Vegan Burger', 150, 100007),                                     -- 100014
+    ('Chicken Burger', 50, 100007),                                    -- 100015
+    ('Meat Shaverma', 100, 100008),                                    -- 100016
+    ('Vegan Shaverma', 150, 100008),                                   -- 100017
+    ('Chicken Shaverma', 50, 100011),                                  -- 100018
+    ('Hachapuri po adzharski', 350, 100009),                           -- 100019
+    ('Hachapuri po megrelski', 450, 100012),                           -- 100020
+    ('Meat Burger', 100, 100010);                                       -- 100021
 
 INSERT INTO VOTE (USER_ID, RESTAURANT_ID, DATE_TIME) VALUES
     (100005,100001,'2021-12-02 00:10:05.000000'),                       --100022

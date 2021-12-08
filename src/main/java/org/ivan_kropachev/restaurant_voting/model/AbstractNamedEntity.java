@@ -1,11 +1,14 @@
 package org.ivan_kropachev.restaurant_voting.model;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @MappedSuperclass
+@Access(AccessType.FIELD)
 public abstract class AbstractNamedEntity extends AbstractBaseEntity {
 
     @NotBlank
