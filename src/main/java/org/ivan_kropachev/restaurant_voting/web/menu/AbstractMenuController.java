@@ -26,7 +26,7 @@ public class AbstractMenuController {
     }
 
     public List<Menu> getAllByDate(LocalDate date) {
-        log.info("get menu for date{}", date);
+        log.info("get all menus for date {}", date);
         return service.getAllByDate(date);
     }
 
@@ -47,13 +47,13 @@ public class AbstractMenuController {
     }
 
     public void deleteAll() {
-        log.info("delete all menues");
+        log.info("delete all menus");
         service.deleteAll();
     }
 
-    public void update(Menu menu, Integer id) {
-        log.info("update menu {} with id {} for restaurant {}", menu, id);
-        assureIdConsistent(menu, id);
-        service.update(menu, id);
+    public void update(Menu menu, Integer restaurantId, Integer id) {
+        log.info("update menu {} for restaurant {}", menu, restaurantId);
+        //assureIdConsistent(menu, id);
+        service.update(menu, restaurantId);
     }
 }

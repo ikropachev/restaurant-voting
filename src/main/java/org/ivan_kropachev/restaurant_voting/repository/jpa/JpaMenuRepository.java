@@ -3,6 +3,8 @@ package org.ivan_kropachev.restaurant_voting.repository.jpa;
 import org.ivan_kropachev.restaurant_voting.model.Menu;
 import org.ivan_kropachev.restaurant_voting.model.Restaurant;
 import org.ivan_kropachev.restaurant_voting.repository.MenuRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +16,7 @@ import java.util.List;
 @Repository
 @Transactional(readOnly = true)
 public class JpaMenuRepository implements MenuRepository {
+    protected final Logger log = LoggerFactory.getLogger(getClass());
 
     @PersistenceContext
     private EntityManager em;
@@ -22,6 +25,7 @@ public class JpaMenuRepository implements MenuRepository {
     @Transactional
     public Menu save(Menu menu, int restaurantId) {
         menu.setRestaurant(em.getReference(Restaurant.class, restaurantId));
+        log.info("create menu {} for restaurant {}", menu, restaurantId);
         if (menu.isNew()) {
             em.persist(menu);
             return menu;

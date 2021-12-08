@@ -1,5 +1,6 @@
 package org.ivan_kropachev.restaurant_voting.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -15,42 +16,22 @@ import javax.validation.constraints.Size;
 public class Dish extends AbstractNamedEntity {
 
     @NotNull
-    @Column(name = "restaurant_id", nullable = false)
-    private int restaurantId;
-
-    @NotNull
     @Column(name = "price", nullable = false)
     private int price;
 
-    @NotNull
+    //@NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "menu_id")
-    @JsonIgnore
+    @JoinColumn(name = "menu_id", nullable = false)
+    @JsonBackReference
     private Menu menu;
 
     public Dish() {
     }
 
-    public Dish(Dish d) {
-        this(d.id, d.name, d.restaurantId, d.price);
-    }
-
-    public Dish(Integer id, String name, int restaurantId, int price) {
+    public Dish(Integer id, String name, int price) {
         super(id, name);
-        this.restaurantId = restaurantId;
         this.price = price;
-    }
-
-    public Dish(String name, int restaurant_id, int price) {
-        this(null, name, restaurant_id, price);
-    }
-
-    public int getRestaurantId() {
-        return restaurantId;
-    }
-
-    public void setRestaurantId(int restaurantId) {
-        this.restaurantId = restaurantId;
+        this.menu = null;
     }
 
     public int getPrice() {
