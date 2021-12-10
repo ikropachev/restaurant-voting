@@ -31,8 +31,14 @@ public class AbstractVoteController {
 
     public Vote create(Vote vote) {
         log.info("create vote {}", vote);
-        checkNew(vote);
+        //checkNew(vote);
         return service.create(vote);
+    }
+
+    public Vote create(int userId, int restaurantId) {
+        //log.info("create vote {}", vote);
+        //checkNew(vote);
+        return service.create(userId, restaurantId);
     }
 
     public void delete(int id) {

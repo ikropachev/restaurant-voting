@@ -1,13 +1,18 @@
 package org.ivan_kropachev.restaurant_voting.repository.jpa;
 
+import org.hibernate.jpa.QueryHints;
 import org.ivan_kropachev.restaurant_voting.model.Dish;
 import org.ivan_kropachev.restaurant_voting.model.Vote;
 import org.ivan_kropachev.restaurant_voting.repository.VoteRepository;
+import org.ivan_kropachev.restaurant_voting.util.exception.LateVoteException;
+import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Repository
@@ -19,12 +24,32 @@ public class JpaVoteRepository implements VoteRepository {
 
     @Override
     @Transactional
-    public Vote save(Vote vote) {
-        if (vote.isNew()) {
+    public Vote save(Vote vote) throws LateVoteException {
+        Vote previous = getByUserIdAndDate(vote.getUserId(), vote.getDate());
+        if (previous == null) {
             em.persist(vote);
             return vote;
-        } else {
+        }
+        else {
             return em.merge(vote);
+        }
+    }
+
+    @Override
+    @Transactional
+    public Vote save(int userId, int restaurantId) throws LateVoteException {
+        Vote previous = getByUserIdAndDate(userId, LocalDate.now());
+        if (previous == null) {
+            Vote vote = new Vote (null, userId, restaurantId, LocalDate.now());
+            em.persist(vote);
+            return vote;
+        }
+        else {
+            //previous.setUserId(userId);
+            previous.setRestaurantId(restaurantId);
+            //Vote vote = new Vote (null, userId, restaurantId, LocalDate.now());
+            em.merge(previous);
+            return previous;
         }
     }
 
@@ -43,6 +68,16 @@ public class JpaVoteRepository implements VoteRepository {
 
     @Override
     public List<Vote> getAll() {
-        return em.createQuery("SELECT v FROM Vote v ORDER BY v.dateTime DESC").getResultList();
+        return em.createQuery("SELECT v FROM Vote v ORDER BY v.date DESC").getResultList();
+    }
+
+    @Override
+    public Vote getByUserIdAndDate(int userId, LocalDate date) {
+        List<Vote> votes = em.createQuery("SELECT v FROM Vote v WHERE v.userId=:userId AND v.date=:date")
+                .setParameter("userId", userId)
+                .setParameter("date", date)
+                .setHint(QueryHints.HINT_PASS_DISTINCT_THROUGH, false)
+                .getResultList();
+        return DataAccessUtils.singleResult(votes);
     }
 }

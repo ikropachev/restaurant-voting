@@ -22,6 +22,10 @@ public class VoteService {
         return repository.save(vote);
     }
 
+    public Vote create(int userId, int restaurantId) {
+        return repository.save(userId, restaurantId);
+    }
+
     public void delete(int id) {
         checkNotFoundWithId(repository.delete(id), id);
     }

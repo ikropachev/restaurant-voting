@@ -36,10 +36,11 @@ CREATE TABLE user_roles
 
 CREATE TABLE vote
 (
-    id              INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     user_id       INTEGER NOT NULL,
     restaurant_id INTEGER NOT NULL,
-    date_time          TIMESTAMP DEFAULT now(),
+    date          DATE DEFAULT now(),
+    CONSTRAINT votes_user_date_idx UNIQUE (user_id, date),
     FOREIGN KEY (user_id) REFERENCES USERS (id) ON DELETE CASCADE,
     FOREIGN KEY (restaurant_id) REFERENCES restaurant (id) ON DELETE CASCADE
 );

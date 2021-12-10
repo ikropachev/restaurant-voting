@@ -5,10 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "vote")
+@Table(name = "vote", uniqueConstraints = {@UniqueConstraint(name = "vote_user_id_date_idx", columnNames = {"user_id", "date"})})
 public class Vote extends AbstractBaseEntity {
 
     @NotNull
@@ -20,22 +21,22 @@ public class Vote extends AbstractBaseEntity {
     private int restaurantId;
 
     @NotNull
-    @Column(name = "date_time", nullable = false)
-    private LocalDateTime dateTime;
+    @Column(name = "date", nullable = false, columnDefinition = "timestamp default now()")
+    private LocalDate date;
 
     public Vote() {
 
     }
 
     public Vote(Vote v) {
-        this(v.id, v.userId, v.restaurantId, v.dateTime);
+        this(v.id, v.userId, v.restaurantId, v.date);
     }
 
-    public Vote(Integer id, int userId, int restaurantId, LocalDateTime dateTime) {
+    public Vote(Integer id, int userId, int restaurantId, LocalDate date) {
         super(id);
         this.userId = userId;
         this.restaurantId = restaurantId;
-        this.dateTime = dateTime;
+        this.date = date;
     }
 
     public int getUserId() {
@@ -54,11 +55,11 @@ public class Vote extends AbstractBaseEntity {
         this.restaurantId = restaurantId;
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 }
