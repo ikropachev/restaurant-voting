@@ -30,6 +30,10 @@ public class MenuService {
         checkNotFoundWithId(repository.save(menu, restaurantId), menu.getId());
     }
 
+    public void updateWithoutId(Menu menu, int restaurantId) {
+        repository.saveWithoutId(menu, restaurantId);
+    }
+
     public void delete(int id, int restaurantId) {
         checkNotFoundWithId(repository.delete(id, restaurantId), id);
     }

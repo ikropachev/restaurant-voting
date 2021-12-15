@@ -8,6 +8,7 @@ import org.ivan_kropachev.restaurant_voting.web.user.AdminUserController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -29,7 +30,6 @@ public class AdminRestaurantController extends AbstractRestaurantController  {
     @Override
     @GetMapping
     public List<Restaurant> getAll() {
-
         LOG.info("getAll restaurants");
         return super.getAll();
     }
@@ -37,8 +37,7 @@ public class AdminRestaurantController extends AbstractRestaurantController  {
     @Override
     @GetMapping("/{id}")
     public Restaurant get(@PathVariable int id) {
-
-        LOG.info("get restaurant {}", id);
+        LOG.info("get restaurant with id {}", id);
         return super.get(id);
     }
 
@@ -56,7 +55,7 @@ public class AdminRestaurantController extends AbstractRestaurantController  {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int id) {
-        LOG.info("delete restaurant {}", id);
+        LOG.info("delete restaurant with id {}", id);
         super.delete(id);
     }
 
@@ -64,9 +63,8 @@ public class AdminRestaurantController extends AbstractRestaurantController  {
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@RequestBody Restaurant restaurant, @PathVariable int id) {
-        LOG.info("update {}", restaurant);
+        LOG.info("update restaurant {} with id {}", restaurant, id);
         restaurant.setId(id);
-        LOG.info("update {} with id={}", restaurant, id);
         super.update(restaurant, id);
     }
 

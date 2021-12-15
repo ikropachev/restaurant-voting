@@ -1,10 +1,9 @@
 package org.ivan_kropachev.restaurant_voting.util;
 
-import org.ivan_kropachev.restaurant_voting.model.AbstractBaseEntity;
-import org.ivan_kropachev.restaurant_voting.util.exception.NotFoundException;
-
+import org.ivan_kropachev.restaurant_voting.HasId;
 import org.springframework.core.NestedExceptionUtils;
 import org.springframework.lang.NonNull;
+import org.ivan_kropachev.restaurant_voting.util.exception.NotFoundException;
 
 import javax.validation.*;
 import java.util.Set;
@@ -21,6 +20,14 @@ public class ValidationUtil {
     }
 
     private ValidationUtil() {
+    }
+
+    public static <T> void validate(T bean) {
+        // https://alexkosarev.name/2018/07/30/bean-validation-api/
+        Set<ConstraintViolation<T>> violations = validator.validate(bean);
+        if (!violations.isEmpty()) {
+            throw new ConstraintViolationException(violations);
+        }
     }
 
     public static <T> T checkNotFoundWithId(T object, int id) {
@@ -43,25 +50,25 @@ public class ValidationUtil {
         }
     }
 
-    public static void checkNew(AbstractBaseEntity entity) {
-        if (!entity.isNew()) {
-            throw new IllegalArgumentException(entity + " must be new (id=null)");
+    public static void checkNew(HasId bean) {
+        if (!bean.isNew()) {
+            throw new IllegalArgumentException(bean + " must be new (id=null)");
         }
     }
 
-    public static void assureIdConsistent(AbstractBaseEntity entity, int id) {
+    public static void assureIdConsistent(HasId bean, int id) {
 //      conservative when you reply, but accept liberally (http://stackoverflow.com/a/32728226/548473)
-        if (entity.isNew()) {
-            entity.setId(id);
-        } else if (entity.getId() != id) {
-            throw new IllegalArgumentException(entity + " must be with id=" + id);
+        if (bean.isNew()) {
+            bean.setId(id);
+        } else if (bean.id() != id) {
+            throw new IllegalArgumentException(bean + " must be with id=" + id);
         }
     }
-    public static <T> void validate(T bean) {
-        // https://alexkosarev.name/2018/07/30/bean-validation-api/
-        Set<ConstraintViolation<T>> violations = validator.validate(bean);
-        if (!violations.isEmpty()) {
-            throw new ConstraintViolationException(violations);
-        }
+
+    //  https://stackoverflow.com/a/65442410/548473
+    @NonNull
+    public static Throwable getRootCause(@NonNull Throwable t) {
+        Throwable rootCause = NestedExceptionUtils.getRootCause(t);
+        return rootCause != null ? rootCause : t;
     }
 }

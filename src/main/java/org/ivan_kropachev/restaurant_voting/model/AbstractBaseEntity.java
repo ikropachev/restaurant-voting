@@ -1,6 +1,7 @@
 package org.ivan_kropachev.restaurant_voting.model;
 
 import org.hibernate.Hibernate;
+import org.ivan_kropachev.restaurant_voting.HasId;
 import org.springframework.data.domain.Persistable;
 import org.springframework.util.Assert;
 
@@ -8,7 +9,7 @@ import javax.persistence.*;
 
 @MappedSuperclass
 @Access(AccessType.FIELD)
-public abstract class AbstractBaseEntity implements Persistable<Integer> {
+public abstract class AbstractBaseEntity implements HasId {
     public static final int START_SEQ = 100000;
 
     @Id

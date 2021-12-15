@@ -31,6 +31,9 @@ public class AdminMenuController extends AbstractMenuController {
     @PostMapping(value = "/{restaurantId}/menu", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Menu> createWithLocation(@RequestBody Menu menu, @PathVariable Integer restaurantId) {
         //LOG.info(" {} ", menu.getDishes());
+        if (menu.getDate() == null) {
+            menu.setDate(LocalDate.now());
+        }
         LOG.info("create {} for restaurant {}", menu, restaurantId);
         Menu created = super.create(menu, restaurantId);
         //menu.getDishes().forEach(dish -> dishService.create(dish, created.getId()));
@@ -77,7 +80,21 @@ public class AdminMenuController extends AbstractMenuController {
     public void update(@RequestBody Menu menu,
                            @PathVariable Integer restaurantId, @PathVariable Integer id) {
         menu.setId(id);
+        if (menu.getDate() == null) {
+            menu.setDate(LocalDate.now());
+        }
         LOG.info("update {} with id={} for restaurant {}", menu, menu.getId(), restaurantId);
         super.update(menu, restaurantId, id);
+    }
+
+    @PutMapping(value = "/{restaurantId}/menu/", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void update(@RequestBody Menu menu,
+                       @PathVariable Integer restaurantId) {
+        //menu.setId(id);
+        //if (menu.getDate() == null) {
+            menu.setDate(LocalDate.now());
+        //}
+        LOG.info("update {} with id={} for restaurant {}", menu, menu.getId(), restaurantId);
+        super.updateWithoutId(menu, restaurantId);
     }
 }

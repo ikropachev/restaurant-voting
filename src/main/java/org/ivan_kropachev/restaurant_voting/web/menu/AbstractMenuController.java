@@ -56,4 +56,9 @@ public class AbstractMenuController {
         //assureIdConsistent(menu, id);
         service.update(menu, restaurantId);
     }
+    public void updateWithoutId(Menu menu, Integer restaurantId) {
+        log.info("update menu {} for restaurant {}", menu, restaurantId);
+        //assureIdConsistent(menu, id);
+        service.updateWithoutId(menu, restaurantId);
+    }
 }

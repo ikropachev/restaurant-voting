@@ -45,9 +45,7 @@ public class JpaVoteRepository implements VoteRepository {
             return vote;
         }
         else {
-            //previous.setUserId(userId);
             previous.setRestaurantId(restaurantId);
-            //Vote vote = new Vote (null, userId, restaurantId, LocalDate.now());
             em.merge(previous);
             return previous;
         }

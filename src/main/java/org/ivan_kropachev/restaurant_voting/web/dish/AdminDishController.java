@@ -49,7 +49,7 @@ public class AdminDishController extends AbstractDishController {
     }
 
     @Override
-    @PutMapping(value = "/{menuId}/update", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{menuId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@RequestBody Dish dish, @PathVariable int menuId) {
         super.update(dish, menuId);

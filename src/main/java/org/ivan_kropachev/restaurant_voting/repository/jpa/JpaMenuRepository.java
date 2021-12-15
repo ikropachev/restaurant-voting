@@ -1,10 +1,13 @@
 package org.ivan_kropachev.restaurant_voting.repository.jpa;
 
+import org.hibernate.jpa.QueryHints;
 import org.ivan_kropachev.restaurant_voting.model.Menu;
 import org.ivan_kropachev.restaurant_voting.model.Restaurant;
+import org.ivan_kropachev.restaurant_voting.model.Vote;
 import org.ivan_kropachev.restaurant_voting.repository.MenuRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +33,21 @@ public class JpaMenuRepository implements MenuRepository {
             em.persist(menu);
             return menu;
         } else {
+            return em.merge(menu);
+        }
+    }
+
+    @Override
+    @Transactional
+    public Menu saveWithoutId(Menu menu, int restaurantId) {
+        menu.setRestaurant(em.getReference(Restaurant.class, restaurantId));
+        Menu previous = getByRestaurantId(restaurantId);
+        if (previous == null) {
+            em.persist(menu);
+            return menu;
+        }
+        else {
+            menu.setId(previous.getId());
             return em.merge(menu);
         }
     }
@@ -73,5 +91,16 @@ public class JpaMenuRepository implements MenuRepository {
     @Transactional
     public void deleteAll() {
         em.createQuery("DELETE FROM Menu m").executeUpdate();
+    }
+
+    @Transactional
+    public Menu getByRestaurantId(int restaurantId){
+        LocalDate date = LocalDate.now();
+        List<Menu> menus = em.createQuery("SELECT m FROM Menu m WHERE m.restaurant.id=:restaurantId AND m.date=:date")
+                .setParameter("restaurantId", restaurantId)
+                .setParameter("date", date)
+                .setHint(QueryHints.HINT_PASS_DISTINCT_THROUGH, false)
+                .getResultList();
+        return DataAccessUtils.singleResult(menus);
     }
 }

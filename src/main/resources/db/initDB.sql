@@ -48,7 +48,7 @@ CREATE TABLE vote
 CREATE TABLE menu (
     id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     restaurant_id INTEGER NOT NULL,
-    date          TIMESTAMP           DEFAULT now(),
+    date          DATE           DEFAULT now(),
     CONSTRAINT menu_restaurant_id_date_idx UNIQUE (restaurant_id, date),
     FOREIGN KEY (restaurant_id) REFERENCES restaurant (id) ON DELETE CASCADE
 );

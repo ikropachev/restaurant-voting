@@ -9,7 +9,9 @@
             <constructor-arg name="repository" ref="inmemoryUserRepository"/>
         </bean>
     -->
+    <import resource="spring-mvc.xml"/>
     <import resource="spring-cache.xml"/>
+    <import resource="spring-security.xml"/>
 
     <context:component-scan base-package="org.ivan_kropachev.**.service"/>
 </beans>

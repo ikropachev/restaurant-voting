@@ -1,10 +1,19 @@
 package org.ivan_kropachev.restaurant_voting.service;
 
+import org.ivan_kropachev.restaurant_voting.AuthorizedUser;
 import org.ivan_kropachev.restaurant_voting.model.User;
 import org.ivan_kropachev.restaurant_voting.repository.UserRepository;
+import org.ivan_kropachev.restaurant_voting.to.UserTo;
+import org.ivan_kropachev.restaurant_voting.util.UserUtil;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.List;
@@ -12,8 +21,9 @@ import java.util.List;
 import static org.ivan_kropachev.restaurant_voting.util.ValidationUtil.checkNotFound;
 import static org.ivan_kropachev.restaurant_voting.util.ValidationUtil.checkNotFoundWithId;
 
-@Service
-public class UserService {
+@Service("userService")
+@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
+public class UserService implements UserDetailsService {
 
     private final UserRepository repository;
 
@@ -49,6 +59,31 @@ public class UserService {
     @CacheEvict(value = "users", allEntries = true)
     public void update(User user) {
         Assert.notNull(user, "user must not be null");
-        checkNotFoundWithId(repository.save(user), user.id());
+        repository.save(user);
+    }
+
+    @CacheEvict(value = "users", allEntries = true)
+    @Transactional
+    public void update(UserTo userTo) {
+        User user = get(userTo.id());
+        User updatedUser = UserUtil.updateFromTo(user, userTo);
+        repository.save(updatedUser); // !! need only for JDBC implementation
+    }
+
+    @CacheEvict(value = "users", allEntries = true)
+    @Transactional
+    public void enable(int id, boolean enabled) {
+        User user = get(id);
+        user.setEnabled(enabled);
+        repository.save(user);  // !! need only for JDBC implementation
+    }
+
+    @Override
+    public AuthorizedUser loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = repository.getByEmail(email.toLowerCase());
+        if (user == null) {
+            throw new UsernameNotFoundException("User " + email + " is not found");
+        }
+        return new AuthorizedUser(user);
     }
 }

@@ -12,7 +12,6 @@
     <h3><a href="home">Home</a></h3>
     <hr/>
     <h2>Votes</h2>
-
     <br><br>
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>

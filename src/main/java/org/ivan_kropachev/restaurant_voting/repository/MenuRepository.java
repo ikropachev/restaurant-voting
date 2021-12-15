@@ -9,6 +9,8 @@ public interface MenuRepository {
     // null if not found, when updated
     Menu save(Menu menu, int restaurantId);
 
+    public Menu saveWithoutId(Menu menu, int restaurantId);
+
     // false if not found
     boolean delete(int id, int restaurantId);
 

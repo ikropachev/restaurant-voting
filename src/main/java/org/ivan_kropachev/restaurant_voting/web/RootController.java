@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 public class RootController {
     private static final Logger log = LoggerFactory.getLogger(RootController.class);
 
+    /*
     @Autowired
     private UserService userService;
 
@@ -29,19 +31,32 @@ public class RootController {
 
     @Autowired
     private MenuService menuService;
+    */
+
+    @GetMapping("/login")
+    public String login() {
+        log.info("login");
+        return "login";
+    }
 
     @GetMapping("/")
     public String root() {
         log.info("root");
+        return "redirect:login";
+    }
+
+    @GetMapping("/index")
+    public String index() {
+        log.info("index");
         return "index";
     }
 
+    /*
     @GetMapping("/home")
     public String home() {
-        log.info("root");
-        return "index";
+        log.info("home");
+        return "login";
     }
-
 
     @GetMapping("/users")
     public String getUsers(Model model) {
@@ -50,26 +65,12 @@ public class RootController {
         return "users";
     }
 
-
-
-    @PostMapping("/users")
-    public String setUser(HttpServletRequest request) {
-        int userId = Integer.parseInt(request.getParameter("userId"));
-        log.info("setUser {}", userId);
-        SecurityUtil.setAuthUserId(userId);
-        return "redirect:dishes";
-    }
-
-
     @GetMapping("/dishes")
     public String getDishes(Model model) {
         log.info("dishes");
         model.addAttribute("dishes", dishService.getAll());
         return "dishes";
     }
-
-
-
 
     @GetMapping("/restaurants")
     public String getRestaurants(Model model) {
@@ -78,9 +79,6 @@ public class RootController {
         return "restaurants";
     }
 
-
-
-
     @GetMapping("/votes")
     public String getVotes(Model model) {
         log.info("votes");
@@ -88,12 +86,11 @@ public class RootController {
         return "votes";
     }
 
-
     @GetMapping("/menus")
     public String getMenus(Model model) {
         log.info("menus");
         model.addAttribute("menus", menuService.getAll());
         return "menus";
     }
-
+    */
 }

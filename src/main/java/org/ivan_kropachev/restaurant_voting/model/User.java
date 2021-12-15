@@ -45,6 +45,7 @@ public class User extends AbstractNamedEntity {
             uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "role"}, name = "uk_user_roles")})
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.EAGER)
+//    @Fetch(FetchMode.SUBSELECT)
     @BatchSize(size = 200)
     @JoinColumn(name = "user_id") //https://stackoverflow.com/a/62848296/548473
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -70,12 +71,12 @@ public class User extends AbstractNamedEntity {
         setRoles(roles);
     }
 
-    public User(Integer id, String name, String email, String password, boolean enabled) {
-        super(id, name);
-        this.email = email;
-        this.password = password;
-        this.enabled = enabled;
-    }
+    //public User(Integer id, String name, String email, String password, boolean enabled) {
+    //    super(id, name);
+    //    this.email = email;
+    //    this.password = password;
+    //    this.enabled = enabled;
+    //}
 
 
     public String getEmail() {
@@ -116,5 +117,16 @@ public class User extends AbstractNamedEntity {
 
     public void setRoles(Collection<Role> roles) {
         this.roles = CollectionUtils.isEmpty(roles) ? EnumSet.noneOf(Role.class) : EnumSet.copyOf(roles);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email=" + email +
+                ", name=" + name +
+                ", enabled=" + enabled +
+                ", roles=" + roles +
+                '}';
     }
 }
