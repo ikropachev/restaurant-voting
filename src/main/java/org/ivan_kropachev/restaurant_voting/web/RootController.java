@@ -42,7 +42,7 @@ public class RootController {
     @GetMapping("/")
     public String root() {
         log.info("root");
-        return "redirect:login";
+        return "redirect:index";
     }
 
     @GetMapping("/index")

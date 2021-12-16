@@ -96,6 +96,5 @@ public class AdminUserController extends AbstractUserController {
     public User getByMail(String email) {
         return super.getByMail(email);
     }
-
-     */
+    */
 }
