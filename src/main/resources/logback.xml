@@ -5,7 +5,7 @@
     <jmxConfigurator/>
 
     <appender name="file" class="ch.qos.logback.core.FileAppender">
-        <file>${TOPJAVA_ROOT}/log/topjava.log</file>
+        <file>${RESTAURANT_VOTING_ROOT}/log/topjava.log</file>
 
         <encoder>
             <charset>UTF-8</charset>
@@ -20,7 +20,7 @@
         </encoder>
     </appender>
 
-    <logger name="ru.javawebinar.topjava" level="debug"/>
+    <logger name="org.ivan_kropachev.restaurant_voting" level="debug"/>
 
     <root level="info">
         <appender-ref ref="file"/>
