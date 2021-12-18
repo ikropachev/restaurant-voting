@@ -24,7 +24,8 @@ public class UserMenuController extends AbstractMenuController {
 
     @GetMapping
     public List<Menu> getAllByDate() {
-        log.info("get all menus for date {}", LocalDate.now());
-        return super.getAllByDate(LocalDate.now());
+        LocalDate date = LocalDate.now();
+        log.info("get all menus for date {}", date);
+        return super.getAllByDate(date);
     }
 }

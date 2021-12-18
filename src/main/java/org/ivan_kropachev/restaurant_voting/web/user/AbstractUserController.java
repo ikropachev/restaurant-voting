@@ -25,12 +25,12 @@ public abstract class AbstractUserController {
     }
 
     public User get(int id) {
-        log.info("get user {}", id);
+        log.info("get user with id {}", id);
         return service.get(id);
     }
 
     public void create(UserTo userTo) {
-        log.info("create {}", userTo);
+        log.info("create user from userTo {}", userTo);
         checkNew(userTo);
         service.create(UserUtil.createNewFromTo(userTo));
     }
@@ -42,18 +42,18 @@ public abstract class AbstractUserController {
     }
 
     public void delete(int id) {
-        log.info("delete user {}", id);
+        log.info("delete user with id {}", id);
         service.delete(id);
     }
 
     public void update(UserTo userTo, int id) {
-        log.info("update {} with id={}", userTo, id);
+        log.info("update user from userTo {} with id {}", userTo, id);
         assureIdConsistent(userTo, id);
         service.update(userTo);
     }
 
     public void update(User user, int id) {
-        log.info("update user {} with id={}", user, id);
+        log.info("update user {} with id {}", user, id);
         assureIdConsistent(user, id);
         service.update(user);
     }

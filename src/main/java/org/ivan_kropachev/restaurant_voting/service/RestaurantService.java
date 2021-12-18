@@ -9,8 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static org.ivan_kropachev.restaurant_voting.util.ValidationUtil.checkNotFound;
-import static org.ivan_kropachev.restaurant_voting.util.ValidationUtil.checkNotFoundWithId;
+import static org.ivan_kropachev.restaurant_voting.util.ValidationUtil.*;
 
 @Service
 public class RestaurantService {
@@ -22,6 +21,7 @@ public class RestaurantService {
     }
 
     public Restaurant create(Restaurant restaurant) {
+        checkNew(restaurant);
         return repository.save(restaurant);
     }
 

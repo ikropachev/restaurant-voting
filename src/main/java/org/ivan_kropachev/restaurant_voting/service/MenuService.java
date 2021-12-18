@@ -5,6 +5,7 @@ import org.ivan_kropachev.restaurant_voting.repository.DishRepository;
 import org.ivan_kropachev.restaurant_voting.repository.MenuRepository;
 import org.ivan_kropachev.restaurant_voting.util.exception.NotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -19,27 +20,19 @@ public class MenuService {
     }
 
     public Menu create(Menu menu, int restaurantId) {
-        return repository.save(menu, restaurantId);
+        return repository.create(menu, restaurantId);
+    }
+
+    public Menu update(Menu menu, int restaurantId) {
+        return repository.update(menu, restaurantId);
     }
 
     public Menu get(int id, int restaurantId) {
         return checkNotFoundWithId(repository.get(id, restaurantId), id);
     }
 
-    public void update(Menu menu, int restaurantId) {
-        checkNotFoundWithId(repository.save(menu, restaurantId), menu.getId());
-    }
-
-    public void updateWithoutId(Menu menu, int restaurantId) {
-        repository.saveWithoutId(menu, restaurantId);
-    }
-
     public void delete(int id, int restaurantId) {
         checkNotFoundWithId(repository.delete(id, restaurantId), id);
-    }
-
-    public void deleteAll() {
-        repository.deleteAll();
     }
 
     public List<Menu> getAll() {
@@ -48,9 +41,5 @@ public class MenuService {
 
     public List<Menu> getAllByDate(LocalDate date) {
         return repository.getAllByDate(date);
-    }
-
-    public List<Menu> getAllByDateAndRestaurantId(LocalDate date, int restaurantId) {
-        return repository.getAllByDateAndRestaurantId(date, restaurantId);
     }
 }

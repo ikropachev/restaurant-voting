@@ -3,7 +3,6 @@ package org.ivan_kropachev.restaurant_voting.repository.jpa;
 import org.hibernate.jpa.QueryHints;
 import org.ivan_kropachev.restaurant_voting.model.Menu;
 import org.ivan_kropachev.restaurant_voting.model.Restaurant;
-import org.ivan_kropachev.restaurant_voting.model.Vote;
 import org.ivan_kropachev.restaurant_voting.repository.MenuRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,25 +25,28 @@ public class JpaMenuRepository implements MenuRepository {
 
     @Override
     @Transactional
-    public Menu save(Menu menu, int restaurantId) {
+    public Menu create(Menu menu, int restaurantId) {
+        log.info("save menu {} for restaurant {}", menu, restaurantId);
         menu.setRestaurant(em.getReference(Restaurant.class, restaurantId));
-        log.info("create menu {} for restaurant {}", menu, restaurantId);
-        if (menu.isNew()) {
+        Menu previous = getByRestaurantIdAndDate(restaurantId, menu.getDate());
+        if (previous == null) {
             em.persist(menu);
             return menu;
-        } else {
+        }
+        else {
+            menu.setId(previous.getId());
             return em.merge(menu);
         }
     }
 
     @Override
     @Transactional
-    public Menu saveWithoutId(Menu menu, int restaurantId) {
+    public Menu update(Menu menu, int restaurantId) {
+        log.info("update menu {} for restaurant {}", menu, restaurantId);
         menu.setRestaurant(em.getReference(Restaurant.class, restaurantId));
-        Menu previous = getByRestaurantId(restaurantId);
+        Menu previous = getByRestaurantIdAndDate(restaurantId, menu.getDate());
         if (previous == null) {
-            em.persist(menu);
-            return menu;
+            throw new IllegalArgumentException(menu + " must not be new");
         }
         else {
             menu.setId(previous.getId());
@@ -60,21 +62,13 @@ public class JpaMenuRepository implements MenuRepository {
 
     @Override
     public List<Menu> getAll() {
-        return em.createQuery("SELECT m FROM Menu m", Menu.class).getResultList();
+        return em.createQuery("SELECT m FROM Menu m ORDER BY m.date DESC", Menu.class).getResultList();
     }
 
     @Override
     public List<Menu> getAllByDate(LocalDate date) {
-        return em.createQuery("SELECT m FROM Menu m WHERE m.date=:date", Menu.class)
+        return em.createQuery("SELECT m FROM Menu m WHERE m.date=:date ORDER BY m.restaurant.name", Menu.class)
                 .setParameter("date", date)
-                .getResultList();
-    }
-
-    @Override
-    public List<Menu> getAllByDateAndRestaurantId(LocalDate date, int restaurantId) {
-        return em.createQuery("SELECT m FROM Menu m WHERE m.date=:date AND m.restaurant.id=:restaurantId", Menu.class)
-                .setParameter("date", date)
-                .setParameter("restaurantId", restaurantId)
                 .getResultList();
     }
 
@@ -87,15 +81,8 @@ public class JpaMenuRepository implements MenuRepository {
                 .executeUpdate() != 0;
     }
 
-    @Override
     @Transactional
-    public void deleteAll() {
-        em.createQuery("DELETE FROM Menu m").executeUpdate();
-    }
-
-    @Transactional
-    public Menu getByRestaurantId(int restaurantId){
-        LocalDate date = LocalDate.now();
+    public Menu getByRestaurantIdAndDate(int restaurantId, LocalDate date){
         List<Menu> menus = em.createQuery("SELECT m FROM Menu m WHERE m.restaurant.id=:restaurantId AND m.date=:date")
                 .setParameter("restaurantId", restaurantId)
                 .setParameter("date", date)

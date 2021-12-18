@@ -18,11 +18,7 @@ public class VoteService {
         this.repository = repository;
     }
 
-    public Vote create(Vote vote) {
-        return repository.save(vote);
-    }
-
-    public Vote create(int userId, int restaurantId) {
+    public Vote save(int userId, int restaurantId) {
         return repository.save(userId, restaurantId);
     }
 
@@ -36,9 +32,5 @@ public class VoteService {
 
     public List<Vote> getAll() {
         return repository.getAll();
-    }
-
-    public void update(Vote vote) {
-        checkNotFoundWithId(repository.save(vote), vote.getId());
     }
 }

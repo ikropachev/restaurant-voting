@@ -1,6 +1,5 @@
 package org.ivan_kropachev.restaurant_voting.repository.jpa;
 
-import org.ivan_kropachev.restaurant_voting.model.Dish;
 import org.ivan_kropachev.restaurant_voting.model.Restaurant;
 import org.ivan_kropachev.restaurant_voting.repository.RestaurantRepository;
 import org.springframework.stereotype.Repository;
@@ -43,6 +42,6 @@ public class JpaRestaurantRepository implements RestaurantRepository {
 
     @Override
     public List<Restaurant> getAll() {
-        return em.createQuery("SELECT r FROM Restaurant r ORDER BY r.id").getResultList();
+        return em.createQuery("SELECT r FROM Restaurant r ORDER BY r.name").getResultList();
     }
 }

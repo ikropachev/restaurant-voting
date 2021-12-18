@@ -6,9 +6,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface VoteRepository {
-    // null if not found, when updated
-    Vote save(Vote vote);
-
     Vote save(int userId, int restaurantId);
 
     // false if not found
@@ -18,6 +15,4 @@ public interface VoteRepository {
     Vote get(int id);
 
     List<Vote> getAll();
-
-    Vote getByUserIdAndDate(int userId, LocalDate date);
 }

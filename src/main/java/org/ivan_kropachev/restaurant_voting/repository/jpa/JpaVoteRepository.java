@@ -24,19 +24,6 @@ public class JpaVoteRepository implements VoteRepository {
 
     @Override
     @Transactional
-    public Vote save(Vote vote) throws LateVoteException {
-        Vote previous = getByUserIdAndDate(vote.getUserId(), vote.getDate());
-        if (previous == null) {
-            em.persist(vote);
-            return vote;
-        }
-        else {
-            return em.merge(vote);
-        }
-    }
-
-    @Override
-    @Transactional
     public Vote save(int userId, int restaurantId) throws LateVoteException {
         Vote previous = getByUserIdAndDate(userId, LocalDate.now());
         if (previous == null) {
@@ -69,7 +56,6 @@ public class JpaVoteRepository implements VoteRepository {
         return em.createQuery("SELECT v FROM Vote v ORDER BY v.date DESC").getResultList();
     }
 
-    @Override
     public Vote getByUserIdAndDate(int userId, LocalDate date) {
         List<Vote> votes = em.createQuery("SELECT v FROM Vote v WHERE v.userId=:userId AND v.date=:date")
                 .setParameter("userId", userId)

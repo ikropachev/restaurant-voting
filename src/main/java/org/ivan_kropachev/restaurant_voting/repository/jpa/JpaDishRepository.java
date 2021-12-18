@@ -5,7 +5,6 @@ import org.ivan_kropachev.restaurant_voting.model.Menu;
 import org.ivan_kropachev.restaurant_voting.repository.DishRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,18 +20,6 @@ public class JpaDishRepository implements DishRepository {
 
     @PersistenceContext
     private EntityManager em;
-
-    //@Override
-    //@Transactional
-    //public Dish save(Dish dish) {
-    //    if (dish.isNew()) {
-    //        em.persist(dish);
-    //        return dish;
-    //    } else {
-    //        return em.merge(dish);
-    //    }
-    //}
-
 
     @Override
     @Transactional
@@ -54,7 +41,6 @@ public class JpaDishRepository implements DishRepository {
         return em.find(Dish.class, id);
     }
 
-    @Override
     public Dish get(int id, int menuId) {
         Dish dish = em.find(Dish.class, id);
         return dish != null && dish.getMenu().getId() == menuId ? dish : null;
@@ -70,8 +56,6 @@ public class JpaDishRepository implements DishRepository {
 
     @Override
     public List<Dish> getAll() {
-        return em.createQuery("SELECT d FROM Dish d").getResultList();
+        return em.createQuery("SELECT d FROM Dish d ORDER BY d.menu.id DESC").getResultList();
     }
-
-
 }

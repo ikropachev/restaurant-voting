@@ -21,44 +21,29 @@ public class AbstractMenuController {
     private MenuService service;
 
     public List<Menu> getAll() {
-        log.info("get all menues");
+        log.info("get all menus");
         return service.getAll();
     }
 
     public List<Menu> getAllByDate(LocalDate date) {
-        log.info("get all menus for date {}", date);
+        log.info("get all menus by date {}", date);
         return service.getAllByDate(date);
     }
 
-    public List<Menu> getAllByDateAndRestaurantId(LocalDate date, Integer restaurantId) {
-        log.info("get menu for date{} and restaurant{}", date, restaurantId);
-        return service.getAllByDateAndRestaurantId(date, restaurantId);
-    }
-
     public Menu create(Menu menu, Integer restaurantId) {
-        log.info("create menu {} for restaurant {}", menu, restaurantId);
+        log.info("create menu {} for restaurant with id {}", menu, restaurantId);
         checkNew(menu);
         return service.create(menu, restaurantId);
     }
 
     public void delete(Integer id, Integer restaurantId) {
-        log.info("delete menu {} for restaurant {}", id, restaurantId);
+        log.info("delete menu with id {} for restaurant with id {}", id, restaurantId);
         service.delete(id, restaurantId);
     }
 
-    public void deleteAll() {
-        log.info("delete all menus");
-        service.deleteAll();
-    }
-
-    public void update(Menu menu, Integer restaurantId, Integer id) {
-        log.info("update menu {} for restaurant {}", menu, restaurantId);
-        //assureIdConsistent(menu, id);
+    //Add here check not new
+    public void update(Menu menu, Integer restaurantId) {
+        log.info("update menu {} for restaurant with id {}", menu, restaurantId);
         service.update(menu, restaurantId);
-    }
-    public void updateWithoutId(Menu menu, Integer restaurantId) {
-        log.info("update menu {} for restaurant {}", menu, restaurantId);
-        //assureIdConsistent(menu, id);
-        service.updateWithoutId(menu, restaurantId);
     }
 }

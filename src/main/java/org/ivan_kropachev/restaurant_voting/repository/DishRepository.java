@@ -6,8 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface DishRepository {
-    // null if not found, when updated
-    //Dish save(Dish dish);
 
     public Dish save(Dish dish, int menuId);
 
@@ -16,8 +14,6 @@ public interface DishRepository {
 
     // null if not found
     Dish get(int id);
-
-    public Dish get(int id, int menuId);
 
     List<Dish> getAll();
 }
