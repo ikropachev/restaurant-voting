@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.ivan_kropachev.restaurant_voting.util.ValidationUtil.checkNew;
 import static org.ivan_kropachev.restaurant_voting.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
@@ -20,6 +21,7 @@ public class MenuService {
     }
 
     public Menu create(Menu menu, int restaurantId) {
+        checkNew(menu);
         return repository.create(menu, restaurantId);
     }
 

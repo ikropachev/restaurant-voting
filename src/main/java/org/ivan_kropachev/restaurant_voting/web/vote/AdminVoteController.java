@@ -34,7 +34,7 @@ public class AdminVoteController extends AbstractVoteController {
     @PostMapping(value = "/{restaurantId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Vote createWithLocation(@PathVariable int restaurantId) {
         log.info("create/update vote from user with id {}", authUserId());
-        if (LocalTime.now().isAfter(LocalTime.of(23, 00))) {
+        if (LocalTime.now().isAfter(LocalTime.of(11, 00))) {
             throw new LateVoteException("Too late for voting");
         }
         return super.save(authUserId(), restaurantId);
