@@ -27,12 +27,12 @@ public abstract class AbstractDishServiceTest extends AbstractServiceTest {
 
     @Test
     void deleteNotFound() {
-        assertThrows(NotFoundException.class, () -> service.delete(NOT_FOUND_ID));
+        assertThrows(NotFoundException.class, () -> service.delete(NOT_FOUND));
     }
 
     @Test
     void create() {
-        Dish created = service.create(getNew(), TEST_MENU_ID);
+        Dish created = service.create(getNew(), TEST_MENU);
         int newId = created.id();
         Dish newDish = getNew();
         newDish.setId(newId);
@@ -48,7 +48,7 @@ public abstract class AbstractDishServiceTest extends AbstractServiceTest {
 
     @Test
     void getNotFound() {
-        assertThrows(NotFoundException.class, () -> service.get(NOT_FOUND_ID));
+        assertThrows(NotFoundException.class, () -> service.get(NOT_FOUND));
     }
 
     @Test

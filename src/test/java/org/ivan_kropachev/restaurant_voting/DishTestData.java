@@ -1,19 +1,14 @@
 package org.ivan_kropachev.restaurant_voting;
 
 import org.ivan_kropachev.restaurant_voting.model.Dish;
-
-import java.time.Month;
 import java.util.List;
-
-import static java.time.LocalDateTime.of;
-
 import static org.ivan_kropachev.restaurant_voting.model.AbstractBaseEntity.START_SEQ;
 
 public class DishTestData {
     public static final MatcherFactory.Matcher<Dish> DISH_MATCHER = MatcherFactory.usingIgnoringFieldsComparator(Dish.class, "menu");
 
-    public static final int NOT_FOUND_ID = 100000;
-    public static final int TEST_MENU_ID = 100011;
+    public static final int NOT_FOUND = 100000;
+    public static final int TEST_MENU = 100011;
     public static final int DISH1_ID = START_SEQ + 14;
 
     public static final Dish dish1 = new Dish(DISH1_ID, "Hachapuri po imeretinski", 550);
@@ -26,7 +21,7 @@ public class DishTestData {
     public static final Dish dish8 = new Dish(DISH1_ID+7, "Hachapuri po megrelski", 450);
     public static final Dish dish9 = new Dish(DISH1_ID+8, "Meat Burger", 100);
 
-    //Remember, what dishes must be sorted by menu_id DESC
+    //Dishes must be sorted by menu_id DESC
     public static final List<Dish> dishes = List.of(dish8, dish6, dish9, dish1, dish7, dish4, dish5, dish2, dish3);
 
     public static Dish getNew() {

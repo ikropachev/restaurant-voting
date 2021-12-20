@@ -35,6 +35,14 @@ public class Menu extends AbstractBaseEntity {
         this.dishes = dishes;
     }
 
+    //Constructor for tests with ignoring fields
+    public Menu(Integer id, LocalDate date) {
+        super(id);
+        this.restaurant = null;
+        this.date = date;
+        this.dishes = null;
+    }
+
     public Restaurant getRestaurant() {
         return restaurant;
     }
