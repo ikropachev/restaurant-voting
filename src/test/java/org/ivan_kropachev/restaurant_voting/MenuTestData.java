@@ -27,8 +27,8 @@ public class MenuTestData {
     public static final Restaurant RESTAURANT = new Restaurant (RESTAURANT1_ID, "Burgers");
     public static final LocalDate DATE = LocalDate.parse("2021-12-03", PATTERN);
     public static final Dish DISH1 = new Dish(null, "New_Test_Dish", 65);
-    public static final Dish DISH2 = new Dish(null, "New__Update_Test_Dish", 55);
-
+    public static final Dish DISH2 = new Dish(null, "New_Update_Test_Dish", 55);
+    public static final Dish DISH3 = new Dish(null, "New_Update_Test_Dish", 55);
 
 /*
     public static final Menu menu1 = new Menu(MENU1_ID, restaurants.get(1), LocalDate.parse("2021-12-03", PATTERN),
@@ -57,6 +57,11 @@ public class MenuTestData {
 
     public static Menu getNew() {
         return new Menu(null, RESTAURANT, LocalDate.now(), new HashSet<>(Arrays.asList(DISH1)));
+    }
+
+    //Method with empty dish set. Needed for run tests altogether.
+    public static Menu getNewWithoutDishes() {
+        return new Menu(null, RESTAURANT, LocalDate.now(), new HashSet<>(Arrays.asList()));
     }
 
     public static Menu getUpdated() {

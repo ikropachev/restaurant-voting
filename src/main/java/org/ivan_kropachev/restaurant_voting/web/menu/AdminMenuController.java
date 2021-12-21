@@ -30,7 +30,7 @@ public class AdminMenuController extends AbstractMenuController {
     }
 
     @Override
-    @GetMapping(value = "by-date/")
+    @GetMapping(value = "by-date")
     public List<Menu> getAllByDate(@Nullable @RequestParam(value = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
     log.info("get all menus by date {}", date);
         if (date == null) {
@@ -48,7 +48,7 @@ public class AdminMenuController extends AbstractMenuController {
         super.delete(menuId, restaurantId);
     }
 
-    @PostMapping(value = "restaurant/{restaurantId}/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "restaurant/{restaurantId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Menu> createWithLocation(@RequestBody Menu menu, @PathVariable Integer restaurantId) {
         log.info("create {} for restaurant {}", menu, restaurantId);
         if (menu.getDate() == null) {

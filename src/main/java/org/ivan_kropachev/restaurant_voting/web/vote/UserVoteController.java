@@ -19,7 +19,7 @@ public class UserVoteController extends AbstractVoteController {
     static final String REST_URL = "/rest/user/votes";
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Vote createWithLocation(@RequestParam(value = "restaurant_id") int restaurantId) {
+    public Vote createWithLocation(@RequestParam(value = "restaurant-id") int restaurantId) {
         log.info("create/update vote from user with id {}", authUserId());
         if (LocalTime.now().isAfter(LocalTime.of(23, 59))) {
             throw new LateVoteException("Too late for voting");

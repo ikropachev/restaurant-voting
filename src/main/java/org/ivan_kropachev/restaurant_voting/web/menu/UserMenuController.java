@@ -23,7 +23,7 @@ public class UserMenuController extends AbstractMenuController {
     static final String REST_URL = "/rest/user/menus";
 
     @GetMapping
-    public List<Menu> getAllByDate() {
+    public List<Menu> getAllForToday() {
         LocalDate date = LocalDate.now();
         log.info("get all menus for date {}", date);
         return super.getAllByDate(date);

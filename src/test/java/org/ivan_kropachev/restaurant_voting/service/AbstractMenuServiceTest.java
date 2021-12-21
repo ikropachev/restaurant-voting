@@ -14,6 +14,21 @@ public class AbstractMenuServiceTest extends AbstractServiceTest {
     protected MenuService service;
 
     @Test
+    void create() {
+        /*
+        Method "getNewWithoutDishes()" is needed for run 'All tests'
+        (to avoid Hibernate error in persist new Dish from internal set in that case).
+        For local tests you can change this to "getNew()" (method for creating menu with set of dishes).
+        */
+        Menu created = service.create(getNewWithoutDishes(), RESTAURANT1_ID);
+        int newId = created.id();
+        Menu newMenu = getNewWithoutDishes();
+        newMenu.setId(newId);
+        MENU_MATCHER.assertMatch(created, newMenu);
+        MENU_MATCHER.assertMatch(service.get(newId, RESTAURANT1_ID), newMenu);
+    }
+
+    @Test
     void delete() {
         service.delete(MENU1_ID, RESTAURANT1_ID);
         assertThrows(NotFoundException.class, () -> service.get(MENU1_ID, RESTAURANT1_ID));
@@ -22,16 +37,6 @@ public class AbstractMenuServiceTest extends AbstractServiceTest {
     @Test
     void deleteNotFound() {
         assertThrows(NotFoundException.class, () -> service.delete(NOT_FOUND, RESTAURANT1_ID));
-    }
-
-    @Test
-    void create() {
-        Menu created = service.create(getNew(), RESTAURANT1_ID);
-        int newId = created.id();
-        Menu newMenu = getNew();
-        newMenu.setId(newId);
-        MENU_MATCHER.assertMatch(created, newMenu);
-        MENU_MATCHER.assertMatch(service.get(newId, RESTAURANT1_ID), newMenu);
     }
 
     @Test
