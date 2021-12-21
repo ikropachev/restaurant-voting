@@ -30,7 +30,7 @@ public class AdminMenuController extends AbstractMenuController {
     }
 
     @Override
-    @GetMapping(value = "date/")
+    @GetMapping(value = "by-date/")
     public List<Menu> getAllByDate(@Nullable @RequestParam(value = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
     log.info("get all menus by date {}", date);
         if (date == null) {
@@ -41,14 +41,14 @@ public class AdminMenuController extends AbstractMenuController {
     }
 
     @Override
-    @DeleteMapping("restaurant/{restaurantId}/menu/{id}")
+    @DeleteMapping("restaurant/{restaurantId}/")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Integer restaurantId, @PathVariable Integer id) {
-        log.info("delete menu with id {} for restaurant with id {}", id, restaurantId);
-        super.delete(id, restaurantId);
+    public void delete(@PathVariable Integer restaurantId, @RequestParam(value = "menu-id") Integer menuId) {
+        log.info("delete menu with id {} for restaurant with id {}", menuId, restaurantId);
+        super.delete(menuId, restaurantId);
     }
 
-    @PostMapping(value = "restaurant/{restaurantId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "restaurant/{restaurantId}/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Menu> createWithLocation(@RequestBody Menu menu, @PathVariable Integer restaurantId) {
         log.info("create {} for restaurant {}", menu, restaurantId);
         if (menu.getDate() == null) {
@@ -57,7 +57,7 @@ public class AdminMenuController extends AbstractMenuController {
         }
         Menu created = super.create(menu, restaurantId);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path(REST_URL + "/restaurant/{restaurantId}/menu/{id}")
+                .path(REST_URL + "/{menu-id}")
                 .buildAndExpand(restaurantId, created.getId()).toUri();
         return ResponseEntity.created(uriOfNewResource).body(created);
     }

@@ -50,6 +50,7 @@ INSERT INTO VOTE (USER_ID, RESTAURANT_ID) VALUES
     (100007,100002);                                                       --100029
 
 INSERT INTO user_roles (role, user_id)
-VALUES ('USER', 100005),
-       ('ADMIN', 100004),
-       ('USER', 100006);
+VALUES ('ADMIN', 100004),
+       ('USER', 100005),
+       ('USER', 100006),
+       ('USER', 100007);

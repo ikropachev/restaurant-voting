@@ -5,10 +5,7 @@ import org.ivan_kropachev.restaurant_voting.util.exception.LateVoteException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalTime;
 
@@ -21,10 +18,10 @@ public class UserVoteController extends AbstractVoteController {
 
     static final String REST_URL = "/rest/user/votes";
 
-    @PostMapping(value = "/{restaurantId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Vote createWithLocation(@PathVariable int restaurantId) {
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Vote createWithLocation(@RequestParam(value = "restaurant_id") int restaurantId) {
         log.info("create/update vote from user with id {}", authUserId());
-        if (LocalTime.now().isAfter(LocalTime.of(11, 00))) {
+        if (LocalTime.now().isAfter(LocalTime.of(23, 59))) {
             throw new LateVoteException("Too late for voting");
         }
         return super.save(authUserId(), restaurantId);
