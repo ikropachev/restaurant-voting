@@ -6,10 +6,7 @@ import org.ivan_kropachev.restaurant_voting.model.Restaurant;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.ivan_kropachev.restaurant_voting.DishTestData.dishes;
 import static org.ivan_kropachev.restaurant_voting.RestaurantTestData.restaurants;
@@ -56,16 +53,20 @@ public class MenuTestData {
     public static final List<Menu> menus = List.of(menu5, menu6, menu4, menu1, menu2, menu3);
 
     public static Menu getNew() {
-        return new Menu(null, RESTAURANT, LocalDate.now(), new HashSet<>(Arrays.asList(DISH1)));
+        return new Menu(null, RESTAURANT, LocalDate.now(), new ArrayList<>(Arrays.asList(new Dish(null, "New_Test_Dish", 65))));
+    }
+
+    public static Menu getNew2() {
+        return new Menu(null, RESTAURANT, LocalDate.now(), new ArrayList<>(Arrays.asList(DISH3)));
     }
 
     //Method with empty dish set. Needed for run tests altogether.
     public static Menu getNewWithoutDishes() {
-        return new Menu(null, RESTAURANT, LocalDate.now(), new HashSet<>(Arrays.asList()));
+        return new Menu(null, RESTAURANT, LocalDate.now(), new ArrayList<>(Arrays.asList()));
     }
 
     public static Menu getUpdated() {
-        return new Menu(MENU1_ID, RESTAURANT, DATE, new HashSet<>(Arrays.asList(DISH2)));
+        return new Menu(MENU1_ID, RESTAURANT, DATE, new ArrayList<>(Arrays.asList(DISH2)));
     }
 
 

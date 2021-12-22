@@ -34,8 +34,7 @@ public class JpaMenuRepository implements MenuRepository {
             return menu;
         }
         else {
-            menu.setId(previous.getId());
-            return em.merge(menu);
+            throw new IllegalArgumentException(menu + " must be new");
         }
     }
 

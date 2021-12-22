@@ -17,12 +17,12 @@ public class AbstractMenuServiceTest extends AbstractServiceTest {
     void create() {
         /*
         Method "getNewWithoutDishes()" is needed for run 'All tests'
-        (to avoid Hibernate error in persist new Dish from internal set in that case).
+        (to avoid Hibernate error in persist new Dish from internal set in that case for JpaMenuServiceTest).
         For local tests you can change this to "getNew()" (method for creating menu with set of dishes).
         */
-        Menu created = service.create(getNewWithoutDishes(), RESTAURANT1_ID);
+        Menu created = service.create(getNew(), RESTAURANT1_ID);
         int newId = created.id();
-        Menu newMenu = getNewWithoutDishes();
+        Menu newMenu = getNew();
         newMenu.setId(newId);
         MENU_MATCHER.assertMatch(created, newMenu);
         MENU_MATCHER.assertMatch(service.get(newId, RESTAURANT1_ID), newMenu);

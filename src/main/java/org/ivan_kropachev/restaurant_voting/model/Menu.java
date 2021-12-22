@@ -6,6 +6,7 @@ import org.ivan_kropachev.restaurant_voting.util.View;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,14 +22,13 @@ public class Menu extends AbstractBaseEntity {
     @Column(name = "date", columnDefinition = "timestamp default now()")
     private LocalDate date;
 
-    @NotNull
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "menu", cascade = { CascadeType.ALL }, orphanRemoval=true)
     @JsonManagedReference
-    private Set<Dish> dishes;
+    private List<Dish> dishes;
 
     public Menu() {}
 
-    public Menu(Integer id, Restaurant restaurant, LocalDate date, Set<Dish> dishes) {
+    public Menu(Integer id, Restaurant restaurant, LocalDate date, List<Dish> dishes) {
         super(id);
         this.restaurant = restaurant;
         this.date = date;
@@ -59,9 +59,9 @@ public class Menu extends AbstractBaseEntity {
         this.date = date;
     }
 
-    public Set<Dish> getDishes() {
+    public List<Dish> getDishes() {
         return dishes;
     }
 
-    public void setDishes(Set<Dish> dishes) { this.dishes = dishes;}
+    public void setDishes(List<Dish> dishes) { this.dishes = dishes;}
 }
