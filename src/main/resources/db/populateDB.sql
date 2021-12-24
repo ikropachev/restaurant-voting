@@ -3,7 +3,7 @@ DELETE FROM dish;
 DELETE FROM restaurant;
 DELETE FROM users;
 DELETE FROM menu;
-ALTER SEQUENCE global_seq RESTART WITH 100000;
+ALTER SEQUENCE GLOBAL_SEQ RESTART WITH 100000;
 
 INSERT INTO RESTAURANT (NAME) VALUES
     ('BarZero'),                                                            --100000
@@ -12,10 +12,10 @@ INSERT INTO RESTAURANT (NAME) VALUES
     ('Suluguni');                                                           --100003
 
 INSERT INTO USERS (NAME, EMAIL, PASSWORD, REGISTERED) VALUES
-    ('admin', 'admin@gmail.com', 'admin', '2021-12-02 18:00'),              --100004
-    ('user', 'user@gmail.com', 'user', '2021-12-02 18:01'),                 --100005
-    ('second_user', 'second@gmail.com', 'second_pass', '2021-12-01 18:02'), --100006
-    ('third_user', 'third@gmail.com', 'third_pass', '2021-12-01 18:03');    --100007
+    ('admin', 'admin@gmail.com', 'admin', '2021-12-02 18:00:00'),              --100004
+    ('user', 'user@gmail.com', 'user', '2021-12-02 18:01:00'),                 --100005
+    ('second_user', 'second@gmail.com', 'second_pass', '2021-12-01 18:02:00'), --100006
+    ('third_user', 'third@gmail.com', 'third_pass', '2021-12-01 18:03:00');    --100007
 
 INSERT INTO menu (restaurant_id, date) VALUES
     (100001, '2021-12-03'),                                                --100008

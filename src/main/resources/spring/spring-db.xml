@@ -13,11 +13,28 @@
        http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
 
-<tx:annotation-driven/>
+    <context:property-placeholder location="classpath:db/hsqldb.properties" system-properties-mode="OVERRIDE"/>
+    <!--context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/-->
 
-    <context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>
+    <context:component-scan base-package="org.ivan_kropachev.**.repository.jpa"/>
+
+    <jdbc:initialize-database data-source="dataSource" enabled="${database.init}">
+        <jdbc:script location="classpath:db/initDB_hsql.sql"/>
+        <jdbc:script encoding="utf-8" location="classpath:db/populateDB.sql"/>
+    </jdbc:initialize-database>
+
+<tx:annotation-driven/>
+    <!--no pooling-->
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${database.driverClassName}"/>
+        <property name="url" value="${database.url}"/>
+        <property name="username" value="${database.username}"/>
+        <property name="password" value="${database.password}"/>
+    </bean>
 
     <!--no pooling-->
+    <!--
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
@@ -25,8 +42,9 @@
         <property name="username" value="${database.username}"/>
         <property name="password" value="${database.password}"/>
     </bean>
+    -->
 
-    <context:component-scan base-package="org.ivan_kropachev.**.repository.jpa"/>
+
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:dataSource-ref="dataSource"

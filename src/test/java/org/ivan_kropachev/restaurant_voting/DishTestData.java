@@ -22,7 +22,7 @@ public class DishTestData {
     public static final Dish dish9 = new Dish(DISH1_ID+8, "Meat Burger", 100);
 
     //Dishes must be sorted by menu_id DESC
-    public static final List<Dish> dishes = List.of(dish8, dish6, dish9, dish1, dish7, dish4, dish5, dish2, dish3);
+    public static final List<Dish> dishes = List.of(dish8, dish6, dish9, dish7, dish1, dish5, dish4, dish3, dish2);
 
     public static Dish getNew() {
         return new Dish(null, "New_Test_Dish", 65);
