@@ -36,7 +36,7 @@ public class AdminVoteController extends AbstractVoteController {
     @Override
     @GetMapping("/{id}")
     @ApiOperation(value = "View a vote by id")
-    public Vote get(@PathVariable int id) {
+    public Vote get(@PathVariable @ApiParam(example = "100027", required = true) int id) {
         return super.get(id);
     }
 
@@ -46,7 +46,8 @@ public class AdminVoteController extends AbstractVoteController {
     //})
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Create a vote for a restaurant")
-    public Vote createWithLocation(@RequestParam(value = "restaurant-id") int restaurantId) {
+    public Vote createWithLocation(@RequestParam (value = "restaurant-id") @ApiParam(example = "100002", required = true)
+                                               int restaurantId) {
         log.info("create/update vote from user with id {}", authUserId());
         if (LocalTime.now().isAfter(LocalTime.of(23, 59))) {
             throw new LateVoteException("Too late for voting");
@@ -58,7 +59,7 @@ public class AdminVoteController extends AbstractVoteController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Delete a vote by id")
-    public void delete(@PathVariable int id) {
+    public void delete(@PathVariable @ApiParam(example = "100023", required = true) int id) {
         super.delete(id);
     }
 }

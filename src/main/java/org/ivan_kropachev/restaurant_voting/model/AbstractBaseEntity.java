@@ -1,5 +1,6 @@
 package org.ivan_kropachev.restaurant_voting.model;
 
+import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.Hibernate;
 import org.ivan_kropachev.restaurant_voting.HasId;
 import org.springframework.data.domain.Persistable;
@@ -16,6 +17,7 @@ public abstract class AbstractBaseEntity implements HasId {
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = START_SEQ)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
     @Access(AccessType.PROPERTY)
+    @ApiModelProperty(example = "null", readOnly = true)
     protected Integer id;
 
     protected AbstractBaseEntity() {

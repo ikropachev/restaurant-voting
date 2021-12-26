@@ -19,13 +19,13 @@ public class Dish extends AbstractNamedEntity {
 
     @NotNull
     @Column(name = "price", nullable = false)
+    @ApiModelProperty(example = "10")
     private int price;
 
-    //@NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "menu_id", nullable = false)
     @JsonBackReference
-    @ApiModelProperty(hidden = true)
+    @ApiModelProperty(hidden = true, readOnly = true)
     private Menu menu;
 
     public Dish() {

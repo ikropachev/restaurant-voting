@@ -1,5 +1,7 @@
 package org.ivan_kropachev.restaurant_voting.model;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
@@ -14,6 +16,7 @@ public abstract class AbstractNamedEntity extends AbstractBaseEntity {
     @NotBlank
     @Size(min = 2, max = 100)
     @Column(name = "name", nullable = false)
+    @ApiModelProperty(example = "name")
     protected String name;
 
     protected AbstractNamedEntity() {

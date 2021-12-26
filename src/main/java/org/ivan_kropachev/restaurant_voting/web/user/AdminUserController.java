@@ -2,6 +2,7 @@ package org.ivan_kropachev.restaurant_voting.web.user;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.ivan_kropachev.restaurant_voting.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -30,7 +31,7 @@ public class AdminUserController extends AbstractUserController {
     @Override
     @GetMapping("/{id}")
     @ApiOperation(value = "View the user by id")
-    public User get(@PathVariable int id) {
+    public User get(@PathVariable @ApiParam(example = "100007", required = true) int id) {
         return super.get(id);
     }
 
@@ -48,7 +49,7 @@ public class AdminUserController extends AbstractUserController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Delete the user by id")
-    public void delete(@PathVariable int id) {
+    public void delete(@PathVariable @ApiParam(example = "100006", required = true) int id) {
         super.delete(id);
     }
 
@@ -56,14 +57,14 @@ public class AdminUserController extends AbstractUserController {
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Update the user by id")
-    public void update(@RequestBody User user, @PathVariable int id) {
+    public void update(@RequestBody User user, @PathVariable @ApiParam(example = "100007", required = true) int id) {
         super.update(user, id);
     }
 
     @Override
     @GetMapping("/by-email")
     @ApiOperation(value = "View the user by e-mail")
-    public User getByMail(@RequestParam String email) {
+    public User getByMail(@RequestParam @ApiParam(example = "user@gmail.com", required = true) String email) {
         return super.getByMail(email);
     }
 
@@ -71,7 +72,8 @@ public class AdminUserController extends AbstractUserController {
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Set enable status for the user")
-    public void enable(@PathVariable int id, @RequestParam boolean enabled) {
+    public void enable(@PathVariable @ApiParam(example = "100007", required = true) int id,
+                       @RequestParam @ApiParam(example = "false", required = true) boolean enabled) {
         super.enable(id, enabled);
     }
 }

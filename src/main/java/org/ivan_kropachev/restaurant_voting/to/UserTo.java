@@ -1,5 +1,6 @@
 package org.ivan_kropachev.restaurant_voting.to;
 
+import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.Email;
@@ -15,15 +16,18 @@ public class UserTo extends BaseTo implements Serializable {
 
     @NotBlank
     @Size(min = 2, max = 100)
+    @ApiModelProperty(example = "new-user")
     private String name;
 
     @Email
     @NotBlank
     @Size(max = 100)
+    @ApiModelProperty(example = "new-user@gmail.com")
     private String email;
 
     @NotBlank
     @Size(min = 5, max = 32, message = "length must be between 5 and 32 characters")
+    @ApiModelProperty(example = "new-password")
     private String password;
 
     public UserTo() {
