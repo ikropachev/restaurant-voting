@@ -1,5 +1,8 @@
 package org.ivan_kropachev.restaurant_voting.web.menu;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.ivan_kropachev.restaurant_voting.model.Menu;
 import org.slf4j.Logger;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -18,6 +21,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 @RestController
 @RequestMapping(value = AdminMenuController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
+@Api(description="Operations for menus from admin")
 public class AdminMenuController extends AbstractMenuController {
     private static final Logger log = getLogger(AdminMenuController.class);
 
@@ -25,13 +29,16 @@ public class AdminMenuController extends AbstractMenuController {
 
     @Override
     @GetMapping
+    @ApiOperation(value = "View a list of all menus")
     public List<Menu> getAll() {
         return super.getAll();
     }
 
     @Override
     @GetMapping(value = "by-date")
-    public List<Menu> getAllByDate(@Nullable @RequestParam(value = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+    @ApiOperation(value = "View a list of all menus by date")
+    public List<Menu> getAllByDate(@Nullable @RequestParam(value = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+                                       @ApiParam(value = "null for current date", example = "2021-12-03", required = false) LocalDate date) {
     log.info("get all menus by date {}", date);
         if (date == null) {
             date = LocalDate.now();
@@ -43,13 +50,22 @@ public class AdminMenuController extends AbstractMenuController {
     @Override
     @DeleteMapping("restaurant/{restaurantId}/")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Integer restaurantId, @RequestParam(value = "menu-id") Integer menuId) {
+    @ApiOperation(value = "Delete a menu by restaurant id and menu id")
+    public void delete(@PathVariable @ApiParam(example = "100001", required = true) Integer restaurantId,
+                       @RequestParam(value = "menu-id") @ApiParam(example = "100008", required = true) Integer menuId) {
         log.info("delete menu with id {} for restaurant with id {}", menuId, restaurantId);
         super.delete(menuId, restaurantId);
     }
 
     @PostMapping(value = "restaurant/{restaurantId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Menu> createWithLocation(@RequestBody Menu menu, @PathVariable Integer restaurantId) {
+    @ApiOperation(value = "Create a menu")
+    public ResponseEntity<Menu> createWithLocation(@RequestBody
+                                                       @ApiParam(value = """
+                                                               \"restaurant\" field in request body may absent, 
+                                                               it doesn't use in request.""")
+                                                               Menu menu,
+                                                   @PathVariable @ApiParam(example = "100000", required = true)
+                                                           Integer restaurantId) {
         log.info("create {} for restaurant {}", menu, restaurantId);
         if (menu.getDate() == null) {
             menu.setDate(LocalDate.now());
@@ -63,9 +79,11 @@ public class AdminMenuController extends AbstractMenuController {
     }
 
     @PutMapping(value = "restaurant/{restaurantId}/date/", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Update a menu for a restaurant for a certain date")
     public void update(@RequestBody Menu menu,
-                           @PathVariable Integer restaurantId,
-                       @Nullable @RequestParam(value = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+                           @PathVariable @ApiParam(example = "100002", required = true) Integer restaurantId,
+                       @Nullable @RequestParam(value = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+                           @ApiParam(value = "null for current date", example = "2021-12-03", required = false) LocalDate date) {
         log.info("update menu {} for restaurant {}", menu, restaurantId);
         if (date == null) {
             date = LocalDate.now();

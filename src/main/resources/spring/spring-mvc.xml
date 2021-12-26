@@ -7,6 +7,8 @@
 
     <bean class="org.ivan_kropachev.restaurant_voting.web.json.JacksonObjectMapper" id="objectMapper" factory-method="getMapper"/>
 
+    <!--security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/-->
+
     <mvc:annotation-driven>
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
@@ -28,6 +30,15 @@
     <!--  all resources inside folder src/main/webapp/resources are mapped so they can be referred to inside JSP files -->
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 
+    <!-- use WebJars so Javascript and CSS libs can be declared as Maven dependencies (Bootstrap, jQuery...) -->
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+
+    <!--  Swagger2  https://medium.com/@andreymamontov/swagger-2-configuration-with-spring-xml-3cd643a12425 -->
+    <!-- "How to run integration tests with spring and springfox?": https://github.com/springfox/springfox/issues/654 -->
+    <bean class="springfox.documentation.swagger2.configuration.Swagger2DocumentationConfiguration"/>
+    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/" />
+
+
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/jsp/"
           p:suffix=".jsp"/>
@@ -43,10 +54,29 @@
             </property>
         </bean>
     -->
+
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
           p:cacheSeconds="5"
           p:defaultEncoding="UTF-8">
         <!--property name="basenames" value="file:///#{systemEnvironment[TOPJAVA_ROOT]}/config/messages/app"/-->
         <property name="fallbackToSystemLocale" value="false"/>
     </bean>
+
+    <bean class="org.springframework.context.support.MessageSourceAccessor">
+        <constructor-arg ref="messageSource"/>
+    </bean>
+
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="defaultLocale" value="ru"/>
+    </bean>
+
+    <mvc:interceptors>
+        <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <property name="paramName" value="lang"/>
+        </bean>
+    </mvc:interceptors>
+
+
+
+
 </beans>

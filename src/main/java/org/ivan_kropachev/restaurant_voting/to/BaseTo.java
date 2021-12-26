@@ -1,8 +1,10 @@
 package org.ivan_kropachev.restaurant_voting.to;
 
+import io.swagger.annotations.ApiModelProperty;
 import org.ivan_kropachev.restaurant_voting.HasId;
 
 public abstract class BaseTo implements HasId {
+    @ApiModelProperty(readOnly = true)
     protected Integer id;
 
     public BaseTo() {

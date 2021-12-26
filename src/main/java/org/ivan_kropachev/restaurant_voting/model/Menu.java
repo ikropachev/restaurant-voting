@@ -1,6 +1,7 @@
 package org.ivan_kropachev.restaurant_voting.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import io.swagger.annotations.ApiModelProperty;
 import org.ivan_kropachev.restaurant_voting.util.View;
 
 import javax.persistence.*;
@@ -20,10 +21,23 @@ public class Menu extends AbstractBaseEntity {
 
     @NotNull
     @Column(name = "date", columnDefinition = "timestamp default now()")
+    @ApiModelProperty(example = "null", readOnly = true)
     private LocalDate date;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "menu", cascade = { CascadeType.ALL }, orphanRemoval=true)
     @JsonManagedReference
+    @ApiModelProperty(position = 3, example = "[\n" +
+            "    {\n" +
+            "      \"id\": \"null\",\n" +
+            "      \"name\": \"dish1\",\n" +
+            "      \"price\": 10\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"id\": \"null\",\n" +
+            "      \"name\": \"dish2\",\n" +
+            "      \"price\": 20\n" +
+            "    }\n" +
+            "  ]")
     private List<Dish> dishes;
 
     public Menu() {}

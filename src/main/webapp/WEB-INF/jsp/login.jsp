@@ -59,6 +59,11 @@ List of using technologies:
 <div class="container lead">
 </div>
 
+<div class="container">
+    <div class="lead"></div>
+    <a class="btn btn-lg btn-success my-4" href="swagger-ui.html" target="_blank">Swagger REST Api Documentation</a>
+</div>
+
 <script type="text/javascript">
     function login(username, password) {
         $('input[name="username"]').val(username);

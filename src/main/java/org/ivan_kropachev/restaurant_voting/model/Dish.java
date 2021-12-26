@@ -2,9 +2,11 @@ package org.ivan_kropachev.restaurant_voting.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Range;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -17,12 +19,13 @@ public class Dish extends AbstractNamedEntity {
 
     @NotNull
     @Column(name = "price", nullable = false)
+    @ApiModelProperty(example = "10")
     private int price;
 
-    //@NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "menu_id", nullable = false)
     @JsonBackReference
+    @ApiModelProperty(hidden = true, readOnly = true)
     private Menu menu;
 
     public Dish() {

@@ -1,5 +1,6 @@
 package org.ivan_kropachev.restaurant_voting.model;
 
+import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.*;
 import org.hibernate.validator.constraints.Range;
@@ -25,14 +26,17 @@ public class User extends AbstractNamedEntity {
     @Email
     @NotBlank
     @Size(max = 100)
+    @ApiModelProperty(example = "example@gmail.com")
     private String email;
 
     @Column(name = "password", nullable = false)
     @NotBlank
     @Size(min = 4, max = 100)
+    @ApiModelProperty(example = "password")
     private String password;
 
     @Column(name = "enabled", nullable = false, columnDefinition = "bool default true")
+    @ApiModelProperty(example = "true")
     private boolean enabled = true;
 
     @Column(name = "registered", nullable = false, columnDefinition = "timestamp default now()", updatable = false)
