@@ -1,7 +1,9 @@
 package org.ivan_kropachev.restaurant_voting.service.jpa;
 
+import io.swagger.annotations.SwaggerDefinition;
 import org.springframework.test.context.ActiveProfiles;
 import org.ivan_kropachev.restaurant_voting.service.AbstractDishServiceTest;
+import springfox.documentation.annotations.ApiIgnore;
 
 import static org.ivan_kropachev.restaurant_voting.Profiles.JPA;
 

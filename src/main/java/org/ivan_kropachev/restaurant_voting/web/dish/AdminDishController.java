@@ -1,5 +1,7 @@
 package org.ivan_kropachev.restaurant_voting.web.dish;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.ivan_kropachev.restaurant_voting.model.Dish;
 import org.ivan_kropachev.restaurant_voting.service.DishService;
 import org.slf4j.Logger;
@@ -16,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = AdminDishController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
+@Api(description="Operations for dishes from admin")
 public class AdminDishController {
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
@@ -25,18 +28,21 @@ public class AdminDishController {
     private DishService service;
 
     @GetMapping
+    @ApiOperation(value = "View a list of all dishes")
     public List<Dish> getAll() {
         log.info("get all dishes");
         return service.getAll();
     }
 
     @GetMapping("/{id}")
+    @ApiOperation(value = "View a dish by id")
     public Dish get(@PathVariable int id) {
         log.info("get dish with id {}", id);
         return service.get(id);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Create a dish for menu")
     public ResponseEntity<Dish> createWithLocation(@RequestBody Dish dish, @RequestParam(value = "menu-id") int menuId) {
         log.info("create dish with id {} for menu with id {}", dish, menuId);
         Dish created = service.create(dish, menuId);
@@ -48,6 +54,7 @@ public class AdminDishController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ApiOperation(value = "Delete a dish by id")
     public void delete(@PathVariable int id) {
         log.info("delete dish with id {}", id);
         service.delete(id);

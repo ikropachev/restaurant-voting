@@ -4,11 +4,14 @@ import org.ivan_kropachev.restaurant_voting.model.Menu;
 import org.ivan_kropachev.restaurant_voting.util.exception.NotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import springfox.documentation.annotations.ApiIgnore;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import static org.ivan_kropachev.restaurant_voting.MenuTestData.NOT_FOUND;
 import static org.ivan_kropachev.restaurant_voting.MenuTestData.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@EnableSwagger2
 public class AbstractMenuServiceTest extends AbstractServiceTest {
     @Autowired
     protected MenuService service;
