@@ -14,4 +14,4 @@ Voting system for deciding where to have lunch.
 
 All login information and curl-requests is provided on startup.
 
-**[Swagger REST API](http://localhost:8080/restaurant_voting/swagger-ui.html)
+[Swagger REST API](http://localhost:8080/restaurant_voting/swagger-ui.html)
