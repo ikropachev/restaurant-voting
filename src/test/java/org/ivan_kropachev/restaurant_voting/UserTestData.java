@@ -8,8 +8,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import static org.ivan_kropachev.restaurant_voting.model.AbstractBaseEntity.START_SEQ;
-
 public class UserTestData {
     public static final MatcherFactory.Matcher<User> USER_MATCHER = MatcherFactory.usingIgnoringFieldsComparator(User.class, "registered", "password");
 
@@ -19,8 +17,8 @@ public class UserTestData {
 
     public static final User admin = new User(ADMIN_ID, "admin", "admin@gmail.com", "admin", Role.ADMIN);
     public static final User user1 = new User(USER_ID, "user", "user@gmail.com", "user", Role.USER);
-    public static final User user2 = new User(USER_ID+1, "second_user", "second@gmail.com", "second_pass", Role.USER);
-    public static final User user3 = new User(USER_ID+2, "third_user", "third@gmail.com", "third_pass", Role.USER);
+    public static final User user2 = new User(USER_ID + 1, "second_user", "second@gmail.com", "second_pass", Role.USER);
+    public static final User user3 = new User(USER_ID + 2, "third_user", "third@gmail.com", "third_pass", Role.USER);
 
     //Users must be sorted by name, and e-mail for name duplicates.
     public static final List<User> users = List.of(admin, user2, user3, user1);

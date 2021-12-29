@@ -1,7 +1,6 @@
 package org.ivan_kropachev.restaurant_voting.repository;
 
 import org.ivan_kropachev.restaurant_voting.model.Restaurant;
-import org.ivan_kropachev.restaurant_voting.model.User;
 
 import java.util.List;
 

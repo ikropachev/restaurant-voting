@@ -3,9 +3,9 @@ package org.ivan_kropachev.restaurant_voting.web.restaurant;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.ivan_kropachev.restaurant_voting.model.Restaurant;
 import org.ivan_kropachev.restaurant_voting.service.RestaurantService;
 import org.slf4j.Logger;
-import org.ivan_kropachev.restaurant_voting.model.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,7 +20,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 @RestController
 @RequestMapping(value = AdminRestaurantController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-@Api(description="Operations for restaurants from admin")
+@Api(description = "Operations for restaurants from admin")
 public class AdminRestaurantController {
     private static final Logger log = getLogger(AdminRestaurantController.class);
 

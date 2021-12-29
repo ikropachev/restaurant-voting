@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = AdminDishController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-@Api(description="Operations for dishes from admin")
+@Api(description = "Operations for dishes from admin")
 public class AdminDishController {
     protected final Logger log = LoggerFactory.getLogger(getClass());
 

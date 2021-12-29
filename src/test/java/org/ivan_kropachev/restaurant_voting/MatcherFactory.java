@@ -1,9 +1,9 @@
 package org.ivan_kropachev.restaurant_voting;
 
+import org.ivan_kropachev.restaurant_voting.web.json.JsonUtil;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.ResultMatcher;
-import org.ivan_kropachev.restaurant_voting.web.json.JsonUtil;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;

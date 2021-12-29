@@ -1,5 +1,10 @@
 package org.ivan_kropachev.restaurant_voting.web;
 
+import org.ivan_kropachev.restaurant_voting.util.ValidationUtil;
+import org.ivan_kropachev.restaurant_voting.util.exception.ErrorInfo;
+import org.ivan_kropachev.restaurant_voting.util.exception.ErrorType;
+import org.ivan_kropachev.restaurant_voting.util.exception.IllegalRequestDataException;
+import org.ivan_kropachev.restaurant_voting.util.exception.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
@@ -12,16 +17,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
-import org.ivan_kropachev.restaurant_voting.util.ValidationUtil;
-import org.ivan_kropachev.restaurant_voting.util.exception.ErrorInfo;
-import org.ivan_kropachev.restaurant_voting.util.exception.ErrorType;
-import org.ivan_kropachev.restaurant_voting.util.exception.IllegalRequestDataException;
-import org.ivan_kropachev.restaurant_voting.util.exception.NotFoundException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static org.ivan_kropachev.restaurant_voting.util.exception.ErrorType.DATA_ERROR;
-import static org.ivan_kropachev.restaurant_voting.util.exception.ErrorType.DATA_NOT_FOUND;
 import static org.ivan_kropachev.restaurant_voting.util.exception.ErrorType.*;
 
 @RestControllerAdvice(annotations = RestController.class)

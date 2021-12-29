@@ -1,19 +1,12 @@
 package org.ivan_kropachev.restaurant_voting.service;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.ivan_kropachev.restaurant_voting.model.Dish;
 import org.ivan_kropachev.restaurant_voting.util.exception.NotFoundException;
-
-import javax.validation.ConstraintViolationException;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.ivan_kropachev.restaurant_voting.DishTestData.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import org.ivan_kropachev.restaurant_voting.DishTestData.*;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class AbstractDishServiceTest extends AbstractServiceTest {
     @Autowired

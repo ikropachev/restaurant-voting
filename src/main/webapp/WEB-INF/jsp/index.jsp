@@ -99,8 +99,12 @@ vote
 <br>
 <br>Profile controller:
 <br>curl -s http://localhost:8080/restaurant_voting/rest/profile -u user@gmail.com:user - get current user info
-<br>curl -X POST --data "{\"name\":\"New_User\",\"email\":\"newuser@gmail.com\",\"password\":\"new_pass\"}" --header "Content-Type:application/json" http://localhost:8080/restaurant_voting/rest/profile - registration of new user
-<br>curl -X PUT --data "{\"name\":\"Updated_Name\",\"email\":\"updated@gmail.com\",\"password\":\"updated_password\"}" --header "Content-Type:application/json" http://localhost:8080/restaurant_voting/rest/profile -u user@gmail.com:user - update current user
-<br>curl -s -X DELETE http://localhost:8080/restaurant_voting/rest/profile -u third@gmail.com:third_pass - delete current user
+<br>curl -X POST --data "{\"name\":\"New_User\",\"email\":\"newuser@gmail.com\",\"password\":\"new_pass\"}" --header
+"Content-Type:application/json" http://localhost:8080/restaurant_voting/rest/profile - registration of new user
+<br>curl -X PUT --data "{\"name\":\"Updated_Name\",\"email\":\"updated@gmail.com\",\"password\":\"updated_password\"}"
+--header "Content-Type:application/json" http://localhost:8080/restaurant_voting/rest/profile -u user@gmail.com:user -
+update current user
+<br>curl -s -X DELETE http://localhost:8080/restaurant_voting/rest/profile -u third@gmail.com:third_pass - delete
+current user
 </body>
 </html>

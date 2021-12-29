@@ -4,14 +4,15 @@
     <!-- To enable JMX Management -->
     <jmxConfigurator/>
 
+    <!-- Hide for work without local variable
     <appender name="file" class="ch.qos.logback.core.FileAppender">
-        <file>${RESTAURANT_VOTING_ROOT}/log/topjava.log</file>
-
+        <file>${RESTAURANT_VOTING_ROOT}/log/restaurant_voting.log</file>
         <encoder>
             <charset>UTF-8</charset>
             <pattern>%date %-5level %logger{50}.%M:%L - %msg%n</pattern>
         </encoder>
     </appender>
+    -->
 
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>

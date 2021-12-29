@@ -1,12 +1,9 @@
 package org.ivan_kropachev.restaurant_voting.web.menu;
 
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.ivan_kropachev.restaurant_voting.model.Menu;
-import org.ivan_kropachev.restaurant_voting.service.MenuService;
 import org.slf4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +16,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 @RestController
 @RequestMapping(value = UserMenuController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-@Api(description="Operations for menus from regular user")
+@Api(description = "Operations for menus from regular user")
 public class UserMenuController extends AbstractMenuController {
     private static final Logger log = getLogger(AdminMenuController.class);
 

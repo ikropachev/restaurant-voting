@@ -1,15 +1,13 @@
 package org.ivan_kropachev.restaurant_voting.service;
 
 import org.ivan_kropachev.restaurant_voting.model.Dish;
-import org.ivan_kropachev.restaurant_voting.model.User;
 import org.ivan_kropachev.restaurant_voting.repository.DishRepository;
-import org.ivan_kropachev.restaurant_voting.repository.UserRepository;
-
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static org.ivan_kropachev.restaurant_voting.util.ValidationUtil.*;
+import static org.ivan_kropachev.restaurant_voting.util.ValidationUtil.checkNew;
+import static org.ivan_kropachev.restaurant_voting.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
 public class DishService {

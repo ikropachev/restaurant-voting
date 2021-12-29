@@ -5,9 +5,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <bean class="org.ivan_kropachev.restaurant_voting.web.json.JacksonObjectMapper" id="objectMapper" factory-method="getMapper"/>
-
-    <!--security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/-->
+    <bean class="org.ivan_kropachev.restaurant_voting.web.json.JacksonObjectMapper" id="objectMapper"
+          factory-method="getMapper"/>
 
     <mvc:annotation-driven>
         <mvc:message-converters>
@@ -36,29 +35,15 @@
     <!--  Swagger2  https://medium.com/@andreymamontov/swagger-2-configuration-with-spring-xml-3cd643a12425 -->
     <!-- "How to run integration tests with spring and springfox?": https://github.com/springfox/springfox/issues/654 -->
     <bean class="springfox.documentation.swagger2.configuration.Swagger2DocumentationConfiguration"/>
-    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/" />
-
+    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/jsp/"
           p:suffix=".jsp"/>
 
-    <!--
-        <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"
-              p:cacheSeconds="60"
-              p:defaultEncoding="UTF-8">
-            <property name="basenames">
-                <list>
-                    <value>messages/app</value>
-                </list>
-            </property>
-        </bean>
-    -->
-
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
           p:cacheSeconds="5"
           p:defaultEncoding="UTF-8">
-        <!--property name="basenames" value="file:///#{systemEnvironment[TOPJAVA_ROOT]}/config/messages/app"/-->
         <property name="fallbackToSystemLocale" value="false"/>
     </bean>
 
@@ -75,8 +60,4 @@
             <property name="paramName" value="lang"/>
         </bean>
     </mvc:interceptors>
-
-
-
-
 </beans>

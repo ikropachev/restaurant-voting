@@ -3,7 +3,6 @@ package org.ivan_kropachev.restaurant_voting.model;
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.Hibernate;
 import org.ivan_kropachev.restaurant_voting.HasId;
-import org.springframework.data.domain.Persistable;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;

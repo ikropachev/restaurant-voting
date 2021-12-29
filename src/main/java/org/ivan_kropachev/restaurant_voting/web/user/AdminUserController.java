@@ -7,7 +7,6 @@ import org.ivan_kropachev.restaurant_voting.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -16,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = AdminUserController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-@Api(description="Operations for users from admin")
+@Api(description = "Operations for users from admin")
 public class AdminUserController extends AbstractUserController {
 
     static final String REST_URL = "/rest/admin/users";

@@ -7,7 +7,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.ivan_kropachev.restaurant_voting.MenuTestData.*;
 import static org.ivan_kropachev.restaurant_voting.TestUtil.userHttpBasic;
-import static org.ivan_kropachev.restaurant_voting.UserTestData.admin;
 import static org.ivan_kropachev.restaurant_voting.UserTestData.user1;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

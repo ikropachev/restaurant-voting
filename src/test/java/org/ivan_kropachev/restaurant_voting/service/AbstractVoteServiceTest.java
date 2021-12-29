@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.ivan_kropachev.restaurant_voting.VoteTestData.*;
-import static org.ivan_kropachev.restaurant_voting.VoteTestData.vote1;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AbstractVoteServiceTest extends AbstractServiceTest {

@@ -6,10 +6,10 @@ import org.ivan_kropachev.restaurant_voting.model.Restaurant;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-import static org.ivan_kropachev.restaurant_voting.DishTestData.dishes;
-import static org.ivan_kropachev.restaurant_voting.RestaurantTestData.restaurants;
 import static org.ivan_kropachev.restaurant_voting.model.AbstractBaseEntity.START_SEQ;
 
 public class MenuTestData {
@@ -21,7 +21,7 @@ public class MenuTestData {
     public static final int NOT_FOUND = 100000;
     public static final int MENU1_ID = START_SEQ + 8;
     public static final int RESTAURANT1_ID = 100001;
-    public static final Restaurant RESTAURANT = new Restaurant (RESTAURANT1_ID, "Burgers");
+    public static final Restaurant RESTAURANT = new Restaurant(RESTAURANT1_ID, "Burgers");
     public static final LocalDate DATE = LocalDate.parse("2021-12-03", PATTERN);
     public static final Dish DISH1 = new Dish(null, "New_Test_Dish", 65);
     public static final Dish DISH2 = new Dish(null, "New_Update_Test_Dish", 55);
@@ -43,11 +43,11 @@ public class MenuTestData {
  */
 
     public static final Menu menu1 = new Menu(MENU1_ID, LocalDate.parse("2021-12-03", PATTERN));
-    public static final Menu menu2 = new Menu(MENU1_ID+1, LocalDate.parse("2021-12-03", PATTERN));
-    public static final Menu menu3 = new Menu(MENU1_ID+2, LocalDate.parse("2021-12-03", PATTERN));
-    public static final Menu menu4 = new Menu(MENU1_ID+3, LocalDate.parse("2021-12-05", PATTERN));
-    public static final Menu menu5 = new Menu(MENU1_ID+4, LocalDate.now());
-    public static final Menu menu6 = new Menu(MENU1_ID+5, LocalDate.now());
+    public static final Menu menu2 = new Menu(MENU1_ID + 1, LocalDate.parse("2021-12-03", PATTERN));
+    public static final Menu menu3 = new Menu(MENU1_ID + 2, LocalDate.parse("2021-12-03", PATTERN));
+    public static final Menu menu4 = new Menu(MENU1_ID + 3, LocalDate.parse("2021-12-05", PATTERN));
+    public static final Menu menu5 = new Menu(MENU1_ID + 4, LocalDate.now());
+    public static final Menu menu6 = new Menu(MENU1_ID + 5, LocalDate.now());
 
     //Menus must be sorted by date DESC
     public static final List<Menu> menus = List.of(menu5, menu6, menu4, menu1, menu2, menu3);

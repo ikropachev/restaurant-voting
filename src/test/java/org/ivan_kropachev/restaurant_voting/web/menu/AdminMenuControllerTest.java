@@ -1,14 +1,9 @@
 package org.ivan_kropachev.restaurant_voting.web.menu;
 
-import org.ivan_kropachev.restaurant_voting.MenuTestData;
-import org.ivan_kropachev.restaurant_voting.model.Dish;
 import org.ivan_kropachev.restaurant_voting.model.Menu;
-import org.ivan_kropachev.restaurant_voting.model.Restaurant;
-import org.ivan_kropachev.restaurant_voting.service.DishService;
 import org.ivan_kropachev.restaurant_voting.service.MenuService;
 import org.ivan_kropachev.restaurant_voting.util.exception.NotFoundException;
 import org.ivan_kropachev.restaurant_voting.web.AbstractControllerTest;
-import org.ivan_kropachev.restaurant_voting.web.dish.AdminDishController;
 import org.ivan_kropachev.restaurant_voting.web.json.JsonUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.ivan_kropachev.restaurant_voting.DishTestData.DISH_MATCHER;
-import static org.ivan_kropachev.restaurant_voting.MenuTestData.getNew;
 import static org.ivan_kropachev.restaurant_voting.MenuTestData.*;
-import static org.ivan_kropachev.restaurant_voting.MenuTestData.RESTAURANT1_ID;
 import static org.ivan_kropachev.restaurant_voting.TestUtil.userHttpBasic;
 import static org.ivan_kropachev.restaurant_voting.UserTestData.admin;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -54,7 +46,7 @@ public class AdminMenuControllerTest extends AbstractControllerTest {
 
     @Test
     void delete() throws Exception {
-        perform(MockMvcRequestBuilders.delete(REST_URL + "restaurant/" + RESTAURANT1_ID + "/?menu-id="  + MENU1_ID)
+        perform(MockMvcRequestBuilders.delete(REST_URL + "restaurant/" + RESTAURANT1_ID + "/?menu-id=" + MENU1_ID)
                 .with(userHttpBasic(admin)))
                 .andExpect(status().isNoContent());
         assertThrows(NotFoundException.class, () -> service.get(MENU1_ID, RESTAURANT1_ID));
@@ -62,7 +54,7 @@ public class AdminMenuControllerTest extends AbstractControllerTest {
 
     @Test
     void deleteNotFound() throws Exception {
-        perform(MockMvcRequestBuilders.delete(REST_URL + "restaurant/" + RESTAURANT1_ID + "/?menu-id="  + NOT_FOUND)
+        perform(MockMvcRequestBuilders.delete(REST_URL + "restaurant/" + RESTAURANT1_ID + "/?menu-id=" + NOT_FOUND)
                 .with(userHttpBasic(admin)))
                 .andExpect(status().isUnprocessableEntity());
     }

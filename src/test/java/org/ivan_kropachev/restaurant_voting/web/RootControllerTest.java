@@ -2,11 +2,11 @@ package org.ivan_kropachev.restaurant_voting.web;
 
 import org.junit.jupiter.api.Test;
 
+import static org.ivan_kropachev.restaurant_voting.TestUtil.userAuth;
 import static org.ivan_kropachev.restaurant_voting.UserTestData.user1;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.ivan_kropachev.restaurant_voting.TestUtil.userAuth;
 
 public class RootControllerTest extends AbstractControllerTest {
 

@@ -1,8 +1,6 @@
 package org.ivan_kropachev.restaurant_voting.service;
 
-import org.ivan_kropachev.restaurant_voting.model.Dish;
 import org.ivan_kropachev.restaurant_voting.model.Vote;
-import org.ivan_kropachev.restaurant_voting.repository.DishRepository;
 import org.ivan_kropachev.restaurant_voting.repository.VoteRepository;
 import org.springframework.stereotype.Service;
 

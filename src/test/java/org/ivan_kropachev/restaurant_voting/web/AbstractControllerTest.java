@@ -23,8 +23,6 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
         "classpath:spring/spring-mvc.xml",
         "classpath:spring/spring-db.xml"
 })
-//@WebAppConfiguration
-//@ExtendWith(SpringExtension.class)
 @Transactional
 @ActiveProfiles(profiles = Profiles.REPOSITORY_IMPLEMENTATION)
 public class AbstractControllerTest {

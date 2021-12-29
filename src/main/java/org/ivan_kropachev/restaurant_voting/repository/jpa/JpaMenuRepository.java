@@ -32,8 +32,7 @@ public class JpaMenuRepository implements MenuRepository {
         if (previous == null) {
             em.persist(menu);
             return menu;
-        }
-        else {
+        } else {
             throw new IllegalArgumentException(menu + " must be new");
         }
     }
@@ -46,8 +45,7 @@ public class JpaMenuRepository implements MenuRepository {
         Menu previous = getByRestaurantIdAndDate(restaurantId, menu.getDate());
         if (previous == null) {
             throw new IllegalArgumentException(menu + " must not be new");
-        }
-        else {
+        } else {
             menu.setId(previous.getId());
             return em.merge(menu);
         }
@@ -81,7 +79,7 @@ public class JpaMenuRepository implements MenuRepository {
     }
 
     @Transactional
-    public Menu getByRestaurantIdAndDate(int restaurantId, LocalDate date){
+    public Menu getByRestaurantIdAndDate(int restaurantId, LocalDate date) {
         List<Menu> menus = em.createQuery("SELECT m FROM Menu m WHERE m.restaurant.id=:restaurantId AND m.date=:date")
                 .setParameter("restaurantId", restaurantId)
                 .setParameter("date", date)

@@ -14,13 +14,12 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.ivan_kropachev.restaurant_voting.TestUtil.userHttpBasic;
 import static org.ivan_kropachev.restaurant_voting.UserTestData.*;
+import static org.ivan_kropachev.restaurant_voting.web.user.ProfileRestController.REST_URL;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import static org.ivan_kropachev.restaurant_voting.web.user.ProfileRestController.REST_URL;
-
-public class ProfileRestControllerTest  extends AbstractControllerTest {
+public class ProfileRestControllerTest extends AbstractControllerTest {
 
     @Autowired
     private UserService service;

@@ -1,7 +1,6 @@
 package org.ivan_kropachev.restaurant_voting.web;
 
 import org.ivan_kropachev.restaurant_voting.AuthorizedUser;
-import org.ivan_kropachev.restaurant_voting.model.AbstractBaseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 

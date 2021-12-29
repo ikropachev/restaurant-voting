@@ -1,15 +1,13 @@
 package org.ivan_kropachev.restaurant_voting.service;
 
 import org.ivan_kropachev.restaurant_voting.model.Restaurant;
-import org.ivan_kropachev.restaurant_voting.model.User;
 import org.ivan_kropachev.restaurant_voting.repository.RestaurantRepository;
-import org.ivan_kropachev.restaurant_voting.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static org.ivan_kropachev.restaurant_voting.util.ValidationUtil.*;
+import static org.ivan_kropachev.restaurant_voting.util.ValidationUtil.checkNew;
+import static org.ivan_kropachev.restaurant_voting.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
 public class RestaurantService {

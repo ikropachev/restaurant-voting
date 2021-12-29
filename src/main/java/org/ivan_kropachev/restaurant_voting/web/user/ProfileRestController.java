@@ -7,7 +7,6 @@ import org.ivan_kropachev.restaurant_voting.to.UserTo;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -17,7 +16,7 @@ import static org.ivan_kropachev.restaurant_voting.web.SecurityUtil.authUserId;
 
 @RestController
 @RequestMapping(value = ProfileRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-@Api(description="Operations for profiles")
+@Api(description = "Operations for profiles")
 public class ProfileRestController extends AbstractUserController {
     static final String REST_URL = "/rest/profile";
 

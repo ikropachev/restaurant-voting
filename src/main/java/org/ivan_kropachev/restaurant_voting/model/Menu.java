@@ -2,13 +2,11 @@ package org.ivan_kropachev.restaurant_voting.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.annotations.ApiModelProperty;
-import org.ivan_kropachev.restaurant_voting.util.View;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "menu", uniqueConstraints = {@UniqueConstraint(name = "menu_restaurant_id_date_idx", columnNames = {"restaurant_id", "date"})})
@@ -24,7 +22,7 @@ public class Menu extends AbstractBaseEntity {
     @ApiModelProperty(example = "null", readOnly = true)
     private LocalDate date;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "menu", cascade = { CascadeType.ALL }, orphanRemoval=true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "menu", cascade = {CascadeType.ALL}, orphanRemoval = true)
     @JsonManagedReference
     @ApiModelProperty(position = 3, example = "[\n" +
             "    {\n" +
@@ -40,7 +38,8 @@ public class Menu extends AbstractBaseEntity {
             "  ]")
     private List<Dish> dishes;
 
-    public Menu() {}
+    public Menu() {
+    }
 
     public Menu(Integer id, Restaurant restaurant, LocalDate date, List<Dish> dishes) {
         super(id);
@@ -77,5 +76,7 @@ public class Menu extends AbstractBaseEntity {
         return dishes;
     }
 
-    public void setDishes(List<Dish> dishes) { this.dishes = dishes;}
+    public void setDishes(List<Dish> dishes) {
+        this.dishes = dishes;
+    }
 }

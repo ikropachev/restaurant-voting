@@ -1,9 +1,9 @@
 package org.ivan_kropachev.restaurant_voting.util;
 
 import org.ivan_kropachev.restaurant_voting.HasId;
+import org.ivan_kropachev.restaurant_voting.util.exception.NotFoundException;
 import org.springframework.core.NestedExceptionUtils;
 import org.springframework.lang.NonNull;
-import org.ivan_kropachev.restaurant_voting.util.exception.NotFoundException;
 
 import javax.validation.*;
 import java.util.Set;

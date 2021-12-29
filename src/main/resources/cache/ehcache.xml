@@ -5,8 +5,6 @@
     <!--http://www.ehcache.org/documentation/3.8/xml.html-->
     <!--http://www.ehcache.org/documentation/3.8/107.html#supplement-jsr-107-configurations-->
 
-    <!--<persistence directory="${user.home}/cache-data"/>-->
-
     <cache-template name="expiryCache">
         <expiry>
             <ttl unit="minutes">5</ttl>

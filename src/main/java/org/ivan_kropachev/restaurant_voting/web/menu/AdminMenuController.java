@@ -21,7 +21,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 @RestController
 @RequestMapping(value = AdminMenuController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-@Api(description="Operations for menus from admin")
+@Api(description = "Operations for menus from admin")
 public class AdminMenuController extends AbstractMenuController {
     private static final Logger log = getLogger(AdminMenuController.class);
 
@@ -38,8 +38,8 @@ public class AdminMenuController extends AbstractMenuController {
     @GetMapping(value = "by-date")
     @ApiOperation(value = "View a list of all menus by date")
     public List<Menu> getAllByDate(@Nullable @RequestParam(value = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-                                       @ApiParam(value = "null for current date", example = "2021-12-03", required = false) LocalDate date) {
-    log.info("get all menus by date {}", date);
+                                   @ApiParam(value = "null for current date", example = "2021-12-03", required = false) LocalDate date) {
+        log.info("get all menus by date {}", date);
         if (date == null) {
             date = LocalDate.now();
             log.info("set date {}", date);
@@ -60,10 +60,10 @@ public class AdminMenuController extends AbstractMenuController {
     @PostMapping(value = "restaurant/{restaurantId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Create a menu")
     public ResponseEntity<Menu> createWithLocation(@RequestBody
-                                                       @ApiParam(value = """
-                                                               \"restaurant\" field in request body may absent, 
-                                                               it doesn't use in request.""")
-                                                               Menu menu,
+                                                   @ApiParam(value = """
+                                                           \"restaurant\" field in request body may absent, 
+                                                           it doesn't use in request.""")
+                                                           Menu menu,
                                                    @PathVariable @ApiParam(example = "100000", required = true)
                                                            Integer restaurantId) {
         log.info("create {} for restaurant {}", menu, restaurantId);
@@ -81,9 +81,9 @@ public class AdminMenuController extends AbstractMenuController {
     @PutMapping(value = "restaurant/{restaurantId}/date/", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Update a menu for a restaurant for a certain date")
     public void update(@RequestBody Menu menu,
-                           @PathVariable @ApiParam(example = "100002", required = true) Integer restaurantId,
+                       @PathVariable @ApiParam(example = "100002", required = true) Integer restaurantId,
                        @Nullable @RequestParam(value = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-                           @ApiParam(value = "null for current date", example = "2021-12-03", required = false) LocalDate date) {
+                       @ApiParam(value = "null for current date", example = "2021-12-03", required = false) LocalDate date) {
         log.info("update menu {} for restaurant {}", menu, restaurantId);
         if (date == null) {
             date = LocalDate.now();

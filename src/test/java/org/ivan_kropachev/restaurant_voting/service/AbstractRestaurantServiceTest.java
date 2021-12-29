@@ -1,14 +1,11 @@
 package org.ivan_kropachev.restaurant_voting.service;
 
-import org.ivan_kropachev.restaurant_voting.MatcherFactory;
 import org.ivan_kropachev.restaurant_voting.model.Restaurant;
 import org.ivan_kropachev.restaurant_voting.util.exception.NotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.ivan_kropachev.restaurant_voting.RestaurantTestData.*;
-import static org.ivan_kropachev.restaurant_voting.RestaurantTestData.RESTAURANT1_ID;
-import static org.ivan_kropachev.restaurant_voting.RestaurantTestData.NOT_FOUND;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AbstractRestaurantServiceTest extends AbstractServiceTest {

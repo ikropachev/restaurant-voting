@@ -1,11 +1,3 @@
-tr[data-meal-excess="false"] {
-    color: green;
-}
-
-tr[data-meal-excess="true"] {
-    color: red;
-}
-
 .fa {
     cursor: pointer;
 }

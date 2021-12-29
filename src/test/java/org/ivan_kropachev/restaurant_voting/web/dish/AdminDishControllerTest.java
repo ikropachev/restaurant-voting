@@ -7,19 +7,17 @@ import org.ivan_kropachev.restaurant_voting.web.AbstractControllerTest;
 import org.ivan_kropachev.restaurant_voting.web.json.JsonUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.ivan_kropachev.restaurant_voting.DishTestData.*;
+import static org.ivan_kropachev.restaurant_voting.TestUtil.userHttpBasic;
+import static org.ivan_kropachev.restaurant_voting.UserTestData.admin;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import static org.ivan_kropachev.restaurant_voting.TestUtil.userHttpBasic;
-import static org.ivan_kropachev.restaurant_voting.UserTestData.admin;
 
 public class AdminDishControllerTest extends AbstractControllerTest {
     private static final String REST_URL = AdminDishController.REST_URL + '/';

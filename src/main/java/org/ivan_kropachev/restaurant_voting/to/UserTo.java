@@ -1,11 +1,9 @@
 package org.ivan_kropachev.restaurant_voting.to;
 
 import io.swagger.annotations.ApiModelProperty;
-import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serial;
 import java.io.Serializable;

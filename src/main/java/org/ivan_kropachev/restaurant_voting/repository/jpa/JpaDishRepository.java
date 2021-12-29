@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import java.util.List;
 
 @Repository
@@ -24,7 +23,8 @@ public class JpaDishRepository implements DishRepository {
     @Override
     @Transactional
     public Dish save(Dish dish, int menuId) {
-        if (!dish.isNew() && get(dish.getId(), menuId) == null) {return null;
+        if (!dish.isNew() && get(dish.getId(), menuId) == null) {
+            return null;
         }
         dish.setMenu(em.getReference(Menu.class, menuId));
         log.info("create dish {} for menu {}", dish, menuId);

@@ -7,13 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 
-import javax.validation.ConstraintViolationException;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
-
-import static org.ivan_kropachev.restaurant_voting.DishTestData.DISH_MATCHER;
-import static org.ivan_kropachev.restaurant_voting.DishTestData.dishes;
 import static org.ivan_kropachev.restaurant_voting.UserTestData.*;
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,10 +1,9 @@
 package org.ivan_kropachev.restaurant_voting;
 
-import org.ivan_kropachev.restaurant_voting.model.Dish;
 import org.ivan_kropachev.restaurant_voting.model.Restaurant;
 
-import java.time.temporal.ChronoUnit;
 import java.util.List;
+
 import static org.ivan_kropachev.restaurant_voting.model.AbstractBaseEntity.START_SEQ;
 
 public class RestaurantTestData {
@@ -14,9 +13,9 @@ public class RestaurantTestData {
     public static final int RESTAURANT1_ID = START_SEQ;
 
     public static final Restaurant restaurant1 = new Restaurant(RESTAURANT1_ID, "BarZero");
-    public static final Restaurant restaurant2 = new Restaurant(RESTAURANT1_ID+1, "Burgers");
-    public static final Restaurant restaurant3 = new Restaurant(RESTAURANT1_ID+2, "HappyShaverma");
-    public static final Restaurant restaurant4 = new Restaurant(RESTAURANT1_ID+3, "Suluguni");
+    public static final Restaurant restaurant2 = new Restaurant(RESTAURANT1_ID + 1, "Burgers");
+    public static final Restaurant restaurant3 = new Restaurant(RESTAURANT1_ID + 2, "HappyShaverma");
+    public static final Restaurant restaurant4 = new Restaurant(RESTAURANT1_ID + 3, "Suluguni");
 
     //Restaurants must be sorted by name
     public static final List<Restaurant> restaurants = List.of(restaurant1, restaurant2, restaurant3, restaurant4);

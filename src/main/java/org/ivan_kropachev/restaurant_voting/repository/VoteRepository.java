@@ -2,7 +2,6 @@ package org.ivan_kropachev.restaurant_voting.repository;
 
 import org.ivan_kropachev.restaurant_voting.model.Vote;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface VoteRepository {

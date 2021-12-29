@@ -1,9 +1,6 @@
 package org.ivan_kropachev.restaurant_voting.web.vote;
 
-import org.ivan_kropachev.restaurant_voting.RestaurantTestData;
-import org.ivan_kropachev.restaurant_voting.model.Restaurant;
 import org.ivan_kropachev.restaurant_voting.model.Vote;
-import org.ivan_kropachev.restaurant_voting.service.RestaurantService;
 import org.ivan_kropachev.restaurant_voting.service.VoteService;
 import org.ivan_kropachev.restaurant_voting.util.exception.NotFoundException;
 import org.ivan_kropachev.restaurant_voting.web.AbstractControllerTest;
@@ -14,12 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.ivan_kropachev.restaurant_voting.RestaurantTestData.RESTAURANT_MATCHER;
-import static org.ivan_kropachev.restaurant_voting.RestaurantTestData.restaurants;
 import static org.ivan_kropachev.restaurant_voting.TestUtil.userHttpBasic;
 import static org.ivan_kropachev.restaurant_voting.UserTestData.admin;
 import static org.ivan_kropachev.restaurant_voting.VoteTestData.*;
-import static org.ivan_kropachev.restaurant_voting.VoteTestData.NOT_FOUND;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;

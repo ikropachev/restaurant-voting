@@ -1,11 +1,8 @@
 package org.ivan_kropachev.restaurant_voting.service;
 
 import org.ivan_kropachev.restaurant_voting.model.Menu;
-import org.ivan_kropachev.restaurant_voting.repository.DishRepository;
 import org.ivan_kropachev.restaurant_voting.repository.MenuRepository;
-import org.ivan_kropachev.restaurant_voting.util.exception.NotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,6 +13,7 @@ import static org.ivan_kropachev.restaurant_voting.util.ValidationUtil.checkNotF
 @Service
 public class MenuService {
     private final MenuRepository repository;
+
     public MenuService(MenuRepository repository) {
         this.repository = repository;
     }

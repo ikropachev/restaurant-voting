@@ -1,12 +1,9 @@
 package org.ivan_kropachev.restaurant_voting.web.restaurant;
 
-import org.ivan_kropachev.restaurant_voting.model.Dish;
 import org.ivan_kropachev.restaurant_voting.model.Restaurant;
-import org.ivan_kropachev.restaurant_voting.service.DishService;
 import org.ivan_kropachev.restaurant_voting.service.RestaurantService;
 import org.ivan_kropachev.restaurant_voting.util.exception.NotFoundException;
 import org.ivan_kropachev.restaurant_voting.web.AbstractControllerTest;
-import org.ivan_kropachev.restaurant_voting.web.dish.AdminDishController;
 import org.ivan_kropachev.restaurant_voting.web.json.JsonUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.ivan_kropachev.restaurant_voting.RestaurantTestData.NOT_FOUND;
 import static org.ivan_kropachev.restaurant_voting.RestaurantTestData.*;
-import static org.ivan_kropachev.restaurant_voting.RestaurantTestData.RESTAURANT1_ID;
-import static org.ivan_kropachev.restaurant_voting.RestaurantTestData.RESTAURANT_MATCHER;
-import static org.ivan_kropachev.restaurant_voting.RestaurantTestData.restaurant1;
 import static org.ivan_kropachev.restaurant_voting.TestUtil.userHttpBasic;
 import static org.ivan_kropachev.restaurant_voting.UserTestData.admin;
 import static org.junit.jupiter.api.Assertions.assertThrows;

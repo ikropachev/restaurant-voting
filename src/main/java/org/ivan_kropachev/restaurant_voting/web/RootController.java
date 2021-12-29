@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-@Api(description="Check access for some pages")
+@Api(description = "Check access for some pages")
 public class RootController {
     private static final Logger log = LoggerFactory.getLogger(RootController.class);
 

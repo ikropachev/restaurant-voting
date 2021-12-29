@@ -1,8 +1,6 @@
 package org.ivan_kropachev.restaurant_voting.web.menu;
 
-import org.ivan_kropachev.restaurant_voting.model.Dish;
 import org.ivan_kropachev.restaurant_voting.model.Menu;
-import org.ivan_kropachev.restaurant_voting.service.DishService;
 import org.ivan_kropachev.restaurant_voting.service.MenuService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.ivan_kropachev.restaurant_voting.util.ValidationUtil.assureIdConsistent;
 import static org.ivan_kropachev.restaurant_voting.util.ValidationUtil.checkNew;
 
 public class AbstractMenuController {

@@ -8,7 +8,10 @@ import org.ivan_kropachev.restaurant_voting.util.exception.LateVoteException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalTime;
 
@@ -16,7 +19,7 @@ import static org.ivan_kropachev.restaurant_voting.web.SecurityUtil.authUserId;
 
 @RestController
 @RequestMapping(value = UserVoteController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-@Api(description="Operations for votes from regular user")
+@Api(description = "Operations for votes from regular user")
 public class UserVoteController extends AbstractVoteController {
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
@@ -25,7 +28,7 @@ public class UserVoteController extends AbstractVoteController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Create a vote for a restaurant")
     public Vote createWithLocation(@RequestParam(value = "restaurant-id") @ApiParam(example = "100002", required = true)
-                                               int restaurantId) {
+                                           int restaurantId) {
         log.info("create/update vote from user with id {}", authUserId());
         if (LocalTime.now().isAfter(LocalTime.of(23, 59))) {
             throw new LateVoteException("Too late for voting");

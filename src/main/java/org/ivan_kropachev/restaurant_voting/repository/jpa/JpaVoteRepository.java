@@ -1,7 +1,6 @@
 package org.ivan_kropachev.restaurant_voting.repository.jpa;
 
 import org.hibernate.jpa.QueryHints;
-import org.ivan_kropachev.restaurant_voting.model.Dish;
 import org.ivan_kropachev.restaurant_voting.model.Vote;
 import org.ivan_kropachev.restaurant_voting.repository.VoteRepository;
 import org.ivan_kropachev.restaurant_voting.util.exception.LateVoteException;
@@ -12,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 @Repository
@@ -27,11 +25,10 @@ public class JpaVoteRepository implements VoteRepository {
     public Vote save(int userId, int restaurantId) throws LateVoteException {
         Vote previous = getByUserIdAndDate(userId, LocalDate.now());
         if (previous == null) {
-            Vote vote = new Vote (null, userId, restaurantId, LocalDate.now());
+            Vote vote = new Vote(null, userId, restaurantId, LocalDate.now());
             em.persist(vote);
             return vote;
-        }
-        else {
+        } else {
             previous.setRestaurantId(restaurantId);
             em.merge(previous);
             return previous;
