@@ -53,7 +53,6 @@ public class ProfileRestControllerTest  extends AbstractControllerTest {
         UserTo newTo = new UserTo(null, "New_Test_User", "new-test-email@gmail.com", "NewTestPassword");
         User newUser = UserUtil.createNewFromTo(newTo);
         ResultActions action = perform(MockMvcRequestBuilders.post(REST_URL)
-                .with(userHttpBasic(admin))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(newTo)))
                 .andDo(print())
