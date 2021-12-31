@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalTime;
 import java.util.List;
 
+import static org.ivan_kropachev.restaurant_voting.util.CheckTimeUtil.checkTime;
 import static org.ivan_kropachev.restaurant_voting.web.SecurityUtil.authUserId;
 
 @RestController
@@ -38,18 +39,12 @@ public class AdminVoteController extends AbstractVoteController {
         return super.get(id);
     }
 
-    //@ApiOperation(value = "111", authorizations = {@Authorization(value = "basicAuth")})
-    //@ApiImplicitParams({
-    //        @ApiImplicitParam(name = "Authorization", value = "Authentication Token", required = true, dataType = "String", paramType = "header")
-    //})
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Create a vote for a restaurant")
     public Vote createWithLocation(@RequestParam(value = "restaurant-id") @ApiParam(example = "100002", required = true)
                                            int restaurantId) {
         log.info("create/update vote from user with id {}", authUserId());
-        if (LocalTime.now().isAfter(LocalTime.of(23, 59))) {
-            throw new LateVoteException("Too late for voting");
-        }
+        checkTime();
         return super.save(authUserId(), restaurantId);
     }
 

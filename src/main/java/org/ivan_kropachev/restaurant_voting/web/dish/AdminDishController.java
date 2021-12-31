@@ -17,6 +17,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
+import static org.ivan_kropachev.restaurant_voting.Constants.*;
+
 @RestController
 @RequestMapping(value = AdminDishController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 @Api(description = "Operations for dishes from admin")
@@ -37,7 +39,7 @@ public class AdminDishController {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "View a dish by id")
-    public Dish get(@PathVariable @ApiParam(example = "100016", required = true) int id) {
+    public Dish get(@PathVariable @ApiParam(example = DISH1_ID_STR, required = true) int id) {
         log.info("get dish with id {}", id);
         return service.get(id);
     }
@@ -46,8 +48,7 @@ public class AdminDishController {
     @ApiOperation(value = "Create a dish for menu")
     public ResponseEntity<Dish> createWithLocation(@RequestBody Dish dish,
                                                    @RequestParam(value = "menu-id")
-                                                   @ApiParam(example = "100008", required = true)
-                                                           int menuId) {
+                                                   @ApiParam(example = MENU1_ID_STR, required = true) int menuId) {
         log.info("create dish with id {} for menu with id {}", dish, menuId);
         Dish created = service.create(dish, menuId);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -59,7 +60,7 @@ public class AdminDishController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Delete a dish by id")
-    public void delete(@PathVariable @ApiParam(example = "100016", required = true) int id) {
+    public void delete(@PathVariable @ApiParam(example = DISH1_ID_STR, required = true) int id) {
         log.info("delete dish with id {}", id);
         service.delete(id);
     }

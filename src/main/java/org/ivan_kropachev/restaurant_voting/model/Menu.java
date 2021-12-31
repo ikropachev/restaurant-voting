@@ -24,18 +24,8 @@ public class Menu extends AbstractBaseEntity {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "menu", cascade = {CascadeType.ALL}, orphanRemoval = true)
     @JsonManagedReference
-    @ApiModelProperty(position = 3, example = "[\n" +
-            "    {\n" +
-            "      \"id\": \"null\",\n" +
-            "      \"name\": \"dish1\",\n" +
-            "      \"price\": 10\n" +
-            "    },\n" +
-            "    {\n" +
-            "      \"id\": \"null\",\n" +
-            "      \"name\": \"dish2\",\n" +
-            "      \"price\": 20\n" +
-            "    }\n" +
-            "  ]")
+    @ApiModelProperty(position = 3, example = "[\n{\n\"id\": \"null\",\n\"name\": \"dish1\",\n\"price\": 10\n},\n" +
+            "    {\n\"id\": \"null\",\n\"name\": \"dish2\",\n\"price\": 20\n}\n]")
     private List<Dish> dishes;
 
     public Menu() {

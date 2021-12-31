@@ -16,6 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
+import static org.ivan_kropachev.restaurant_voting.Constants.RESTAURANT1_ID_STR;
 import static org.slf4j.LoggerFactory.getLogger;
 
 @RestController
@@ -38,7 +39,7 @@ public class AdminRestaurantController {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "View a restaurant by id")
-    public Restaurant get(@PathVariable @ApiParam(example = "100001", required = true) int id) {
+    public Restaurant get(@PathVariable @ApiParam(example = RESTAURANT1_ID_STR, required = true) int id) {
         log.info("get restaurant with id {}", id);
         return service.get(id);
     }
@@ -57,7 +58,7 @@ public class AdminRestaurantController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Delete a restaurant by id")
-    public void delete(@PathVariable @ApiParam(example = "100003", required = true) int id) {
+    public void delete(@PathVariable @ApiParam(example = RESTAURANT1_ID_STR, required = true) int id) {
         log.info("delete restaurant with id {}", id);
         service.delete(id);
     }
@@ -66,7 +67,7 @@ public class AdminRestaurantController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Update a restaurant by id")
     public void update(@RequestBody Restaurant restaurant,
-                       @PathVariable @ApiParam(example = "100002", required = true) int id) {
+                       @PathVariable @ApiParam(example = RESTAURANT1_ID_STR, required = true) int id) {
         log.info("update restaurant {} with id {}", restaurant, id);
         restaurant.setId(id);
         service.update(restaurant);

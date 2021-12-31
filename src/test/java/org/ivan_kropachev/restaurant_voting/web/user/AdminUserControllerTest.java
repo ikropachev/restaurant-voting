@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import static org.ivan_kropachev.restaurant_voting.Constants.*;
 import static org.ivan_kropachev.restaurant_voting.TestUtil.userHttpBasic;
 import static org.ivan_kropachev.restaurant_voting.UserTestData.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;

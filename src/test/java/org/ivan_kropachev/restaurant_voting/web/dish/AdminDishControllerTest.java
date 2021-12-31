@@ -11,6 +11,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import static org.ivan_kropachev.restaurant_voting.Constants.DISH1_ID;
+import static org.ivan_kropachev.restaurant_voting.Constants.NOT_FOUND;
 import static org.ivan_kropachev.restaurant_voting.DishTestData.*;
 import static org.ivan_kropachev.restaurant_voting.TestUtil.userHttpBasic;
 import static org.ivan_kropachev.restaurant_voting.UserTestData.admin;

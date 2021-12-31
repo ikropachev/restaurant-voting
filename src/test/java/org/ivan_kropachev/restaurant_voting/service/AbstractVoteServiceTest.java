@@ -5,6 +5,7 @@ import org.ivan_kropachev.restaurant_voting.util.exception.NotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import static org.ivan_kropachev.restaurant_voting.Constants.*;
 import static org.ivan_kropachev.restaurant_voting.VoteTestData.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -25,7 +26,7 @@ public class AbstractVoteServiceTest extends AbstractServiceTest {
 
     @Test
     void save() {
-        Vote created = service.save(USER_ID, RESTAURANT_ID);
+        Vote created = service.save(USER_ID, RESTAURANT1_ID);
         int newId = created.id();
         Vote newVote = getNew();
         newVote.setId(newId);

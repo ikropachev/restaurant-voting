@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import static org.ivan_kropachev.restaurant_voting.Constants.RESTAURANT1_ID;
 import static org.ivan_kropachev.restaurant_voting.TestUtil.userHttpBasic;
 import static org.ivan_kropachev.restaurant_voting.UserTestData.user1;
 import static org.ivan_kropachev.restaurant_voting.VoteTestData.*;
@@ -23,7 +24,7 @@ public class UserVoteControllerTest extends AbstractControllerTest {
     @Test
     void createWithLocation() throws Exception {
         Vote newVote = getNew();
-        ResultActions action = perform(MockMvcRequestBuilders.post(REST_URL + "?restaurant-id=" + RESTAURANT_ID)
+        ResultActions action = perform(MockMvcRequestBuilders.post(REST_URL + "?restaurant-id=" + RESTAURANT1_ID)
                 .contentType(MediaType.APPLICATION_JSON)
                 .with(userHttpBasic(user1))
                 .content(JsonUtil.writeValue(newVote)));

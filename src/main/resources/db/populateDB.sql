@@ -18,10 +18,10 @@ VALUES ('admin', 'admin@gmail.com', 'admin', '2021-12-02 18:00:00'),            
        ('third_user', 'third@gmail.com', 'third_pass', '2021-12-01 18:03:00');    --100007
 
 INSERT INTO menu (restaurant_id, date)
-VALUES (100001, '2021-12-03'), --100008
+VALUES (100000, '2021-12-03'), --100008
        (100002, '2021-12-03'), --100009
        (100003, '2021-12-03'), --100010
-       (100001, '2021-12-05'); --100011
+       (100001, '2021-12-03'); --100011
 
 INSERT INTO menu (restaurant_id)
 VALUES (100002), --100012

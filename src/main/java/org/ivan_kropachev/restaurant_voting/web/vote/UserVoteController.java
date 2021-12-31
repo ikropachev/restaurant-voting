@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalTime;
 
+import static org.ivan_kropachev.restaurant_voting.util.CheckTimeUtil.checkTime;
 import static org.ivan_kropachev.restaurant_voting.web.SecurityUtil.authUserId;
 
 @RestController
@@ -30,9 +31,7 @@ public class UserVoteController extends AbstractVoteController {
     public Vote createWithLocation(@RequestParam(value = "restaurant-id") @ApiParam(example = "100002", required = true)
                                            int restaurantId) {
         log.info("create/update vote from user with id {}", authUserId());
-        if (LocalTime.now().isAfter(LocalTime.of(23, 59))) {
-            throw new LateVoteException("Too late for voting");
-        }
+        checkTime();
         return super.save(authUserId(), restaurantId);
     }
 }
