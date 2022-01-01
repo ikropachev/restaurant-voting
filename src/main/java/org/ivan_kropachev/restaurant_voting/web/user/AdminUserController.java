@@ -3,10 +3,12 @@ package org.ivan_kropachev.restaurant_voting.web.user;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.ivan_kropachev.restaurant_voting.View;
 import org.ivan_kropachev.restaurant_voting.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -38,7 +40,7 @@ public class AdminUserController extends AbstractUserController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Create the user")
-    public ResponseEntity<User> createWithLocation(@RequestBody User user) {
+    public ResponseEntity<User> createWithLocation(@Validated(View.Web.class) @RequestBody User user) {
         User created = super.create(user);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
@@ -58,7 +60,8 @@ public class AdminUserController extends AbstractUserController {
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Update the user by id")
-    public void update(@RequestBody User user, @PathVariable @ApiParam(example = USER_FOR_UPDATE_ID_STR, required = true) int id) {
+    public void update(@Validated(View.Web.class) @RequestBody User user,
+                       @PathVariable @ApiParam(example = USER_FOR_UPDATE_ID_STR, required = true) int id) {
         super.update(user, id);
     }
 

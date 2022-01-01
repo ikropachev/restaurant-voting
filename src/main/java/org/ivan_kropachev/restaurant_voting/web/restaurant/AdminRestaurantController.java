@@ -3,6 +3,7 @@ package org.ivan_kropachev.restaurant_voting.web.restaurant;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.ivan_kropachev.restaurant_voting.View;
 import org.ivan_kropachev.restaurant_voting.model.Restaurant;
 import org.ivan_kropachev.restaurant_voting.service.RestaurantService;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -46,7 +48,7 @@ public class AdminRestaurantController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Create a restaurant")
-    public ResponseEntity<Restaurant> createWithLocation(@RequestBody Restaurant restaurant) {
+    public ResponseEntity<Restaurant> createWithLocation(@Validated(View.Web.class) @RequestBody Restaurant restaurant) {
         log.info("create restaurant {}", restaurant);
         Restaurant created = service.create(restaurant);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -66,7 +68,7 @@ public class AdminRestaurantController {
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Update a restaurant by id")
-    public void update(@RequestBody Restaurant restaurant,
+    public void update(@Validated(View.Web.class) @RequestBody Restaurant restaurant,
                        @PathVariable @ApiParam(example = RESTAURANT1_ID_STR, required = true) int id) {
         log.info("update restaurant {} with id {}", restaurant, id);
         restaurant.setId(id);

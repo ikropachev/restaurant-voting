@@ -3,6 +3,7 @@ package org.ivan_kropachev.restaurant_voting.web.dish;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.ivan_kropachev.restaurant_voting.View;
 import org.ivan_kropachev.restaurant_voting.model.Dish;
 import org.ivan_kropachev.restaurant_voting.service.DishService;
 import org.slf4j.Logger;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -47,7 +49,7 @@ public class AdminDishController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Create a dish for menu")
-    public ResponseEntity<Dish> createWithLocation(@RequestBody Dish dish,
+    public ResponseEntity<Dish> createWithLocation(@Validated(View.Web.class) @RequestBody Dish dish,
                                                    @RequestParam(value = "menu-id")
                                                    @ApiParam(example = MENU1_ID_STR, required = true) int menuId) {
         log.info("create dish with id {} for menu with id {}", dish, menuId);

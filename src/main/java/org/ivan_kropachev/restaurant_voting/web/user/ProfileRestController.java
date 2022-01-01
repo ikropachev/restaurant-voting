@@ -2,11 +2,13 @@ package org.ivan_kropachev.restaurant_voting.web.user;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.ivan_kropachev.restaurant_voting.View;
 import org.ivan_kropachev.restaurant_voting.model.User;
 import org.ivan_kropachev.restaurant_voting.to.UserTo;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -36,7 +38,7 @@ public class ProfileRestController extends AbstractUserController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "User registration")
-    public ResponseEntity<User> register(@RequestBody UserTo userTo) {
+    public ResponseEntity<User> register(@Validated(View.Web.class) @RequestBody UserTo userTo) {
         User created = super.create(userTo);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL).build().toUri();
@@ -46,7 +48,7 @@ public class ProfileRestController extends AbstractUserController {
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Update the authenticated user")
-    public void update(@RequestBody UserTo userTo) {
+    public void update(@Validated(View.Web.class) @RequestBody UserTo userTo) {
         super.update(userTo, authUserId());
     }
 }
