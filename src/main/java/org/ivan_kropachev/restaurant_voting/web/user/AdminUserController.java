@@ -13,6 +13,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
+import static org.ivan_kropachev.restaurant_voting.Constants.*;
+
 @RestController
 @RequestMapping(value = AdminUserController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 @Api(description = "Operations for users from admin")
@@ -30,7 +32,7 @@ public class AdminUserController extends AbstractUserController {
     @Override
     @GetMapping("/{id}")
     @ApiOperation(value = "View the user by id")
-    public User get(@PathVariable @ApiParam(example = "100007", required = true) int id) {
+    public User get(@PathVariable @ApiParam(example = USER_ID_STR, required = true) int id) {
         return super.get(id);
     }
 
@@ -48,7 +50,7 @@ public class AdminUserController extends AbstractUserController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Delete the user by id")
-    public void delete(@PathVariable @ApiParam(example = "100006", required = true) int id) {
+    public void delete(@PathVariable @ApiParam(example = USER_FOR_DELETE_ID_STR, required = true) int id) {
         super.delete(id);
     }
 
@@ -56,7 +58,7 @@ public class AdminUserController extends AbstractUserController {
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Update the user by id")
-    public void update(@RequestBody User user, @PathVariable @ApiParam(example = "100007", required = true) int id) {
+    public void update(@RequestBody User user, @PathVariable @ApiParam(example = USER_FOR_UPDATE_ID_STR, required = true) int id) {
         super.update(user, id);
     }
 
@@ -71,7 +73,7 @@ public class AdminUserController extends AbstractUserController {
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Set enable status for the user")
-    public void enable(@PathVariable @ApiParam(example = "100007", required = true) int id,
+    public void enable(@PathVariable @ApiParam(example = USER_FOR_UPDATE_ID_STR, required = true) int id,
                        @RequestParam @ApiParam(example = "false", required = true) boolean enabled) {
         super.enable(id, enabled);
     }

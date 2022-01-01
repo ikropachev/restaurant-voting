@@ -1,4 +1,4 @@
-<html lang="ru">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Restaurant Voting (by Ivan Kropachev)</title>

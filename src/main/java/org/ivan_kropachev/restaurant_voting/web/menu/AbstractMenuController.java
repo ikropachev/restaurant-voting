@@ -38,7 +38,6 @@ public class AbstractMenuController {
         service.delete(id, restaurantId);
     }
 
-    //Add here check not new
     public void update(Menu menu, Integer restaurantId) {
         log.info("update menu {} for restaurant with id {}", menu, restaurantId);
         service.update(menu, restaurantId);

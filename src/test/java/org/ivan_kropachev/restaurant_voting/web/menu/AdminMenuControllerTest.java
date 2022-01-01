@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import static org.ivan_kropachev.restaurant_voting.Constants.*;
 import static org.ivan_kropachev.restaurant_voting.MenuTestData.*;
 import static org.ivan_kropachev.restaurant_voting.TestUtil.userHttpBasic;
 import static org.ivan_kropachev.restaurant_voting.UserTestData.admin;
@@ -31,7 +32,7 @@ public class AdminMenuControllerTest extends AbstractControllerTest {
                 .with(userHttpBasic(admin)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(MENU_MATCHER.contentJson(menu1, menu2, menu3));
+                .andExpect(MENU_MATCHER.contentJson(menu1, menu4, menu2, menu3));
     }
 
     @Test

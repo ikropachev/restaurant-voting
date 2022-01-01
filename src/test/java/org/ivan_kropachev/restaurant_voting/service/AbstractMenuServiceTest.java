@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import static org.ivan_kropachev.restaurant_voting.Constants.*;
 import static org.ivan_kropachev.restaurant_voting.MenuTestData.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -16,11 +17,6 @@ public class AbstractMenuServiceTest extends AbstractServiceTest {
 
     @Test
     void create() {
-        /*
-        Method "getNewWithoutDishes()" is needed for run 'All tests'
-        (to avoid Hibernate error in persist new Dish from internal set in that case for JpaMenuServiceTest).
-        For local tests you can change this to "getNew()" (method for creating menu with set of dishes).
-        */
         Menu created = service.create(getNew(), RESTAURANT1_ID);
         int newId = created.id();
         Menu newMenu = getNew();

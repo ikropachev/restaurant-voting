@@ -17,6 +17,7 @@ import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.ivan_kropachev.restaurant_voting.Constants.*;
 import static org.slf4j.LoggerFactory.getLogger;
 
 @RestController
@@ -38,7 +39,7 @@ public class AdminMenuController extends AbstractMenuController {
     @GetMapping(value = "by-date")
     @ApiOperation(value = "View a list of all menus by date")
     public List<Menu> getAllByDate(@Nullable @RequestParam(value = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-                                   @ApiParam(value = "null for current date", example = "2021-12-03", required = false) LocalDate date) {
+                                   @ApiParam(value = "null for current date", example = DATE_STR, required = false) LocalDate date) {
         log.info("get all menus by date {}", date);
         if (date == null) {
             date = LocalDate.now();
@@ -51,21 +52,17 @@ public class AdminMenuController extends AbstractMenuController {
     @DeleteMapping("restaurant/{restaurantId}/")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Delete a menu by restaurant id and menu id")
-    public void delete(@PathVariable @ApiParam(example = "100001", required = true) Integer restaurantId,
-                       @RequestParam(value = "menu-id") @ApiParam(example = "100008", required = true) Integer menuId) {
+    public void delete(@PathVariable @ApiParam(example = RESTAURANT1_ID_STR, required = true) Integer restaurantId,
+                       @RequestParam(value = "menu-id") @ApiParam(example = MENU1_ID_STR, required = true) Integer menuId) {
         log.info("delete menu with id {} for restaurant with id {}", menuId, restaurantId);
         super.delete(menuId, restaurantId);
     }
 
     @PostMapping(value = "restaurant/{restaurantId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Create a menu")
-    public ResponseEntity<Menu> createWithLocation(@RequestBody
-                                                   @ApiParam(value = """
-                                                           \"restaurant\" field in request body may absent, 
-                                                           it doesn't use in request.""")
-                                                           Menu menu,
-                                                   @PathVariable @ApiParam(example = "100000", required = true)
-                                                           Integer restaurantId) {
+    public ResponseEntity<Menu> createWithLocation(@RequestBody @ApiParam(value = "\"restaurant\" field in request body may absent, " +
+            "it doesn't use in request.") Menu menu,
+                                                   @PathVariable @ApiParam(example = RESTAURANT1_ID_STR, required = true) Integer restaurantId) {
         log.info("create {} for restaurant {}", menu, restaurantId);
         if (menu.getDate() == null) {
             menu.setDate(LocalDate.now());
@@ -81,9 +78,9 @@ public class AdminMenuController extends AbstractMenuController {
     @PutMapping(value = "restaurant/{restaurantId}/date/", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Update a menu for a restaurant for a certain date")
     public void update(@RequestBody Menu menu,
-                       @PathVariable @ApiParam(example = "100002", required = true) Integer restaurantId,
+                       @PathVariable @ApiParam(example = RESTAURANT1_ID_STR, required = true) Integer restaurantId,
                        @Nullable @RequestParam(value = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-                       @ApiParam(value = "null for current date", example = "2021-12-03", required = false) LocalDate date) {
+                       @ApiParam(value = "null for current date", example = DATE_STR, required = false) LocalDate date) {
         log.info("update menu {} for restaurant {}", menu, restaurantId);
         if (date == null) {
             date = LocalDate.now();

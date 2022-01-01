@@ -2,12 +2,17 @@ package org.ivan_kropachev.restaurant_voting.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.annotations.ApiModelProperty;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.ivan_kropachev.restaurant_voting.Constants.DISH_LIST_STR;
+
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Entity
 @Table(name = "menu", uniqueConstraints = {@UniqueConstraint(name = "menu_restaurant_id_date_idx", columnNames = {"restaurant_id", "date"})})
 public class Menu extends AbstractBaseEntity {
@@ -24,18 +29,7 @@ public class Menu extends AbstractBaseEntity {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "menu", cascade = {CascadeType.ALL}, orphanRemoval = true)
     @JsonManagedReference
-    @ApiModelProperty(position = 3, example = "[\n" +
-            "    {\n" +
-            "      \"id\": \"null\",\n" +
-            "      \"name\": \"dish1\",\n" +
-            "      \"price\": 10\n" +
-            "    },\n" +
-            "    {\n" +
-            "      \"id\": \"null\",\n" +
-            "      \"name\": \"dish2\",\n" +
-            "      \"price\": 20\n" +
-            "    }\n" +
-            "  ]")
+    @ApiModelProperty(position = 3, example = DISH_LIST_STR)
     private List<Dish> dishes;
 
     public Menu() {
