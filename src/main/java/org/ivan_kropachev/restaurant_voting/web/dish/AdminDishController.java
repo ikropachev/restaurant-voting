@@ -17,7 +17,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
-import static org.ivan_kropachev.restaurant_voting.Constants.*;
+import static org.ivan_kropachev.restaurant_voting.Constants.DISH1_ID_STR;
+import static org.ivan_kropachev.restaurant_voting.Constants.MENU1_ID_STR;
 
 @RestController
 @RequestMapping(value = AdminDishController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)

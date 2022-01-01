@@ -12,7 +12,8 @@ import java.util.List;
 import static org.ivan_kropachev.restaurant_voting.Constants.*;
 
 public class MenuTestData {
-    public static final MatcherFactory.Matcher<Menu> MENU_MATCHER = MatcherFactory.usingIgnoringFieldsComparator(Menu.class, "restaurant", "dishes");
+    public static final MatcherFactory.Matcher<Menu> MENU_MATCHER =
+            MatcherFactory.usingIgnoringFieldsComparator(Menu.class, "restaurant", "dishes");
 
     public static final Restaurant RESTAURANT = new Restaurant(RESTAURANT1_ID, "BarZero");
     public static final Dish DISH = new Dish(null, "New_Update_Test_Dish", 55);

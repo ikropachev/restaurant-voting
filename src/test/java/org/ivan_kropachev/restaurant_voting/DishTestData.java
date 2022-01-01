@@ -7,7 +7,8 @@ import java.util.List;
 import static org.ivan_kropachev.restaurant_voting.Constants.DISH1_ID;
 
 public class DishTestData {
-    public static final MatcherFactory.Matcher<Dish> DISH_MATCHER = MatcherFactory.usingIgnoringFieldsComparator(Dish.class, "menu");
+    public static final MatcherFactory.Matcher<Dish> DISH_MATCHER =
+            MatcherFactory.usingIgnoringFieldsComparator(Dish.class, "menu");
 
     public static final Dish dish1 = new Dish(DISH1_ID, "Hachapuri po imeretinski", 550);
     public static final Dish dish2 = new Dish(DISH1_ID + 1, "Vegan Burger", 150);

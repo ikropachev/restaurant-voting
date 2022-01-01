@@ -13,8 +13,10 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.ivan_kropachev.restaurant_voting.Constants.RESTAURANT1_ID;
 import static org.ivan_kropachev.restaurant_voting.TestUtil.userHttpBasic;
 import static org.ivan_kropachev.restaurant_voting.UserTestData.user1;
-import static org.ivan_kropachev.restaurant_voting.VoteTestData.*;
+import static org.ivan_kropachev.restaurant_voting.VoteTestData.VOTE_MATCHER;
+import static org.ivan_kropachev.restaurant_voting.VoteTestData.getNew;
 
+//Check time in CheckTimeUtil before test
 public class UserVoteControllerTest extends AbstractControllerTest {
     private static final String REST_URL = UserVoteController.REST_URL + '/';
 

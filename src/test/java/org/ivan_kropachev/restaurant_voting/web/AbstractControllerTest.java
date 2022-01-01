@@ -1,10 +1,7 @@
 package org.ivan_kropachev.restaurant_voting.web;
 
-import org.ivan_kropachev.restaurant_voting.Profiles;
-import org.junit.jupiter.api.Assumptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -24,7 +21,6 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
         "classpath:spring/spring-db.xml"
 })
 @Transactional
-@ActiveProfiles(profiles = Profiles.REPOSITORY_IMPLEMENTATION)
 public class AbstractControllerTest {
     private static final CharacterEncodingFilter CHARACTER_ENCODING_FILTER = new CharacterEncodingFilter();
 
@@ -40,10 +36,6 @@ public class AbstractControllerTest {
 
     @Autowired
     private WebApplicationContext webApplicationContext;
-
-    public void assumeJpa() {
-        Assumptions.assumeTrue(env.acceptsProfiles(org.springframework.core.env.Profiles.of(Profiles.JPA)), "JPA only");
-    }
 
     @PostConstruct
     private void postConstruct() {

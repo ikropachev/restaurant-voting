@@ -20,6 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+//Check time in CheckTimeUtil before test
 public class AdminVoteControllerTest extends AbstractControllerTest {
     private static final String REST_URL = AdminVoteController.REST_URL + '/';
 

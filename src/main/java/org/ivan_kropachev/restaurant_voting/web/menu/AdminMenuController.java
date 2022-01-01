@@ -4,7 +4,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.ivan_kropachev.restaurant_voting.model.Menu;
-import org.ivan_kropachev.restaurant_voting.util.exception.IllegalRequestDataException;
 import org.slf4j.Logger;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -62,7 +61,7 @@ public class AdminMenuController extends AbstractMenuController {
     @PostMapping(value = "restaurant/{restaurantId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Create a menu")
     public ResponseEntity<Menu> createWithLocation(@RequestBody @ApiParam(value = "\"restaurant\" field in request body may absent, " +
-                                                           "it doesn't use in request.") Menu menu,
+            "it doesn't use in request.") Menu menu,
                                                    @PathVariable @ApiParam(example = RESTAURANT1_ID_STR, required = true) Integer restaurantId) {
         log.info("create {} for restaurant {}", menu, restaurantId);
         if (menu.getDate() == null) {
@@ -81,14 +80,11 @@ public class AdminMenuController extends AbstractMenuController {
     public void update(@RequestBody Menu menu,
                        @PathVariable @ApiParam(example = RESTAURANT1_ID_STR, required = true) Integer restaurantId,
                        @Nullable @RequestParam(value = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-                           @ApiParam(value = "null for current date", example = DATE_STR, required = false) LocalDate date) {
+                       @ApiParam(value = "null for current date", example = DATE_STR, required = false) LocalDate date) {
         log.info("update menu {} for restaurant {}", menu, restaurantId);
         if (date == null) {
             date = LocalDate.now();
         }
-        //if (!menu.getDate().equals(date)) {
-        //    throw new IllegalRequestDataException("Date from request body doesn't match date from request parameter.");
-        //}
         if (menu.getDate() == null) {
             log.info("set date {} for menu {}", date, menu);
             menu.setDate(date);
