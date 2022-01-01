@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.Nullable;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -61,7 +62,8 @@ public class AdminMenuController extends AbstractMenuController {
 
     @PostMapping(value = "restaurant/{restaurantId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Create a menu")
-    public ResponseEntity<Menu> createWithLocation(@RequestBody @ApiParam(value = "\"restaurant\" field in request body may absent, " +
+    public ResponseEntity<Menu> createWithLocation(@Validated(View.Web.class) @RequestBody
+                                                       @ApiParam(value = "\"restaurant\" field in request body may absent, " +
                                                             "it doesn't use in request.") Menu menu,
                                                    @PathVariable @ApiParam(example = RESTAURANT1_ID_STR, required = true)
                                                            Integer restaurantId) {
@@ -79,7 +81,7 @@ public class AdminMenuController extends AbstractMenuController {
 
     @PutMapping(value = "restaurant/{restaurantId}/date/", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Update a menu for a restaurant for a certain date")
-    public void update(@RequestBody Menu menu,
+    public void update(@Validated(View.Web.class) @RequestBody Menu menu,
                        @PathVariable @ApiParam(example = RESTAURANT1_ID_STR, required = true) Integer restaurantId,
                        @Nullable @RequestParam(value = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
                        @ApiParam(value = "null for current date", example = DATE_STR, required = false) LocalDate date) {

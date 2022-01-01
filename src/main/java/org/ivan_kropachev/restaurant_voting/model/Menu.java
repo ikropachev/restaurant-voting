@@ -22,7 +22,6 @@ public class Menu extends AbstractBaseEntity {
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
 
-    @NotNull
     @Column(name = "date", columnDefinition = "timestamp default now()")
     @ApiModelProperty(example = "null", readOnly = true)
     private LocalDate date;
