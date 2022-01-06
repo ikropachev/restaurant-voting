@@ -44,7 +44,6 @@ public class AdminVoteController extends AbstractVoteController {
     public Vote createWithLocation(@RequestParam(value = "restaurant-id") @ApiParam(example = RESTAURANT1_ID_STR, required = true)
                                            int restaurantId) {
         log.info("create/update vote from user with id {}", authUserId());
-        checkTime();
         return super.save(authUserId(), restaurantId);
     }
 

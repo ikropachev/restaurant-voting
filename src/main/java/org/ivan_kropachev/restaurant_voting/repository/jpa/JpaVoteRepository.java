@@ -13,6 +13,8 @@ import javax.persistence.PersistenceContext;
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.ivan_kropachev.restaurant_voting.util.CheckTimeUtil.checkTime;
+
 @Repository
 @Transactional(readOnly = true)
 public class JpaVoteRepository implements VoteRepository {
@@ -29,6 +31,7 @@ public class JpaVoteRepository implements VoteRepository {
             em.persist(vote);
             return vote;
         } else {
+            checkTime();
             previous.setRestaurantId(restaurantId);
             em.merge(previous);
             return previous;
