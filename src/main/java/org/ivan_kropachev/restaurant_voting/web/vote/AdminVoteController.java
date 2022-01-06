@@ -14,7 +14,6 @@ import java.util.List;
 
 import static org.ivan_kropachev.restaurant_voting.Constants.RESTAURANT1_ID_STR;
 import static org.ivan_kropachev.restaurant_voting.Constants.VOTE_ID_STR;
-import static org.ivan_kropachev.restaurant_voting.util.CheckTimeUtil.checkTime;
 import static org.ivan_kropachev.restaurant_voting.web.SecurityUtil.authUserId;
 
 @RestController

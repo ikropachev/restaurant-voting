@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import static org.ivan_kropachev.restaurant_voting.Constants.RESTAURANT1_ID_STR;
-import static org.ivan_kropachev.restaurant_voting.util.CheckTimeUtil.checkTime;
 import static org.ivan_kropachev.restaurant_voting.web.SecurityUtil.authUserId;
 
 @RestController
