@@ -28,13 +28,8 @@ public class JpaMenuRepository implements MenuRepository {
     public Menu create(Menu menu, int restaurantId) {
         log.info("save menu {} for restaurant {}", menu, restaurantId);
         menu.setRestaurant(em.getReference(Restaurant.class, restaurantId));
-        Menu previous = getByRestaurantIdAndDate(restaurantId, menu.getDate());
-        if (previous == null) {
-            em.persist(menu);
-            return menu;
-        } else {
-            throw new IllegalArgumentException(menu + " must be new");
-        }
+        em.persist(menu);
+        return menu;
     }
 
     @Override
@@ -44,7 +39,8 @@ public class JpaMenuRepository implements MenuRepository {
         menu.setRestaurant(em.getReference(Restaurant.class, restaurantId));
         Menu previous = getByRestaurantIdAndDate(restaurantId, menu.getDate());
         if (previous == null) {
-            throw new IllegalArgumentException(menu + " must not be new");
+            em.persist(menu);
+            return menu;
         } else {
             menu.setId(previous.getId());
             return em.merge(menu);

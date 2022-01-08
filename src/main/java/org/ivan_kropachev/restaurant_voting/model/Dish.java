@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "dish")
 public class Dish extends AbstractNamedEntity {
 
-    @NotNull
+    //@NotNull
     @Column(name = "price", nullable = false)
     @ApiModelProperty(example = "10")
     private int price;

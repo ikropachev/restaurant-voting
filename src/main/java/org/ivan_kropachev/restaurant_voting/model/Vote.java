@@ -11,11 +11,11 @@ import java.time.LocalDate;
 @Table(name = "vote", uniqueConstraints = {@UniqueConstraint(name = "vote_user_id_date_idx", columnNames = {"user_id", "date"})})
 public class Vote extends AbstractBaseEntity {
 
-    @NotNull
+    //@NotNull
     @Column(name = "user_id", nullable = false)
     private int userId;
 
-    @NotNull
+    //@NotNull
     @Column(name = "restaurant_id", nullable = false)
     private int restaurantId;
 
