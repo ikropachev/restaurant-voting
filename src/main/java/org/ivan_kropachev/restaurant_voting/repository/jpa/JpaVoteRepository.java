@@ -3,7 +3,6 @@ package org.ivan_kropachev.restaurant_voting.repository.jpa;
 import org.hibernate.jpa.QueryHints;
 import org.ivan_kropachev.restaurant_voting.model.Vote;
 import org.ivan_kropachev.restaurant_voting.repository.VoteRepository;
-import org.ivan_kropachev.restaurant_voting.util.exception.LateVoteException;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,8 +11,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.time.LocalDate;
 import java.util.List;
-
-import static org.ivan_kropachev.restaurant_voting.util.CheckTimeUtil.checkTime;
 
 @Repository
 @Transactional(readOnly = true)
@@ -24,18 +21,18 @@ public class JpaVoteRepository implements VoteRepository {
 
     @Override
     @Transactional
-    public Vote save(int userId, int restaurantId) throws LateVoteException {
-        Vote previous = getByUserIdAndDate(userId, LocalDate.now());
-        if (previous == null) {
-            Vote vote = new Vote(null, userId, restaurantId, LocalDate.now());
-            em.persist(vote);
-            return vote;
-        } else {
-            checkTime();
-            previous.setRestaurantId(restaurantId);
-            em.merge(previous);
-            return previous;
-        }
+    public Vote save(int userId, int restaurantId) {
+        Vote vote = new Vote(null, userId, restaurantId, LocalDate.now());
+        em.persist(vote);
+        return vote;
+    }
+
+    @Override
+    @Transactional
+    public Vote update(Vote previous, int restaurantId) {
+        previous.setRestaurantId(restaurantId);
+        em.merge(previous);
+        return previous;
     }
 
     @Override
