@@ -5,7 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <bean class="org.ivan_kropachev.restaurant_voting.web.json.JacksonObjectMapper" id="objectMapper"
+    <bean class="org.ikropachev.voting.web.json.JacksonObjectMapper" id="objectMapper"
           factory-method="getMapper"/>
 
     <mvc:annotation-driven>
@@ -24,7 +24,7 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-    <context:component-scan base-package="org.ivan_kropachev.**.web"/>
+    <context:component-scan base-package="org.ikropachev.**.web"/>
 
     <!--  all resources inside folder src/main/webapp/resources are mapped so they can be referred to inside JSP files -->
     <mvc:resources mapping="/resources/**" location="/resources/"/>
