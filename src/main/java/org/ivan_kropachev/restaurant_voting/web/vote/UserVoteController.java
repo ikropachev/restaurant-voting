@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import static org.ivan_kropachev.restaurant_voting.Constants.RESTAURANT1_ID_STR;
 import static org.ivan_kropachev.restaurant_voting.web.SecurityUtil.authUserId;
+import static org.ivan_kropachev.restaurant_voting.web.restaurant.AdminRestaurantController.RESTAURANT1_ID_STR;
 
 @RestController
 @RequestMapping(value = UserVoteController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)

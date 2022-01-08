@@ -15,14 +15,15 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
-import static org.ivan_kropachev.restaurant_voting.Constants.*;
-
 @RestController
 @RequestMapping(value = AdminUserController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 @Api(description = "Operations for users from admin")
 public class AdminUserController extends AbstractUserController {
 
     static final String REST_URL = "/rest/admin/users";
+    private static final String USER_ID_STR = "100005";
+    private static final String USER_FOR_DELETE_ID_STR = "100006";
+    private static final String USER_FOR_UPDATE_ID_STR = "100007";
 
     @Override
     @GetMapping

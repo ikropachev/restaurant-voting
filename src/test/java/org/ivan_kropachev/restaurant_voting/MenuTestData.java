@@ -5,17 +5,24 @@ import org.ivan_kropachev.restaurant_voting.model.Menu;
 import org.ivan_kropachev.restaurant_voting.model.Restaurant;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.ivan_kropachev.restaurant_voting.Constants.*;
+import static org.ivan_kropachev.restaurant_voting.RestaurantTestData.restaurant1;
+import static org.ivan_kropachev.restaurant_voting.model.AbstractBaseEntity.START_SEQ;
 
 public class MenuTestData {
     public static final MatcherFactory.Matcher<Menu> MENU_MATCHER =
             MatcherFactory.usingIgnoringFieldsComparator(Menu.class, "restaurant", "dishes");
 
-    public static final Restaurant RESTAURANT = new Restaurant(RESTAURANT1_ID, "BarZero");
+    //https://stackoverflow.com/questions/8746084/string-to-localdate
+    public static final DateTimeFormatter PATTERN = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public static final LocalDate DATE = LocalDate.parse("2021-12-03", PATTERN);
+    public static final int MENU1_ID = START_SEQ + 8;
+
+    public static final Restaurant RESTAURANT = restaurant1;
     public static final Dish DISH = new Dish(null, "New_Update_Test_Dish", 55);
 
     public static final Menu menu1 = new Menu(MENU1_ID, DATE);

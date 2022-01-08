@@ -4,11 +4,12 @@ import org.ivan_kropachev.restaurant_voting.model.Restaurant;
 
 import java.util.List;
 
-import static org.ivan_kropachev.restaurant_voting.Constants.RESTAURANT1_ID;
+import static org.ivan_kropachev.restaurant_voting.model.AbstractBaseEntity.START_SEQ;
 
 public class RestaurantTestData {
     public static final MatcherFactory.Matcher<Restaurant> RESTAURANT_MATCHER =
             MatcherFactory.usingEqualsComparator(Restaurant.class);
+    public static final int RESTAURANT1_ID = START_SEQ;
 
     public static final Restaurant restaurant1 = new Restaurant(RESTAURANT1_ID, "BarZero");
     public static final Restaurant restaurant2 = new Restaurant(RESTAURANT1_ID + 1, "Burgers");

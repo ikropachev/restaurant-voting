@@ -18,7 +18,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
-import static org.ivan_kropachev.restaurant_voting.Constants.RESTAURANT1_ID_STR;
 import static org.slf4j.LoggerFactory.getLogger;
 
 @RestController
@@ -28,6 +27,7 @@ public class AdminRestaurantController {
     private static final Logger log = getLogger(AdminRestaurantController.class);
 
     static final String REST_URL = "/rest/admin/restaurants";
+    public static final String RESTAURANT1_ID_STR = "100000";
 
     @Autowired
     private RestaurantService service;

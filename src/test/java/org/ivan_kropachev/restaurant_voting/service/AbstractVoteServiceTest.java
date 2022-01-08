@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.time.Duration;
 import java.time.LocalTime;
 
-import static org.ivan_kropachev.restaurant_voting.Constants.*;
+import static org.ivan_kropachev.restaurant_voting.RestaurantTestData.RESTAURANT1_ID;
+import static org.ivan_kropachev.restaurant_voting.UserTestData.USER_ID;
 import static org.ivan_kropachev.restaurant_voting.VoteTestData.*;
+import static org.ivan_kropachev.restaurant_voting.model.AbstractBaseEntity.NOT_FOUND;
 import static org.ivan_kropachev.restaurant_voting.util.CheckTimeUtil.END_OF_CHANGE;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

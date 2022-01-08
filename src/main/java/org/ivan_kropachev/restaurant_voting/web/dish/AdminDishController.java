@@ -19,8 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
-import static org.ivan_kropachev.restaurant_voting.Constants.DISH1_ID_STR;
-import static org.ivan_kropachev.restaurant_voting.Constants.MENU1_ID_STR;
+import static org.ivan_kropachev.restaurant_voting.web.menu.AdminMenuController.MENU1_ID_STR;
 
 @RestController
 @RequestMapping(value = AdminDishController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -29,6 +28,7 @@ public class AdminDishController {
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
     static final String REST_URL = "/rest/admin/dishes";
+    private static final String DISH1_ID_STR = "100014";
 
     @Autowired
     private DishService service;

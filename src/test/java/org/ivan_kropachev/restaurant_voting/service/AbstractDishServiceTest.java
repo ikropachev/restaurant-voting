@@ -5,8 +5,9 @@ import org.ivan_kropachev.restaurant_voting.util.exception.NotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.ivan_kropachev.restaurant_voting.Constants.*;
 import static org.ivan_kropachev.restaurant_voting.DishTestData.*;
+import static org.ivan_kropachev.restaurant_voting.MenuTestData.MENU1_ID;
+import static org.ivan_kropachev.restaurant_voting.model.AbstractBaseEntity.NOT_FOUND;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public abstract class AbstractDishServiceTest extends AbstractServiceTest {

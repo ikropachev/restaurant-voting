@@ -19,7 +19,7 @@ import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.ivan_kropachev.restaurant_voting.Constants.*;
+import static org.ivan_kropachev.restaurant_voting.web.restaurant.AdminRestaurantController.RESTAURANT1_ID_STR;
 import static org.slf4j.LoggerFactory.getLogger;
 
 @RestController
@@ -29,6 +29,8 @@ public class AdminMenuController extends AbstractMenuController {
     private static final Logger log = getLogger(AdminMenuController.class);
 
     static final String REST_URL = "/rest/admin/menus";
+    private static final String DATE_STR = "2021-12-03";
+    public static final String MENU1_ID_STR = "100008";
 
     @Override
     @GetMapping

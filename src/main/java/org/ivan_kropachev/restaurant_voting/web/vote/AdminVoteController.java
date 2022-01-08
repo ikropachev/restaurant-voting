@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static org.ivan_kropachev.restaurant_voting.Constants.RESTAURANT1_ID_STR;
-import static org.ivan_kropachev.restaurant_voting.Constants.VOTE_ID_STR;
 import static org.ivan_kropachev.restaurant_voting.web.SecurityUtil.authUserId;
+import static org.ivan_kropachev.restaurant_voting.web.restaurant.AdminRestaurantController.RESTAURANT1_ID_STR;
 
 @RestController
 @RequestMapping(value = AdminVoteController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -23,6 +22,7 @@ public class AdminVoteController extends AbstractVoteController {
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
     static final String REST_URL = "/rest/admin/votes";
+    private static final String VOTE_ID_STR = "100027";
 
     @Override
     @GetMapping
