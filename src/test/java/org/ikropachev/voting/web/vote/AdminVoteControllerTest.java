@@ -28,45 +28,6 @@ public class AdminVoteControllerTest extends AbstractControllerTest {
     private VoteService service;
 
     @Test
-    void get() throws Exception {
-        perform(MockMvcRequestBuilders.get(REST_URL + VOTE1_ID)
-                .with(userHttpBasic(admin)))
-                .andExpect(status().isOk())
-                .andDo(print())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(VOTE_MATCHER.contentJson(vote1));
-    }
-
-    @Test
-    void getUnauth() throws Exception {
-        perform(MockMvcRequestBuilders.get(REST_URL + VOTE1_ID))
-                .andExpect(status().isUnauthorized());
-    }
-
-    @Test
-    void getNotFound() throws Exception {
-        perform(MockMvcRequestBuilders.get(REST_URL + NOT_FOUND)
-                .with(userHttpBasic(admin)))
-                .andDo(print())
-                .andExpect(status().isUnprocessableEntity());
-    }
-
-    @Test
-    void delete() throws Exception {
-        perform(MockMvcRequestBuilders.delete(REST_URL + VOTE1_ID)
-                .with(userHttpBasic(admin)))
-                .andExpect(status().isNoContent());
-        assertThrows(NotFoundException.class, () -> service.get(VOTE1_ID));
-    }
-
-    @Test
-    void deleteNotFound() throws Exception {
-        perform(MockMvcRequestBuilders.delete(REST_URL + NOT_FOUND)
-                .with(userHttpBasic(admin)))
-                .andExpect(status().isUnprocessableEntity());
-    }
-
-    @Test
     void createWithLocation() throws Exception {
         Vote newVote = getNew();
         ResultActions action = perform(MockMvcRequestBuilders.post(REST_URL + "?restaurant-id=" + RESTAURANT1_ID)
@@ -82,12 +43,12 @@ public class AdminVoteControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    void getAll() throws Exception {
+    void getAllForToday() throws Exception {
         perform(MockMvcRequestBuilders.get(REST_URL)
                 .with(userHttpBasic(admin)))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(VOTE_MATCHER.contentJson(votes));
+                .andExpect(VOTE_MATCHER.contentJson(todayVotes));
     }
 }

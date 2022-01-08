@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalTime;
+
 import static org.ikropachev.voting.Constants.RESTAURANT1_ID_STR;
 import static org.ikropachev.voting.web.SecurityUtil.authUserId;
 
@@ -28,6 +30,6 @@ public class UserVoteController extends AbstractVoteController {
     public Vote createWithLocation(@RequestParam(value = "restaurant-id") @ApiParam(example = RESTAURANT1_ID_STR, required = true)
                                            int restaurantId) {
         log.info("create/update vote from user with id {}", authUserId());
-        return super.save(authUserId(), restaurantId);
+        return super.save(authUserId(), restaurantId, LocalTime.now());
     }
 }

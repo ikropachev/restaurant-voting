@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import static org.ikropachev.voting.util.CheckTimeUtil.checkTime;
@@ -24,18 +25,18 @@ public class JpaVoteRepository implements VoteRepository {
 
     @Override
     @Transactional
-    public Vote save(int userId, int restaurantId) throws LateVoteException {
-        Vote previous = getByUserIdAndDate(userId, LocalDate.now());
-        if (previous == null) {
-            Vote vote = new Vote(null, userId, restaurantId, LocalDate.now());
-            em.persist(vote);
-            return vote;
-        } else {
-            checkTime();
-            previous.setRestaurantId(restaurantId);
-            em.merge(previous);
-            return previous;
-        }
+    public Vote save(int userId, int restaurantId) {
+        Vote vote = new Vote(null, userId, restaurantId, LocalDate.now());
+        em.persist(vote);
+        return vote;
+    }
+
+    @Override
+    @Transactional
+    public Vote update(Vote previous, int restaurantId) {
+        previous.setRestaurantId(restaurantId);
+        em.merge(previous);
+        return previous;
     }
 
     @Override
@@ -44,16 +45,12 @@ public class JpaVoteRepository implements VoteRepository {
     }
 
     @Override
-    @Transactional
-    public boolean delete(int id) {
-        return em.createQuery("DELETE FROM Vote v WHERE v.id=:id")
-                .setParameter("id", id)
-                .executeUpdate() != 0;
-    }
-
-    @Override
-    public List<Vote> getAll() {
-        return em.createQuery("SELECT v FROM Vote v ORDER BY v.date DESC").getResultList();
+    public List<Vote> getAllForToday() {
+        LocalDate currentDate = LocalDate.now();
+        return em.createQuery("SELECT v FROM Vote v WHERE v.date=:currentDate")
+                .setParameter("currentDate", currentDate)
+                .setHint(QueryHints.HINT_PASS_DISTINCT_THROUGH, false)
+                .getResultList();
     }
 
     public Vote getByUserIdAndDate(int userId, LocalDate date) {

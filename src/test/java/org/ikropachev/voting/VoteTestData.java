@@ -28,6 +28,8 @@ public class VoteTestData {
     //Votes must be sorted by date DESC
     public static final List<Vote> votes = List.of(vote6, vote7, vote2, vote1, vote4, vote5, vote3);
 
+    public static final List<Vote> todayVotes = List.of(vote6, vote7);
+
     public static Vote getNew() {
         return new Vote(null, USER_ID, RESTAURANT1_ID, LocalDate.now());
     }

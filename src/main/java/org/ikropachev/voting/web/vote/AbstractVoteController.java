@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalTime;
 import java.util.List;
 
 public class AbstractVoteController {
@@ -14,22 +15,12 @@ public class AbstractVoteController {
     @Autowired
     private VoteService service;
 
-    public List<Vote> getAll() {
+    public List<Vote> getAllForToday() {
         log.info("get all votes");
-        return service.getAll();
+        return service.getAllForToday();
     }
 
-    public Vote get(int id) {
-        log.info("get vote with id {}", id);
-        return service.get(id);
-    }
-
-    public Vote save(int userId, int restaurantId) {
-        return service.save(userId, restaurantId);
-    }
-
-    public void delete(int id) {
-        log.info("delete vote with id {}", id);
-        service.delete(id);
+    public Vote save(int userId, int restaurantId, LocalTime currentTime) {
+        return service.save(userId, restaurantId, currentTime);
     }
 }

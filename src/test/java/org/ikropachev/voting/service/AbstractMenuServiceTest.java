@@ -10,7 +10,6 @@ import static org.ikropachev.voting.Constants.*;
 import static org.ikropachev.voting.MenuTestData.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@EnableSwagger2
 public class AbstractMenuServiceTest extends AbstractServiceTest {
     @Autowired
     protected MenuService service;
