@@ -31,26 +31,11 @@ public class AdminVoteController extends AbstractVoteController {
         return super.getAll();
     }
 
-    @Override
-    @GetMapping("/{id}")
-    @ApiOperation(value = "View a vote by id")
-    public Vote get(@PathVariable @ApiParam(example = VOTE_ID_STR, required = true) int id) {
-        return super.get(id);
-    }
-
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Create/update a vote for a restaurant")
     public Vote createWithLocation(@RequestParam(value = "restaurant-id") @ApiParam(example = RESTAURANT1_ID_STR, required = true)
                                            int restaurantId) {
         log.info("create/update vote from user with id {}", authUserId());
         return super.save(authUserId(), restaurantId);
-    }
-
-    @Override
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @ApiOperation(value = "Delete a vote by id")
-    public void delete(@PathVariable @ApiParam(example = VOTE_ID_STR, required = true) int id) {
-        super.delete(id);
     }
 }

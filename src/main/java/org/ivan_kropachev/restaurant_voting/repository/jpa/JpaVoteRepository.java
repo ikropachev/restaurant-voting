@@ -41,14 +41,6 @@ public class JpaVoteRepository implements VoteRepository {
     }
 
     @Override
-    @Transactional
-    public boolean delete(int id) {
-        return em.createQuery("DELETE FROM Vote v WHERE v.id=:id")
-                .setParameter("id", id)
-                .executeUpdate() != 0;
-    }
-
-    @Override
     public List<Vote> getAll() {
         return em.createQuery("SELECT v FROM Vote v ORDER BY v.date DESC").getResultList();
     }

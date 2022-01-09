@@ -24,17 +24,6 @@ public class AbstractVoteServiceTest extends AbstractServiceTest {
     protected VoteService service;
 
     @Test
-    void delete() {
-        service.delete(VOTE1_ID);
-        assertThrows(NotFoundException.class, () -> service.get(VOTE1_ID));
-    }
-
-    @Test
-    void deleteNotFound() {
-        assertThrows(NotFoundException.class, () -> service.delete(NOT_FOUND));
-    }
-
-    @Test
     void saveNewBeforeDeadLine() {
         Vote created = service.save(USER_ID, RESTAURANT1_ID, BEFORE_END_OF_CHANGE);
         int newId = created.id();

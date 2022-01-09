@@ -29,10 +29,6 @@ public class VoteService {
         }
     }
 
-    public void delete(int id) {
-        checkNotFoundWithId(repository.delete(id), id);
-    }
-
     public Vote get(int id) {
         return checkNotFoundWithId(repository.get(id), id);
     }

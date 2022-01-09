@@ -10,9 +10,6 @@ public interface VoteRepository {
 
     Vote update(Vote previous, int restaurantId);
 
-    // false if not found
-    boolean delete(int id);
-
     // null if not found
     Vote get(int id);
 
