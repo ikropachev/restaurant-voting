@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "vote", uniqueConstraints = {@UniqueConstraint(name = "vote_user_id_date_idx", columnNames = {"user_id", "date"})})
+@Table(name = "vote", uniqueConstraints = {@UniqueConstraint(name = "vote_user_id_created_on_idx", columnNames = {"user_id", "created_on"})})
 public class Vote extends AbstractBaseEntity {
 
     //@NotNull
@@ -20,7 +20,7 @@ public class Vote extends AbstractBaseEntity {
     private int restaurantId;
 
     @NotNull
-    @Column(name = "date", nullable = false, columnDefinition = "timestamp default now()")
+    @Column(name = "created_on", nullable = false, columnDefinition = "timestamp default now()")
     private LocalDate date;
 
     public Vote() {

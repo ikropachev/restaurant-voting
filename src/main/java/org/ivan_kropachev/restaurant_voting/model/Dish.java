@@ -7,7 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "dish")
+@Table(name = "menu_item")
 public class Dish extends AbstractNamedEntity {
 
     //@NotNull

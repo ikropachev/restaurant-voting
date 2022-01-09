@@ -12,7 +12,7 @@ import java.util.List;
 
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Entity
-@Table(name = "menu", uniqueConstraints = {@UniqueConstraint(name = "menu_restaurant_id_date_idx", columnNames = {"restaurant_id", "date"})})
+@Table(name = "menu", uniqueConstraints = {@UniqueConstraint(name = "menu_restaurant_id_created_on_idx", columnNames = {"restaurant_id", "created_on"})})
 public class Menu extends AbstractBaseEntity {
     private static final String DISH_LIST_STR = "[\n{\n\"id\": \"null\",\n\"name\": \"dish1\",\n\"price\": 10\n},\n" +
             "    {\n\"id\": \"null\",\n\"name\": \"dish2\",\n\"price\": 20\n}\n]";
@@ -22,7 +22,7 @@ public class Menu extends AbstractBaseEntity {
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
 
-    @Column(name = "date", columnDefinition = "timestamp default now()")
+    @Column(name = "created_on", columnDefinition = "timestamp default now()")
     @ApiModelProperty(example = "null", readOnly = true)
     private LocalDate date;
 
