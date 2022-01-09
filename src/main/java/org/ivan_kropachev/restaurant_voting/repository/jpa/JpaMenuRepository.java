@@ -37,12 +37,12 @@ public class JpaMenuRepository implements MenuRepository {
     public Menu update(Menu menu, int restaurantId) {
         log.info("update menu {} for restaurant {}", menu, restaurantId);
         menu.setRestaurant(em.getReference(Restaurant.class, restaurantId));
-        Menu previous = getByRestaurantIdAndDate(restaurantId, menu.getDate());
+        Menu previous = get(menu.getId(), restaurantId);
+        menu.setDate(previous.getDate());
         if (previous == null) {
             em.persist(menu);
             return menu;
         } else {
-            menu.setId(previous.getId());
             return em.merge(menu);
         }
     }

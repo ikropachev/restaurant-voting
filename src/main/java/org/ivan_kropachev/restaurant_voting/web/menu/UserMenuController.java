@@ -22,6 +22,7 @@ public class UserMenuController extends AbstractMenuController {
 
     static final String REST_URL = "/rest/user/menus";
 
+
     @GetMapping
     @ApiOperation(value = "View a list of all menus for current date")
     public List<Menu> getAllForToday() {
