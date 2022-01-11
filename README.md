@@ -12,8 +12,8 @@ Voting system for deciding where to have lunch (without frontend).
   - If it is after 11:00 then it is too late, vote can't be changed
 * Each restaurant provides a new menu each day.
 
-Tech stack: Maven, Spring MVC, Spring Security, REST (Jackson), JDK8/17, Stream API, <br>
-HSQLDB (in memory), Spring Data JPA, JUnit5, Swagger (API)
+Tech stack: Maven, Spring MVC, Spring Security, Spring Data JPA, REST (Jackson), JDK8/17, <br>
+Stream API, HSQLDB (in memory),  JUnit5, Swagger (API)
 
 Login information:
 * admin@gmail.com:admin - sign in like admin
