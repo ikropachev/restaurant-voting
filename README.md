@@ -1,4 +1,4 @@
-# restaurant-voting
+# restaurant_voting
 
 Voting system for deciding where to have lunch (without frontend).
 
@@ -21,4 +21,4 @@ Login information:
 
 List of curl-commands is providing after login
 
-[Swagger REST API](http://localhost:8080/restaurant-voting/swagger-ui.html)
+[Swagger REST API](http://localhost:8080/restaurant_voting/swagger-ui.html)
