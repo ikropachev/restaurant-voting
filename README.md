@@ -16,9 +16,7 @@ Tech stack: Maven, Spring MVC, Spring Security, REST (Jackson), JDK8/17, Stream 
 HSQLDB (in memory), JPA (Hibernate), JUnit5, Swagger (API)
 
 Login information:
-* admin@gmail.com:admin - sign like admin
+* admin@gmail.com:admin - sign in like admin
 * user@gmail.com:user - sign in like regular user
-
-List of curl-commands is providing after login
 
 [Swagger REST API](http://localhost:8080/restaurant_voting/swagger-ui.html)
