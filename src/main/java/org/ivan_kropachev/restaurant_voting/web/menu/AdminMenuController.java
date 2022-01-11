@@ -32,14 +32,6 @@ public class AdminMenuController extends AbstractMenuController {
     static final String REST_URL = "/rest/admin/restaurants";
     public static final String MENU1_ID_STR = "100008";
     protected static final String DATE_STR = "2021-12-03";
-    /*
-    @Override
-    @GetMapping(value = "/menus")
-    @ApiOperation(value = "View a list of all menus")
-    public List<Menu> getAll() {
-        return super.getAll();
-    }
-    */
 
     @Override
     @GetMapping(value = "/menus/by-date")
