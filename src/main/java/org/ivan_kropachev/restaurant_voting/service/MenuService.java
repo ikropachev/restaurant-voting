@@ -1,7 +1,7 @@
 package org.ivan_kropachev.restaurant_voting.service;
 
 import org.ivan_kropachev.restaurant_voting.model.Menu;
-import org.ivan_kropachev.restaurant_voting.repository.MenuRepository;
+import org.ivan_kropachev.restaurant_voting.repository.datajpa.DataJpaMenuRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -12,19 +12,19 @@ import static org.ivan_kropachev.restaurant_voting.util.ValidationUtil.checkNotF
 
 @Service
 public class MenuService {
-    private final MenuRepository repository;
+    private final DataJpaMenuRepository repository;
 
-    public MenuService(MenuRepository repository) {
+    public MenuService(DataJpaMenuRepository repository) {
         this.repository = repository;
     }
 
     public Menu create(Menu menu, int restaurantId) {
         checkNew(menu);
-        return repository.create(menu, restaurantId);
+        return repository.save(menu, restaurantId);
     }
 
     public Menu update(Menu menu, int restaurantId) {
-        return repository.update(menu, restaurantId);
+        return repository.save(menu, restaurantId);
     }
 
     public Menu get(int id, int restaurantId) {
@@ -41,5 +41,9 @@ public class MenuService {
 
     public List<Menu> getAllByDate(LocalDate date) {
         return repository.getAllByDate(date);
+    }
+
+    public Menu getWithDishes(int id) {
+        return checkNotFoundWithId(repository.getWithDishes(id), id);
     }
 }

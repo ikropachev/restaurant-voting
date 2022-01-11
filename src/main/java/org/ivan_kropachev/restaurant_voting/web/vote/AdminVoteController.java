@@ -22,7 +22,6 @@ public class AdminVoteController extends AbstractVoteController {
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
     static final String REST_URL = "/rest/admin/votes";
-    private static final String VOTE_ID_STR = "100027";
 
     @Override
     @GetMapping

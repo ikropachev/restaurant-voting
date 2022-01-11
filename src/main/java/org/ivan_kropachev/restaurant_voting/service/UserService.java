@@ -2,11 +2,10 @@ package org.ivan_kropachev.restaurant_voting.service;
 
 import org.ivan_kropachev.restaurant_voting.AuthorizedUser;
 import org.ivan_kropachev.restaurant_voting.model.User;
-import org.ivan_kropachev.restaurant_voting.repository.UserRepository;
+import org.ivan_kropachev.restaurant_voting.repository.datajpa.DataJpaUserRepository;
 import org.ivan_kropachev.restaurant_voting.to.UserTo;
 import org.ivan_kropachev.restaurant_voting.util.UserUtil;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -24,9 +23,9 @@ import static org.ivan_kropachev.restaurant_voting.util.ValidationUtil.checkNotF
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UserService implements UserDetailsService {
 
-    private final UserRepository repository;
+    private final DataJpaUserRepository repository;
 
-    public UserService(UserRepository repository) {
+    public UserService(DataJpaUserRepository repository) {
         this.repository = repository;
     }
 

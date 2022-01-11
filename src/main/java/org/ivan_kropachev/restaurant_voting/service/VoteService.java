@@ -1,7 +1,7 @@
 package org.ivan_kropachev.restaurant_voting.service;
 
 import org.ivan_kropachev.restaurant_voting.model.Vote;
-import org.ivan_kropachev.restaurant_voting.repository.VoteRepository;
+import org.ivan_kropachev.restaurant_voting.repository.datajpa.DataJpaVoteRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -13,9 +13,9 @@ import static org.ivan_kropachev.restaurant_voting.util.ValidationUtil.checkNotF
 
 @Service
 public class VoteService {
-    private final VoteRepository repository;
+    private final DataJpaVoteRepository repository;
 
-    public VoteService(VoteRepository repository) {
+    public VoteService(DataJpaVoteRepository repository) {
         this.repository = repository;
     }
 

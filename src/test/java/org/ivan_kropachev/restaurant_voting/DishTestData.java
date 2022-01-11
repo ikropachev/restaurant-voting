@@ -27,4 +27,8 @@ public class DishTestData {
     public static Dish getNew() {
         return new Dish(null, "New_Test_Dish", 65);
     }
+
+    public static Dish getUpdated() {
+        return new Dish(null, "New_Update_Test_Dish", 55);
+    }
 }

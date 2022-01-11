@@ -26,7 +26,7 @@ public class Menu extends AbstractBaseEntity {
     @ApiModelProperty(example = "null", readOnly = true)
     private LocalDate date;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "menu", cascade = {CascadeType.ALL}, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "menu", cascade = {CascadeType.ALL}, orphanRemoval = true)
     @JsonManagedReference
     @ApiModelProperty(position = 3, example = DISH_LIST_STR)
     private List<Dish> dishes;

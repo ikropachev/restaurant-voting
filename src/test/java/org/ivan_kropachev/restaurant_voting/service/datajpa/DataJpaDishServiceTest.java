@@ -1,6 +1,8 @@
-package org.ivan_kropachev.restaurant_voting.service;
+package org.ivan_kropachev.restaurant_voting.service.datajpa;
 
 import org.ivan_kropachev.restaurant_voting.model.Dish;
+import org.ivan_kropachev.restaurant_voting.service.AbstractServiceTest;
+import org.ivan_kropachev.restaurant_voting.service.DishService;
 import org.ivan_kropachev.restaurant_voting.util.exception.NotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,7 @@ import static org.ivan_kropachev.restaurant_voting.MenuTestData.MENU1_ID;
 import static org.ivan_kropachev.restaurant_voting.model.AbstractBaseEntity.NOT_FOUND;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public abstract class AbstractDishServiceTest extends AbstractServiceTest {
+public class DataJpaDishServiceTest  extends AbstractServiceTest {
     @Autowired
     protected DishService service;
 

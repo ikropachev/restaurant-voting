@@ -17,6 +17,11 @@ public class AbstractMenuController {
     @Autowired
     private MenuService service;
 
+    public Menu get(int id) {
+        log.info("get menu with id {}", id);
+        return service.getWithDishes(id);
+    }
+
     public List<Menu> getAll() {
         log.info("get all menus");
         return service.getAll();
@@ -42,4 +47,6 @@ public class AbstractMenuController {
         log.info("update menu {} for restaurant with id {}", menu, restaurantId);
         service.update(menu, restaurantId);
     }
+
+
 }

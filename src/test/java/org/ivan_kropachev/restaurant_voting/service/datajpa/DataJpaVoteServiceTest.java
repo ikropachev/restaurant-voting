@@ -1,6 +1,8 @@
-package org.ivan_kropachev.restaurant_voting.service;
+package org.ivan_kropachev.restaurant_voting.service.datajpa;
 
 import org.ivan_kropachev.restaurant_voting.model.Vote;
+import org.ivan_kropachev.restaurant_voting.service.AbstractServiceTest;
+import org.ivan_kropachev.restaurant_voting.service.VoteService;
 import org.ivan_kropachev.restaurant_voting.util.exception.LateVoteException;
 import org.ivan_kropachev.restaurant_voting.util.exception.NotFoundException;
 import org.junit.jupiter.api.Test;
@@ -16,7 +18,7 @@ import static org.ivan_kropachev.restaurant_voting.model.AbstractBaseEntity.NOT_
 import static org.ivan_kropachev.restaurant_voting.util.CheckTimeUtil.END_OF_CHANGE;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class AbstractVoteServiceTest extends AbstractServiceTest {
+public class DataJpaVoteServiceTest extends AbstractServiceTest {
     private final static LocalTime BEFORE_END_OF_CHANGE = END_OF_CHANGE.minus(Duration.ofMinutes(1));
     private final static LocalTime AFTER_END_OF_CHANGE = END_OF_CHANGE.plus(Duration.ofMinutes(1));
 

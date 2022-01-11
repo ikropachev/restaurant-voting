@@ -1,17 +1,20 @@
-package org.ivan_kropachev.restaurant_voting.service;
+package org.ivan_kropachev.restaurant_voting.service.datajpa;
 
 import org.ivan_kropachev.restaurant_voting.model.Role;
 import org.ivan_kropachev.restaurant_voting.model.User;
+import org.ivan_kropachev.restaurant_voting.service.AbstractServiceTest;
+import org.ivan_kropachev.restaurant_voting.service.UserService;
 import org.ivan_kropachev.restaurant_voting.util.exception.NotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 
 import static org.ivan_kropachev.restaurant_voting.UserTestData.*;
+import static org.ivan_kropachev.restaurant_voting.UserTestData.USER_ID;
 import static org.ivan_kropachev.restaurant_voting.model.AbstractBaseEntity.NOT_FOUND;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AbstractUserServiceTest extends AbstractServiceTest {
+public class DataJpaUserServiceTest extends AbstractServiceTest {
     @Autowired
     protected UserService service;
 

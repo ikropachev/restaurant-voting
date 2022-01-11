@@ -1,8 +1,6 @@
 package org.ivan_kropachev.restaurant_voting;
 
-import org.ivan_kropachev.restaurant_voting.model.Dish;
 import org.ivan_kropachev.restaurant_voting.model.Menu;
-import org.ivan_kropachev.restaurant_voting.model.Restaurant;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -22,9 +20,6 @@ public class MenuTestData {
     public static final LocalDate DATE = LocalDate.parse("2021-12-03", PATTERN);
     public static final int MENU1_ID = START_SEQ + 8;
 
-    public static final Restaurant RESTAURANT = restaurant1;
-    public static final Dish DISH = new Dish(null, "New_Update_Test_Dish", 55);
-
     public static final Menu menu1 = new Menu(MENU1_ID, DATE);
     public static final Menu menu2 = new Menu(MENU1_ID + 1, DATE);
     public static final Menu menu3 = new Menu(MENU1_ID + 2, DATE);
@@ -36,10 +31,10 @@ public class MenuTestData {
     public static final List<Menu> menus = List.of(menu5, menu6, menu1, menu2, menu3, menu4);
 
     public static Menu getNew() {
-        return new Menu(null, RESTAURANT, LocalDate.now(), new ArrayList<>(Arrays.asList(new Dish(null, "New_Test_Dish", 65))));
+        return new Menu(null, restaurant1, LocalDate.now(), new ArrayList<>(Arrays.asList(DishTestData.getNew())));
     }
 
     public static Menu getUpdated() {
-        return new Menu(MENU1_ID, RESTAURANT, DATE, new ArrayList<>(Arrays.asList(DISH)));
+        return new Menu(MENU1_ID, restaurant1, DATE, new ArrayList<>(Arrays.asList(DishTestData.getUpdated())));
     }
 }

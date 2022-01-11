@@ -27,7 +27,7 @@ public class AdminMenuControllerTest extends AbstractControllerTest {
     private MenuService service;
 
     @Test
-    void getByDate() throws Exception {
+    void getAllByDate() throws Exception {
         perform(MockMvcRequestBuilders.get(REST_URL + "/menus/by-date?date=" + DATE)
                 .with(userHttpBasic(admin)))
                 .andExpect(status().isOk())

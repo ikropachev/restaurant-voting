@@ -1,7 +1,7 @@
 package org.ivan_kropachev.restaurant_voting.service;
 
 import org.ivan_kropachev.restaurant_voting.model.Restaurant;
-import org.ivan_kropachev.restaurant_voting.repository.RestaurantRepository;
+import org.ivan_kropachev.restaurant_voting.repository.datajpa.DataJpaRestaurantRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,9 +12,9 @@ import static org.ivan_kropachev.restaurant_voting.util.ValidationUtil.checkNotF
 @Service
 public class RestaurantService {
 
-    private final RestaurantRepository repository;
+    private final DataJpaRestaurantRepository repository;
 
-    public RestaurantService(RestaurantRepository repository) {
+    public RestaurantService(DataJpaRestaurantRepository repository) {
         this.repository = repository;
     }
 
