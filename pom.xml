@@ -105,7 +105,7 @@
                     </configuration>
                     <deployables>
                         <deployable>
-                            <groupId>org.ivan_kropachev</groupId>
+                            <groupId>org.ikropachev</groupId>
                             <artifactId>restaurant_voting</artifactId>
                             <type>war</type>
                             <properties>

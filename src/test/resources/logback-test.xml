@@ -21,7 +21,7 @@
         <appender-ref ref="result"/>
     </logger>
 
-    <logger name="org.ivan_kropachev.restaurant_voting" level="debug"/>
+    <logger name="org.ikropachev.voting" level="debug"/>
 
     <root level="INFO">
         <appender-ref ref="console"/>
