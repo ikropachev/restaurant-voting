@@ -30,4 +30,7 @@
     <!-- "How to run integration tests with spring and springfox?": https://github.com/springfox/springfox/issues/654 -->
     <bean class="springfox.documentation.swagger2.configuration.Swagger2DocumentationConfiguration"/>
     <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
+
+    <!-- use WebJars so Javascript and CSS libs can be declared as Maven dependencies (Bootstrap, jQuery...) -->
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
 </beans>
