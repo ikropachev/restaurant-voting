@@ -1,4 +1,4 @@
-# restaurant_voting
+# restaurant-voting
 
 Voting system for deciding where to have lunch (without frontend).
 
